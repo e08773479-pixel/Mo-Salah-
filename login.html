@@ -62,9 +62,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #718096;
-      text-align: center;
       overflow: hidden;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .teacher-side h1 {
@@ -171,7 +176,10 @@
     <section class="teacher-side">
 
       <div class="photo">
-        صورة مهندس محمد صلاح
+        <img
+          id="teacherImage"
+          alt="صورة مهندس محمد صلاح"
+        >
       </div>
 
       <h1>مهندس محمد صلاح</h1>
@@ -192,6 +200,7 @@
 
         <div class="field">
           <label for="code">كود المنصة</label>
+
           <input
             id="code"
             type="text"
@@ -202,6 +211,7 @@
 
         <div class="field">
           <label for="password">كلمة المرور</label>
+
           <input
             id="password"
             type="password"
@@ -222,6 +232,34 @@
     </section>
 
   </main>
+
+  <script>
+    const image = document.getElementById("teacherImage");
+
+    const imageNames = [
+      "55",
+      "55.jpg",
+      "55.jpeg",
+      "55.png",
+      "55.webp"
+    ];
+
+    let currentImage = 0;
+
+    function tryNextImage() {
+      if (currentImage >= imageNames.length) {
+        image.removeAttribute("src");
+        return;
+      }
+
+      image.src = imageNames[currentImage];
+      currentImage++;
+    }
+
+    image.addEventListener("error", tryNextImage);
+
+    tryNextImage();
+  </script>
 
 </body>
 </html>
