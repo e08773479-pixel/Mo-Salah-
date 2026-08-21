@@ -13,19 +13,39 @@
       padding: 0;
     }
 
+    :root {
+      --bg: #080d18;
+      --card: #101827;
+      --card-light: #172235;
+      --border: rgba(255, 255, 255, 0.09);
+      --text: #ffffff;
+      --muted: #8d9aae;
+      --primary: #06b6d4;
+      --secondary: #2563eb;
+    }
+
     body {
       min-height: 100vh;
       font-family: Arial, Tahoma, sans-serif;
       background:
-        radial-gradient(circle at top right, #12304a 0, transparent 35%),
-        #080d18;
-      color: #fff;
-      padding: 25px;
+        radial-gradient(
+          circle at top right,
+          rgba(18, 48, 74, 0.9) 0,
+          transparent 35%
+        ),
+        var(--bg);
+      color: var(--text);
+      padding: 22px;
     }
 
+    /* =========================
+       TOP BAR
+    ========================== */
+
     .topbar {
-      width: min(1100px, 100%);
-      margin: 0 auto 25px;
+      width: min(1120px, 100%);
+      margin: 0 auto 24px;
+
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -39,20 +59,24 @@
     }
 
     .brand-photo {
-      width: 68px;
-      height: 68px;
+      width: 72px;
+      height: 72px;
+
       border-radius: 20px;
       overflow: hidden;
-      background: #172235;
-      border: 1px solid rgba(255,255,255,0.12);
+
+      background: var(--card-light);
+      border: 1px solid var(--border);
+
       flex-shrink: 0;
     }
 
     .brand-photo img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+
       display: block;
+      object-fit: cover;
     }
 
     .brand-info h1 {
@@ -61,9 +85,13 @@
     }
 
     .brand-info p {
-      color: #8d9aae;
+      color: var(--muted);
       font-size: 13px;
     }
+
+    /* =========================
+       TOP ACTIONS
+    ========================== */
 
     .top-actions {
       display: flex;
@@ -73,95 +101,148 @@
 
     .top-actions a {
       text-decoration: none;
-      padding: 12px 18px;
-      border-radius: 12px;
-      font-weight: bold;
+      color: white;
+
+      padding: 12px 19px;
+      border-radius: 13px;
+
       font-size: 14px;
+      font-weight: bold;
+
+      transition: 0.2s ease;
     }
 
     .login-link {
-      color: #fff;
-      background: rgba(14,165,233,0.14);
-      border: 1px solid rgba(14,165,233,0.25);
+      background: rgba(14, 165, 233, 0.13);
+      border: 1px solid rgba(14, 165, 233, 0.25);
     }
 
     .register-link {
-      color: #fff;
-      background: linear-gradient(135deg, #06b6d4, #2563eb);
-    }
-
-    .login-box {
-      width: min(950px, 100%);
-      min-height: 570px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      overflow: hidden;
-      border-radius: 30px;
-      background: #101827;
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 35px 100px rgba(0,0,0,0.45);
-    }
-
-    .teacher-side {
-      padding: 35px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
       background:
         linear-gradient(
-          145deg,
-          rgba(15,35,55,0.95),
-          rgba(7,15,27,0.98)
+          135deg,
+          var(--primary),
+          var(--secondary)
         );
     }
 
-    .photo {
-      width: 100%;
-      max-width: 330px;
-      aspect-ratio: 1 / 1;
-      margin: 0 auto 25px;
-      border-radius: 28px;
-      background: #172235;
-      border: 1px solid rgba(255,255,255,0.1);
-      overflow: hidden;
+    .top-actions a:hover {
+      transform: translateY(-2px);
     }
 
-    .photo img {
+    /* =========================
+       LOGIN CARD
+    ========================== */
+
+    .login-box {
+      width: min(980px, 100%);
+      min-height: 580px;
+
+      margin: auto;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      overflow: hidden;
+
+      border-radius: 30px;
+
+      background: var(--card);
+      border: 1px solid var(--border);
+
+      box-shadow:
+        0 35px 100px rgba(0, 0, 0, 0.45);
+    }
+
+    /* =========================
+       TEACHER SIDE
+    ========================== */
+
+    .teacher-side {
+      padding: 38px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(15, 35, 55, 0.98),
+          rgba(7, 15, 27, 0.99)
+        );
+    }
+
+    .teacher-photo {
+      width: 100%;
+      max-width: 340px;
+      aspect-ratio: 1 / 1;
+
+      margin: 0 auto 25px;
+
+      overflow: hidden;
+
+      border-radius: 30px;
+
+      background: var(--card-light);
+      border: 1px solid var(--border);
+
+      box-shadow:
+        0 20px 55px rgba(0, 0, 0, 0.35);
+    }
+
+    .teacher-photo img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+
       display: block;
+
+      object-fit: cover;
     }
 
     .teacher-side h2 {
       text-align: center;
-      font-size: 27px;
+
+      font-size: 28px;
+
       margin-bottom: 8px;
     }
 
     .teacher-side p {
       text-align: center;
-      color: #8d9aae;
+
+      color: var(--muted);
+      font-size: 15px;
     }
 
+    /* =========================
+       FORM SIDE
+    ========================== */
+
     .form-side {
-      padding: 45px;
+      padding: 48px;
+
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
 
     .form-side h2 {
-      font-size: 34px;
+      font-size: 35px;
       margin-bottom: 10px;
     }
 
     .subtitle {
-      color: #8996a9;
+      color: var(--muted);
+
+      line-height: 1.8;
+
       margin-bottom: 35px;
-      line-height: 1.7;
     }
+
+    /* =========================
+       INPUTS
+    ========================== */
 
     .field {
       margin-bottom: 20px;
@@ -169,49 +250,111 @@
 
     .field label {
       display: block;
+
       margin-bottom: 9px;
+
       color: #d7deea;
+
       font-size: 14px;
+      font-weight: bold;
     }
 
     .field input {
       width: 100%;
+
       padding: 16px;
+
       border-radius: 14px;
+
       border: 1px solid #29364b;
+
       background: #0b1220;
+
       color: white;
+
       outline: none;
+
       font-size: 15px;
+
+      transition: 0.2s ease;
+    }
+
+    .field input::placeholder {
+      color: #5f6d82;
     }
 
     .field input:focus {
-      border-color: #0ea5e9;
+      border-color: var(--primary);
+
+      box-shadow:
+        0 0 0 3px rgba(6, 182, 212, 0.08);
     }
+
+    /* =========================
+       LOGIN BUTTON
+    ========================== */
 
     .login-submit {
       width: 100%;
+
       padding: 16px;
+
       border: 0;
       border-radius: 14px;
-      background: linear-gradient(135deg, #06b6d4, #2563eb);
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--primary),
+          var(--secondary)
+        );
+
       color: white;
+
       font-size: 16px;
       font-weight: bold;
+
       cursor: pointer;
+
       margin-top: 8px;
+
+      transition: 0.2s ease;
     }
+
+    .login-submit:hover {
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 12px 30px rgba(37, 99, 235, 0.25);
+    }
+
+    /* =========================
+       BACK BUTTON
+    ========================== */
 
     .back {
       display: block;
+
       text-align: center;
+
       color: #718096;
+
       text-decoration: none;
+
       margin-top: 22px;
+
       font-size: 14px;
     }
 
-    @media (max-width: 750px) {
+    .back:hover {
+      color: white;
+    }
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media (max-width: 800px) {
 
       body {
         padding: 15px;
@@ -222,8 +365,9 @@
       }
 
       .brand-photo {
-        width: 58px;
-        height: 58px;
+        width: 60px;
+        height: 60px;
+
         border-radius: 17px;
       }
 
@@ -231,25 +375,59 @@
         font-size: 16px;
       }
 
+      .brand-info p {
+        font-size: 11px;
+      }
+
+      .top-actions {
+        gap: 6px;
+      }
+
       .top-actions a {
-        padding: 10px 12px;
-        font-size: 12px;
+        padding: 10px 11px;
+        font-size: 11px;
       }
 
       .login-box {
         grid-template-columns: 1fr;
+
+        min-height: auto;
       }
 
       .teacher-side {
-        padding: 25px;
+        padding: 30px 25px;
       }
 
-      .photo {
-        max-width: 220px;
+      .teacher-photo {
+        max-width: 250px;
       }
 
       .form-side {
-        padding: 30px 25px 35px;
+        padding: 32px 25px 38px;
+      }
+
+      .form-side h2 {
+        font-size: 29px;
+      }
+    }
+
+    @media (max-width: 480px) {
+
+      .topbar {
+        flex-direction: column;
+      }
+
+      .top-actions {
+        width: 100%;
+      }
+
+      .top-actions a {
+        flex: 1;
+        text-align: center;
+      }
+
+      .brand {
+        width: 100%;
       }
     }
   </style>
@@ -257,12 +435,19 @@
 
 <body>
 
+  <!-- =========================
+       HEADER
+  ========================== -->
+
   <header class="topbar">
 
     <div class="brand">
 
       <div class="brand-photo">
-        <img id="brandImage" alt="مهندس محمد صلاح">
+        <img
+          src="55.jpg"
+          alt="صورة مهندس محمد صلاح"
+        >
       </div>
 
       <div class="brand-info">
@@ -273,33 +458,61 @@
     </div>
 
     <nav class="top-actions">
-      <a class="login-link" href="login.html">
+
+      <a
+        class="login-link"
+        href="login.html"
+      >
         تسجيل الدخول
       </a>
 
-      <a class="register-link" href="register.html">
+      <a
+        class="register-link"
+        href="register.html"
+      >
         إنشاء حساب جديد
       </a>
+
     </nav>
 
   </header>
 
+  <!-- =========================
+       LOGIN
+  ========================== -->
+
   <main class="login-box">
+
+    <!-- صورة المدرس -->
 
     <section class="teacher-side">
 
-      <div class="photo">
-        <img id="teacherImage" alt="صورة مهندس محمد صلاح">
+      <div class="teacher-photo">
+
+        <img
+          src="55.jpg"
+          alt="صورة مهندس محمد صلاح"
+        >
+
       </div>
 
-      <h2>مهندس محمد صلاح</h2>
-      <p>مدرس الفيزياء</p>
+      <h2>
+        مهندس محمد صلاح
+      </h2>
+
+      <p>
+        مدرس الفيزياء
+      </p>
 
     </section>
 
+    <!-- نموذج الدخول -->
+
     <section class="form-side">
 
-      <h2>أهلاً بيك 👋</h2>
+      <h2>
+        أهلاً بيك 👋
+      </h2>
 
       <p class="subtitle">
         سجل دخولك إلى منصة مهندس محمد صلاح
@@ -309,7 +522,10 @@
       <form>
 
         <div class="field">
-          <label for="code">كود المنصة</label>
+
+          <label for="code">
+            كود المنصة
+          </label>
 
           <input
             id="code"
@@ -317,62 +533,43 @@
             placeholder="اكتب كود المنصة"
             autocomplete="off"
           >
+
         </div>
 
         <div class="field">
-          <label for="password">كلمة المرور</label>
+
+          <label for="password">
+            كلمة المرور
+          </label>
 
           <input
             id="password"
             type="password"
             placeholder="اكتب كلمة المرور"
+            autocomplete="current-password"
           >
+
         </div>
 
-        <button class="login-submit" type="submit">
+        <button
+          class="login-submit"
+          type="submit"
+        >
           تسجيل الدخول
         </button>
 
       </form>
 
-      <a class="back" href="index.html">
+      <a
+        class="back"
+        href="index.html"
+      >
         العودة إلى الصفحة الرئيسية
       </a>
 
     </section>
 
   </main>
-
-  <script>
-    const imageNames = [
-      "55",
-      "55.jpg",
-      "55.jpeg",
-      "55.png",
-      "55.webp"
-    ];
-
-    function loadImage(elementId) {
-      const element = document.getElementById(elementId);
-
-      let index = 0;
-
-      function tryImage() {
-        if (index >= imageNames.length) {
-          return;
-        }
-
-        element.src = imageNames[index];
-        index++;
-      }
-
-      element.addEventListener("error", tryImage);
-      tryImage();
-    }
-
-    loadImage("brandImage");
-    loadImage("teacherImage");
-  </script>
 
 </body>
 </html>
