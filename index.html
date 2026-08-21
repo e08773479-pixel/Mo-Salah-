@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>مهندس محمد صلاح | منصة الفيزياء</title>
+
+  <meta
+    name="description"
+    content="منصة مهندس محمد صلاح التعليمية للفيزياء"
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Tahoma, sans-serif;
+      background: #080d18;
+      color: #ffffff;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: min(1200px, 92%);
+      margin: auto;
+    }
+
+    /* الهيدر */
+    header {
+      padding: 22px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(8,13,24,0.95);
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 15px;
+      background: linear-gradient(135deg, #00d4ff, #2563eb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 20px;
+    }
+
+    .brand-text h1 {
+      font-size: 18px;
+    }
+
+    .brand-text p {
+      color: #8f9bad;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .login-button {
+      border: 0;
+      background: #0ea5e9;
+      color: white;
+      padding: 12px 22px;
+      border-radius: 12px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* الهيرو */
+    .hero {
+      min-height: 560px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 50px;
+      padding: 70px 0;
+    }
+
+    .hero-content h2 {
+      font-size: clamp(38px, 6vw, 72px);
+      line-height: 1.05;
+      margin-bottom: 22px;
+    }
+
+    .hero-content h2 span {
+      color: #22d3ee;
+    }
+
+    .hero-content p {
+      color: #9aa6b8;
+      font-size: 18px;
+      line-height: 1.9;
+      max-width: 650px;
+      margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .primary-button,
+    .secondary-button {
+      padding: 15px 25px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .primary-button {
+      background: linear-gradient(135deg, #06b6d4, #2563eb);
+      color: white;
+    }
+
+    .secondary-button {
+      background: #111827;
+      color: white;
+      border: 1px solid #263246;
+    }
+
+    /* كارت الصورة */
+    .teacher-card {
+      background: linear-gradient(
+        145deg,
+        rgba(22,32,51,0.95),
+        rgba(12,19,33,0.95)
+      );
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 30px;
+      padding: 25px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+    }
+
+    .teacher-photo {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 24px;
+      background: #111827;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .teacher-photo span {
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .teacher-info {
+      padding: 20px 5px 5px;
+    }
+
+    .teacher-info h3 {
+      font-size: 25px;
+      margin-bottom: 7px;
+    }
+
+    .teacher-info p {
+      color: #8f9bad;
+    }
+
+    /* الكورسات */
+    .section {
+      padding: 70px 0;
+    }
+
+    .section-title {
+      margin-bottom: 30px;
+    }
+
+    .section-title h2 {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .section-title p {
+      color: #7f8ca0;
+    }
+
+    .courses {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .course {
+      background: #101827;
+      border: 1px solid #1d2a3d;
+      border-radius: 20px;
+      padding: 24px;
+    }
+
+    .course-icon {
+      width: 55px;
+      height: 55px;
+      border-radius: 16px;
+      background: rgba(14,165,233,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 25px;
+      margin-bottom: 18px;
+    }
+
+    .course h3 {
+      margin-bottom: 10px;
+    }
+
+    .course p {
+      color: #8793a6;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    /* الفوتر */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 30px 0;
+      color: #68758a;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    /* الموبايل */
+    @media (max-width: 850px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 45px 0;
+      }
+
+      .courses {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-content {
+        text-align: center;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .teacher-card {
+        max-width: 430px;
+        width: 100%;
+        margin: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="container navbar">
+
+      <div class="brand">
+        <div class="brand-logo">م</div>
+
+        <div class="brand-text">
+          <h1>مهندس محمد صلاح</h1>
+          <p>مدرس الفيزياء</p>
+        </div>
+      </div>
+
+      <button class="login-button">
+        تسجيل الدخول
+      </button>
+
+    </div>
+  </header>
+
+  <main>
+
+    <section class="container hero">
+
+      <div class="hero-content">
+
+        <h2>
+          اتعلم الفيزياء
+          <span>بطريقة مختلفة</span>
+        </h2>
+
+        <p>
+          منصة تعليمية متكاملة مع مهندس محمد صلاح،
+          تساعدك على فهم الفيزياء ومتابعة دروسك
+          وامتحاناتك وتقدمك في مكان واحد.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#" class="primary-button">
+            ابدأ التعلم
+          </a>
+
+          <a href="#" class="secondary-button">
+            استكشف الكورسات
+          </a>
+        </div>
+
+      </div>
+
+      <div class="teacher-card">
+
+        <div class="teacher-photo">
+          <span>صورة مهندس محمد صلاح</span>
+        </div>
+
+        <div class="teacher-info">
+          <h3>مهندس محمد صلاح</h3>
+          <p>مدرس الفيزياء</p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="container section">
+
+      <div class="section-title">
+        <h2>الكورسات</h2>
+        <p>اختار الكورس المناسب وابدأ رحلتك التعليمية.</p>
+      </div>
+
+      <div class="courses">
+
+        <article class="course">
+          <div class="course-icon">⚡</div>
+          <h3>الفيزياء</h3>
+          <p>
+            شرح مبسط ومنظم مع متابعة مستواك خطوة بخطوة.
+          </p>
+        </article>
+
+        <article class="course">
+          <div class="course-icon">🎓</div>
+          <h3>المحاضرات</h3>
+          <p>
+            محاضرات منظمة تستطيع الوصول إليها من أي جهاز.
+          </p>
+        </article>
+
+        <article class="course">
+          <div class="course-icon">📝</div>
+          <h3>الامتحانات</h3>
+          <p>
+            اختبارات لمتابعة مستواك ومعرفة نقاط القوة والضعف.
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 مهندس محمد صلاح — منصة الفيزياء
+    </div>
+  </footer>
+
+</body>
+</html>
