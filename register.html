@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070d13">
+  <title>إنشاء حساب جديد | منصة مهندس محمد صلاح</title>
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#070d13;
+      --panel:#0b131c;
+      --panel2:#101a24;
+      --line:#202c38;
+      --text:#f7fafc;
+      --muted:#8c99a6;
+      --cyan:#22c7b8;
+      --cyan2:#12a99f;
+      --blue:#159bd7;
+    }
+    body{
+      min-height:100vh;
+      background:
+        radial-gradient(circle at 80% 10%,rgba(18,155,215,.08),transparent 30%),
+        radial-gradient(circle at 20% 35%,rgba(34,199,184,.05),transparent 28%),
+        var(--bg);
+      color:var(--text);
+      font-family:Tahoma,Arial,sans-serif;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    }
+    a{text-decoration:none;color:inherit}
+    button,input{font:inherit}
+
+    .shell{
+      width:min(500px, 100%);
+      border:1px solid #26323d;
+      border-radius:24px;
+      overflow:hidden;
+      background:linear-gradient(180deg,#081018,#070d13);
+      box-shadow:0 25px 80px rgba(0,0,0,.42);
+      padding: 30px;
+    }
+
+    .auth-header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .auth-header h1 {
+      font-size: 24px;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .auth-header h1 span {
+      color: var(--cyan);
+    }
+
+    .auth-header p {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 8px;
+      color: #c3cbd2;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--text);
+      outline: none;
+      transition: 0.2s;
+    }
+
+    .form-group input:focus {
+      border-color: var(--cyan);
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 14px;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 700;
+      border: none;
+      background: linear-gradient(135deg,#22c7b8,#159bd7);
+      color: #041014;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.2s;
+    }
+
+    .btn-submit:hover {
+      opacity: 0.9;
+    }
+
+    .auth-footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .auth-footer a {
+      color: var(--cyan);
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="shell">
+    <div class="auth-header">
+      <h1>إنشاء <span>حساب جديد</span></h1>
+      <p>أدخل بياناتك بدقة للانضمام إلى منصة الفيزياء</p>
+    </div>
+
+    <form>
+      <!-- صورة الطالب -->
+      <div class="form-group">
+        <label>صورة الطالب</label>
+        <input type="file" accept="image/*" required>
+      </div>
+
+      <!-- اسم الطالب -->
+      <div class="form-group">
+        <label>اسم الطالب</label>
+        <input type="text" placeholder="أدخل اسمك الثلاثي" required>
+      </div>
+
+      <!-- رقم تليفون الطالب -->
+      <div class="form-group">
+        <label>رقم تليفون الطالب</label>
+        <input type="tel" placeholder="01000000000" required>
+      </div>
+
+      <!-- رقم تليفون الأب -->
+      <div class="form-group">
+        <label>رقم تليفون ولي الأمر (الأب)</label>
+        <input type="tel" placeholder="01000000000" required>
+      </div>
+
+      <!-- كود المنصة -->
+      <div class="form-group">
+        <label>كود المنصة</label>
+        <input type="text" placeholder="أدخل الكود الخاص بك" required>
+      </div>
+
+      <!-- كلمة السر -->
+      <div class="form-group">
+        <label>كلمة السر</label>
+        <input type="password" placeholder="••••••••" required>
+      </div>
+
+      <!-- تأكيد كلمة السر -->
+      <div class="form-group">
+        <label>تأكيد كلمة السر</label>
+        <input type="password" placeholder="••••••••" required>
+      </div>
+
+      <button type="submit" class="btn-submit">تسجيل الحساب</button>
+    </form>
+
+    <div class="auth-footer">
+      لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a> | <a href="index.html">الرئيسية</a>
+    </div>
+  </div>
+
+</body>
+</html>
