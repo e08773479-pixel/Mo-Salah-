@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070d13">
+  <title>الكورس | منصة مهندس محمد صلاح</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #070d13;
+      --panel: #0c151f;
+      --panel2: #101b26;
+      --line: #24313d;
+      --text: #f5f8fa;
+      --muted: #8c99a6;
+      --cyan: #22c7b8;
+      --blue: #159bd7;
+      --yellow: #f1c95b;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(
+          circle at 80% 0%,
+          rgba(21,155,215,.10),
+          transparent 30%
+        ),
+        var(--bg);
+      color: var(--text);
+      font-family: Tahoma, Arial, sans-serif;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    /* HEADER */
+
+    header {
+      height: 70px;
+      padding: 0 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+      background: rgba(7,13,19,.92);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-img {
+      width: 43px;
+      height: 43px;
+      border-radius: 11px;
+      overflow: hidden;
+    }
+
+    .brand-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 9px;
+      margin-top: 4px;
+    }
+
+    .back {
+      color: #b9c3cb;
+      font-size: 10px;
+    }
+
+    .back:hover {
+      color: var(--cyan);
+    }
+
+    /* PAGE */
+
+    .container {
+      width: min(1180px, calc(100% - 30px));
+      margin: auto;
+      padding: 30px 0 50px;
+    }
+
+    /* COURSE HERO */
+
+    .course-hero {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 28px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background:
+        linear-gradient(
+          135deg,
+          #101c27,
+          #09121a
+        );
+      overflow: hidden;
+    }
+
+    .course-cover {
+      min-height: 235px;
+      border-radius: 13px;
+      overflow: hidden;
+      background:
+        linear-gradient(
+          135deg,
+          #122333,
+          #0b151e
+        );
+      position: relative;
+    }
+
+    /*
+      هنا هنحط صورة الكورس اللي إنت هتختارها.
+      الاسم الافتراضي:
+      course-physics.jpg
+    */
+
+    .course-cover img {
+      width: 100%;
+      height: 100%;
+      min-height: 235px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .course-cover-placeholder {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: var(--cyan);
+      font-size: 70px;
+      background:
+        radial-gradient(
+          circle,
+          rgba(34,199,184,.13),
+          transparent 60%
+        );
+    }
+
+    .course-info {
+      padding: 8px 5px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 11px;
+      border-radius: 20px;
+      color: var(--cyan);
+      background: rgba(34,199,184,.09);
+      border: 1px solid rgba(34,199,184,.18);
+      font-size: 9px;
+      margin-bottom: 13px;
+    }
+
+    .course-info h1 {
+      font-size: 29px;
+      line-height: 1.5;
+      margin-bottom: 9px;
+    }
+
+    .course-info > p {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 2;
+      max-width: 650px;
+    }
+
+    .teacher {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 17px;
+    }
+
+    .teacher-img {
+      width: 37px;
+      height: 37px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1px solid var(--cyan);
+    }
+
+    .teacher-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .teacher-text strong {
+      display: block;
+      font-size: 10px;
+    }
+
+    .teacher-text span {
+      display: block;
+      color: var(--muted);
+      font-size: 8px;
+      margin-top: 3px;
+    }
+
+    .course-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 17px;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 9px;
+    }
+
+    .course-meta b {
+      color: var(--yellow);
+    }
+
+    /* PROGRESS */
+
+    .progress-box {
+      margin-top: 22px;
+      padding: 15px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: rgba(7,13,19,.35);
+    }
+
+    .progress-head {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 9px;
+    }
+
+    .progress-head span {
+      color: var(--muted);
+    }
+
+    .progress-head b {
+      color: var(--cyan);
+    }
+
+    .progress {
+      height: 6px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #1b2731;
+    }
+
+    .progress span {
+      display: block;
+      width: 72%;
+      height: 100%;
+      border-radius: 10px;
+      background:
+        linear-gradient(
+          90deg,
+          var(--cyan),
+          var(--blue)
+        );
+    }
+
+    /* CONTENT GRID */
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 310px;
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--panel);
+      overflow: hidden;
+    }
+
+    .panel-head {
+      padding: 17px 18px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .panel-head h2 {
+      font-size: 14px;
+    }
+
+    .panel-head span {
+      color: var(--muted);
+      font-size: 8px;
+    }
+
+    /* LESSONS */
+
+    .unit {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .unit:last-child {
+      border-bottom: 0;
+    }
+
+    .unit-head {
+      padding: 14px 18px;
+      background: rgba(255,255,255,.012);
+    }
+
+    .unit-head strong {
+      font-size: 11px;
+    }
+
+    .unit-head span {
+      display: block;
+      color: var(--muted);
+      font-size: 8px;
+      margin-top: 4px;
+    }
+
+    .lesson {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 18px;
+      border-top: 1px solid rgba(36,49,61,.55);
+      transition: .2s;
+    }
+
+    .lesson:hover {
+      background: rgba(34,199,184,.035);
+    }
+
+    .lesson-icon {
+      width: 37px;
+      height: 37px;
+      flex: 0 0 37px;
+      display: grid;
+      place-items: center;
+      border-radius: 9px;
+      background: #101e2a;
+      color: var(--cyan);
+      font-size: 14px;
+    }
+
+    .lesson-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .lesson-info strong {
+      display: block;
+      font-size: 10px;
+      margin-bottom: 5px;
+    }
+
+    .lesson-info span {
+      color: var(--muted);
+      font-size: 8px;
+    }
+
+    .lesson-status {
+      font-size: 8px;
+      color: var(--muted);
+    }
+
+    .lesson-status.done {
+      color: var(--cyan);
+    }
+
+    .lesson-button {
+      padding: 8px 11px;
+      border-radius: 7px;
+      font-size: 8px;
+      color: #061014;
+      background: linear-gradient(
+        135deg,
+        var(--cyan),
+        var(--blue)
+      );
+    }
+
+    /* SIDE INFO */
+
+    .side-content {
+      padding: 17px;
+    }
+
+    .side-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 9px;
+    }
+
+    .side-item:last-child {
+      border-bottom: 0;
+    }
+
+    .side-item span {
+      color: var(--muted);
+    }
+
+    .side-item strong {
+      color: #e6edf1;
+    }
+
+    .rating {
+      color: var(--yellow) !important;
+    }
+
+    .start-button {
+      display: block;
+      width: 100%;
+      padding: 13px;
+      margin-top: 15px;
+      border-radius: 8px;
+      text-align: center;
+      color: #041014;
+      font-size: 10px;
+      font-weight: bold;
+      background:
+        linear-gradient(
+          135deg,
+          var(--cyan),
+          var(--blue)
+        );
+    }
+
+    /* MOBILE */
+
+    @media(max-width:850px) {
+
+      .course-hero {
+        grid-template-columns: 1fr;
+      }
+
+      .course-cover {
+        min-height: 250px;
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width:520px) {
+
+      header {
+        height: 64px;
+        padding: 0 15px;
+      }
+
+      .container {
+        width: calc(100% - 20px);
+        padding-top: 15px;
+      }
+
+      .course-hero {
+        padding: 13px;
+        gap: 16px;
+        border-radius: 13px;
+      }
+
+      .course-cover,
+      .course-cover img {
+        min-height: 190px;
+      }
+
+      .course-info h1 {
+        font-size: 23px;
+      }
+
+      .course-info > p {
+        font-size: 10px;
+      }
+
+      .lesson {
+        padding: 11px 12px;
+      }
+
+      .lesson-icon {
+        width: 34px;
+        height: 34px;
+        flex-basis: 34px;
+      }
+
+      .lesson-button {
+        padding: 7px 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <a class="brand" href="dashboard.html">
+
+    <div class="brand-img">
+      <img src="55.jpg" alt="مهندس محمد صلاح">
+    </div>
+
+    <div>
+      <strong>منصة محمد صلاح</strong>
+      <span>فيزياء</span>
+    </div>
+
+  </a>
+
+  <a class="back" href="dashboard.html">
+    ← العودة للوحة الطالب
+  </a>
+
+</header>
+
+
+<main class="container">
+
+  <!-- COURSE HEADER -->
+
+  <section class="course-hero">
+
+    <div class="course-cover">
+
+      <!--
+        الصورة التي سنختارها للكورس لاحقاً.
+        غيّر اسم الملف فقط عندما ترسل لي صورة الكورس.
+      -->
+
+      <img
+        src="course-physics.jpg"
+        alt="غلاف كورس الفيزياء"
+        onerror="this.style.display='none'; document.getElementById('coverPlaceholder').style.display='grid';"
+      >
+
+      <div
+        id="coverPlaceholder"
+        class="course-cover-placeholder"
+        style="display:none;"
+      >
+        ⚛
+      </div>
+
+    </div>
+
+
+    <div class="course-info">
+
+      <span class="badge">
+        كورس فيزياء
+      </span>
+
+      <h1>
+        أساسيات الفيزياء
+      </h1>
+
+      <p>
+        كورس متكامل لفهم أساسيات الفيزياء
+        بطريقة بسيطة ومنظمة، بداية من المفاهيم
+        الأساسية وحتى حل المسائل والتطبيقات.
+      </p>
+
+
+      <div class="teacher">
+
+        <div class="teacher-img">
+          <img
+            src="55.jpg"
+            alt="مهندس محمد صلاح"
+          >
+        </div>
+
+        <div class="teacher-text">
+
+          <strong>
+            مهندس محمد صلاح
+          </strong>
+
+          <span>
+            مدرس الفيزياء
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="course-meta">
+
+        <span>
+          🎥 25 محاضرة
+        </span>
+
+        <span>
+          ⏱ 12 ساعة
+        </span>
+
+        <span>
+          👥 طلاب المنصة
+        </span>
+
+        <span>
+          <b>★ 4.9</b>
+        </span>
+
+      </div>
+
+
+      <div class="progress-box">
+
+        <div class="progress-head">
+
+          <span>
+            تقدمك في الكورس
+          </span>
+
+          <b>
+            72%
+          </b>
+
+        </div>
+
+        <div class="progress">
+          <span></span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- COURSE CONTENT -->
+
+  <section class="content-grid">
+
+
+    <div class="panel">
+
+      <div class="panel-head">
+
+        <h2>
+          محتوى الكورس
+        </h2>
+
+        <span>
+          25 محاضرة
+        </span>
+
+      </div>
+
+
+      <!-- UNIT 1 -->
+
+      <div class="unit">
+
+        <div class="unit-head">
+
+          <strong>
+            الوحدة الأولى — أساسيات الفيزياء
+          </strong>
+
+          <span>
+            6 محاضرات
+          </span>
+
+        </div>
+
+
+        <a
+          class="lesson"
+          href="lesson.html"
+        >
+
+          <div class="lesson-icon">
+            ▶
+          </div>
+
+          <div class="lesson-info">
+
+            <strong>
+              مقدمة في علم الفيزياء
+            </strong>
+
+            <span>
+              35 دقيقة
+            </span>
+
+          </div>
+
+          <div class="lesson-status done">
+            ✓ مكتملة
+          </div>
+
+        </a>
+
+
+        <a
+          class="lesson"
+          href="lesson.html"
+        >
+
+          <div class="lesson-icon">
+            ▶
+          </div>
+
+          <div class="lesson-info">
+
+            <strong>
+              الكميات الفيزيائية ووحدات القياس
+            </strong>
+
+            <span>
+              42 دقيقة
+            </span>
+
+          </div>
+
+          <div class="lesson-status done">
+            ✓ مكتملة
+          </div>
+
+        </a>
+
+
+        <a
+          class="lesson"
+          href="lesson.html"
+        >
+
+          <div class="lesson-icon">
+            ▶
+          </div>
+
+          <div class="lesson-info">
+
+            <strong>
+              القياس والأخطاء
+            </strong>
+
+            <span>
+              38 دقيقة
+            </span>
+
+          </div>
+
+          <div class="lesson-status">
+            لم تبدأ
+          </div>
+
+          <span class="lesson-button">
+            ابدأ
+          </span>
+
+        </a>
+
+      </div>
+
+
+      <!-- UNIT 2 -->
+
+      <div class="unit">
+
+        <div class="unit-head">
+
+          <strong>
+            الوحدة الثانية — الحركة
+          </strong>
+
+          <span>
+            8 محاضرات
+          </span>
+
+        </div>
+
+
+        <a
+          class="lesson"
+          href="lesson.html"
+        >
+
+          <div class="lesson-icon">
+            ▶
+          </div>
+
+          <div class="lesson-info">
+
+            <strong>
+              مفهوم الحركة
+            </strong>
+
+            <span>
+              45 دقيقة
+            </span>
+
+          </div>
+
+          <div class="lesson-status">
+            لم تبدأ
+          </div>
+
+          <span class="lesson-button">
+            ابدأ
+          </span>
+
+        </a>
+
+
+        <a
+          class="lesson"
+          href="lesson.html"
+        >
+
+          <div class="lesson-icon">
+            ▶
+          </div>
+
+          <div class="lesson-info">
+
+            <strong>
+              السرعة والعجلة
+            </strong>
+
+            <span>
+              50 دقيقة
+            </span>
+
+          </div>
+
+          <div class="lesson-status">
+            لم تبدأ
+          </div>
+
+          <span class="lesson-button">
+            ابدأ
+          </span>
+
+        </a>
+
+
+        <a
+          class="lesson"
+          href="lesson.html"
+        >
+
+          <div class="lesson-icon">
+            ▶
+          </div>
+
+          <div class="lesson-info">
+
+            <strong>
+              قوانين الحركة وتطبيقاتها
+            </strong>
+
+            <span>
+              55 دقيقة
+            </span>
+
+          </div>
+
+          <div class="lesson-status">
+            لم تبدأ
+          </div>
+
+          <span class="lesson-button">
+            ابدأ
+          </span>
+
+        </a>
+
+      </div>
+
+
+      <!-- UNIT 3 -->
+
+      <div class="unit">
+
+        <div class="unit-head">
+
+          <strong>
+            الوحدة الثالثة — حل المسائل
+          </strong>
+
+          <span>
+            11 محاضرة
+          </span>
+
+        </div>
+
+
+        <a
+          class="lesson"
+          href="lesson.html"
+        >
+
+          <div class="lesson-icon">
+            ▶
+          </div>
+
+          <div class="lesson-info">
+
+            <strong>
+              طريقة التفكير في المسألة
+            </strong>
+
+            <span>
+              40 دقيقة
+            </span>
+
+          </div>
+
+          <div class="lesson-status">
+            لم تبدأ
+          </div>
+
+          <span class="lesson-button">
+            ابدأ
+          </span>
+
+        </a>
+
+
+        <a
+          class="lesson"
+          href="lesson.html"
+        >
+
+          <div class="lesson-icon">
+            ▶
+          </div>
+
+          <div class="lesson-info">
+
+            <strong>
+              مسائل شاملة
+            </strong>
+
+            <span>
+              60 دقيقة
+            </span>
+
+          </div>
+
+          <div class="lesson-status">
+            لم تبدأ
+          </div>
+
+          <span class="lesson-button">
+            ابدأ
+          </span>
+
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- SIDE PANEL -->
+
+    <aside class="panel">
+
+      <div class="panel-head">
+
+        <h2>
+          معلومات الكورس
+        </h2>
+
+      </div>
+
+
+      <div class="side-content">
+
+        <div class="side-item">
+          <span>المستوى</span>
+          <strong>متوسط</strong>
+        </div>
+
+        <div class="side-item">
+          <span>المحاضرات</span>
+          <strong>25</strong>
+        </div>
+
+        <div class="side-item">
+          <span>مدة المحتوى</span>
+          <strong>12 ساعة</strong>
+        </div>
+
+        <div class="side-item">
+          <span>التقييم</span>
+          <strong class="rating">★ 4.9</strong>
+        </div>
+
+        <div class="side-item">
+          <span>التقدم</span>
+          <strong>72%</strong>
+        </div>
+
+
+        <a
+          class="start-button"
+          href="lesson.html"
+        >
+          متابعة الكورس
+        </a>
+
+      </div>
+
+    </aside>
+
+  </section>
+
+</main>
+
+
+<script>
+
+  /*
+    لاحقاً البيانات دي مش هتكون ثابتة.
+    هنجيبها من قاعدة البيانات حسب:
+    - الطالب
+    - الكورس
+    - نسبة الإنجاز
+    - الوحدات
+    - المحاضرات
+  */
+
+</script>
+
+</body>
+  </html>
