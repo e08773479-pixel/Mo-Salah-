@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta name="theme-color" content="#070d13">
   <title>تسجيل الدخول | مهندس محمد صلاح</title>
 
   <style>
@@ -14,420 +14,340 @@
     }
 
     :root {
-      --bg: #080d18;
-      --card: #101827;
-      --card-light: #172235;
-      --border: rgba(255, 255, 255, 0.09);
-      --text: #ffffff;
-      --muted: #8d9aae;
-      --primary: #06b6d4;
-      --secondary: #2563eb;
+      --bg: #070d13;
+      --card: #0c151f;
+      --card2: #101b26;
+      --line: #24313d;
+      --text: #f5f8fa;
+      --muted: #8c99a6;
+      --cyan: #22c7b8;
+      --blue: #159bd7;
     }
 
     body {
       min-height: 100vh;
-      font-family: Arial, Tahoma, sans-serif;
       background:
         radial-gradient(
-          circle at top right,
-          rgba(18, 48, 74, 0.9) 0,
-          transparent 35%
+          circle at 50% 0%,
+          rgba(24, 155, 215, .12),
+          transparent 38%
+        ),
+        radial-gradient(
+          circle at 15% 80%,
+          rgba(34, 199, 184, .06),
+          transparent 30%
         ),
         var(--bg);
       color: var(--text);
-      padding: 22px;
+      font-family: Tahoma, Arial, sans-serif;
     }
 
-    /* =========================
-       TOP BAR
-    ========================== */
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-    .topbar {
-      width: min(1120px, 100%);
-      margin: 0 auto 24px;
+    button,
+    input {
+      font: inherit;
+    }
 
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER */
+
+    header {
+      height: 70px;
+      padding: 0 7%;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(7, 13, 19, .88);
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 11px;
     }
 
-    .brand-photo {
-      width: 72px;
-      height: 72px;
-
-      border-radius: 20px;
+    .brand-image {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
       overflow: hidden;
-
-      background: var(--card-light);
-      border: 1px solid var(--border);
-
-      flex-shrink: 0;
+      background: linear-gradient(
+        145deg,
+        var(--cyan),
+        var(--blue)
+      );
     }
 
-    .brand-photo img {
+    .brand-image img {
       width: 100%;
       height: 100%;
-
-      display: block;
       object-fit: cover;
     }
 
-    .brand-info h1 {
-      font-size: 20px;
-      margin-bottom: 5px;
-    }
-
-    .brand-info p {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    /* =========================
-       TOP ACTIONS
-    ========================== */
-
-    .top-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .top-actions a {
-      text-decoration: none;
-      color: white;
-
-      padding: 12px 19px;
-      border-radius: 13px;
-
+    .brand-name strong {
+      display: block;
       font-size: 14px;
-      font-weight: bold;
-
-      transition: 0.2s ease;
     }
 
-    .login-link {
-      background: rgba(14, 165, 233, 0.13);
-      border: 1px solid rgba(14, 165, 233, 0.25);
+    .brand-name span {
+      display: block;
+      color: var(--muted);
+      font-size: 9px;
+      margin-top: 4px;
     }
 
-    .register-link {
-      background:
-        linear-gradient(
-          135deg,
-          var(--primary),
-          var(--secondary)
-        );
+    .back {
+      color: #b9c3cb;
+      font-size: 11px;
     }
 
-    .top-actions a:hover {
-      transform: translateY(-2px);
+    .back:hover {
+      color: var(--cyan);
     }
 
-    /* =========================
-       LOGIN CARD
-    ========================== */
+    /* CONTENT */
+
+    .content {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
 
     .login-box {
-      width: min(980px, 100%);
-      min-height: 580px;
-
-      margin: auto;
-
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-
-      overflow: hidden;
-
-      border-radius: 30px;
-
-      background: var(--card);
-      border: 1px solid var(--border);
-
-      box-shadow:
-        0 35px 100px rgba(0, 0, 0, 0.45);
-    }
-
-    /* =========================
-       TEACHER SIDE
-    ========================== */
-
-    .teacher-side {
-      padding: 38px;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-
+      width: 100%;
+      max-width: 430px;
+      padding: 32px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
       background:
         linear-gradient(
           145deg,
-          rgba(15, 35, 55, 0.98),
-          rgba(7, 15, 27, 0.99)
+          rgba(16, 27, 38, .96),
+          rgba(9, 17, 25, .96)
         );
+      box-shadow: 0 25px 70px rgba(0, 0, 0, .42);
     }
 
-    .teacher-photo {
-      width: 100%;
-      max-width: 340px;
-      aspect-ratio: 1 / 1;
+    .teacher {
+      text-align: center;
+      margin-bottom: 24px;
+    }
 
-      margin: 0 auto 25px;
-
+    .teacher-image {
+      width: 82px;
+      height: 82px;
+      margin: 0 auto 13px;
+      border-radius: 50%;
       overflow: hidden;
-
-      border-radius: 30px;
-
-      background: var(--card-light);
-      border: 1px solid var(--border);
-
+      border: 2px solid var(--cyan);
       box-shadow:
-        0 20px 55px rgba(0, 0, 0, 0.35);
+        0 0 0 5px rgba(34, 199, 184, .07),
+        0 15px 35px rgba(0, 0, 0, .35);
     }
 
-    .teacher-photo img {
+    .teacher-image img {
       width: 100%;
       height: 100%;
-
-      display: block;
-
       object-fit: cover;
     }
 
-    .teacher-side h2 {
-      text-align: center;
-
-      font-size: 28px;
-
-      margin-bottom: 8px;
+    .teacher h1 {
+      font-size: 22px;
+      margin-bottom: 7px;
     }
 
-    .teacher-side p {
-      text-align: center;
-
+    .teacher p {
       color: var(--muted);
-      font-size: 15px;
+      font-size: 11px;
     }
 
-    /* =========================
-       FORM SIDE
-    ========================== */
-
-    .form-side {
-      padding: 48px;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+    .title {
+      text-align: center;
+      font-size: 16px;
+      margin-bottom: 23px;
     }
-
-    .form-side h2 {
-      font-size: 35px;
-      margin-bottom: 10px;
-    }
-
-    .subtitle {
-      color: var(--muted);
-
-      line-height: 1.8;
-
-      margin-bottom: 35px;
-    }
-
-    /* =========================
-       INPUTS
-    ========================== */
 
     .field {
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
     .field label {
       display: block;
-
-      margin-bottom: 9px;
-
-      color: #d7deea;
-
-      font-size: 14px;
-      font-weight: bold;
+      font-size: 11px;
+      color: #dbe3e8;
+      margin-bottom: 8px;
     }
 
-    .field input {
+    .input-wrap {
+      position: relative;
+    }
+
+    .input-wrap input {
       width: 100%;
-
-      padding: 16px;
-
-      border-radius: 14px;
-
-      border: 1px solid #29364b;
-
-      background: #0b1220;
-
-      color: white;
-
+      height: 48px;
+      border: 1px solid #263541;
       outline: none;
-
-      font-size: 15px;
-
-      transition: 0.2s ease;
+      border-radius: 9px;
+      background: #08111a;
+      color: white;
+      padding: 0 15px;
+      transition: .2s;
     }
 
-    .field input::placeholder {
-      color: #5f6d82;
+    .input-wrap input:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(34, 199, 184, .08);
     }
 
-    .field input:focus {
-      border-color: var(--primary);
-
-      box-shadow:
-        0 0 0 3px rgba(6, 182, 212, 0.08);
+    .input-wrap input::placeholder {
+      color: #667581;
     }
 
-    /* =========================
-       LOGIN BUTTON
-    ========================== */
+    .password-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
 
-    .login-submit {
+    .remember {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .remember input {
+      accent-color: var(--cyan);
+    }
+
+    .forgot {
+      color: var(--cyan);
+      font-size: 10px;
+    }
+
+    .login-button {
       width: 100%;
-
-      padding: 16px;
-
+      height: 48px;
       border: 0;
-      border-radius: 14px;
-
+      border-radius: 9px;
+      cursor: pointer;
+      color: #041014;
+      font-size: 12px;
+      font-weight: bold;
       background:
         linear-gradient(
           135deg,
-          var(--primary),
-          var(--secondary)
+          var(--cyan),
+          var(--blue)
         );
-
-      color: white;
-
-      font-size: 16px;
-      font-weight: bold;
-
-      cursor: pointer;
-
-      margin-top: 8px;
-
-      transition: 0.2s ease;
+      transition: .2s;
     }
 
-    .login-submit:hover {
-      transform: translateY(-2px);
-
-      box-shadow:
-        0 12px 30px rgba(37, 99, 235, 0.25);
+    .login-button:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.08);
     }
 
-    /* =========================
-       BACK BUTTON
-    ========================== */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #65737e;
+      font-size: 9px;
+      margin: 22px 0;
+    }
 
-    .back {
-      display: block;
+    .divider::before,
+    .divider::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: var(--line);
+    }
 
+    .register-text {
       text-align: center;
-
-      color: #718096;
-
-      text-decoration: none;
-
-      margin-top: 22px;
-
-      font-size: 14px;
+      color: var(--muted);
+      font-size: 10px;
     }
 
-    .back:hover {
-      color: white;
+    .register-text a {
+      color: var(--cyan);
+      font-weight: bold;
     }
 
-    /* =========================
-       MOBILE
-    ========================== */
+    .message {
+      display: none;
+      margin-top: 14px;
+      padding: 10px;
+      border-radius: 8px;
+      background: rgba(34, 199, 184, .08);
+      border: 1px solid rgba(34, 199, 184, .2);
+      color: #9de8df;
+      text-align: center;
+      font-size: 10px;
+    }
 
-    @media (max-width: 800px) {
+    /* MOBILE */
 
-      body {
-        padding: 15px;
+    @media (max-width: 520px) {
+
+      header {
+        height: 64px;
+        padding: 0 16px;
       }
 
-      .topbar {
-        align-items: flex-start;
+      .brand-image {
+        width: 39px;
+        height: 39px;
       }
 
-      .brand-photo {
-        width: 60px;
-        height: 60px;
-
-        border-radius: 17px;
+      .brand-name strong {
+        font-size: 12px;
       }
 
-      .brand-info h1 {
-        font-size: 16px;
+      .brand-name span {
+        font-size: 8px;
       }
 
-      .brand-info p {
-        font-size: 11px;
+      .back {
+        font-size: 9px;
       }
 
-      .top-actions {
-        gap: 6px;
-      }
-
-      .top-actions a {
-        padding: 10px 11px;
-        font-size: 11px;
+      .content {
+        padding: 24px 15px;
       }
 
       .login-box {
-        grid-template-columns: 1fr;
-
-        min-height: auto;
+        padding: 25px 19px;
+        border-radius: 15px;
       }
 
-      .teacher-side {
-        padding: 30px 25px;
+      .teacher-image {
+        width: 76px;
+        height: 76px;
       }
 
-      .teacher-photo {
-        max-width: 250px;
+      .teacher h1 {
+        font-size: 20px;
       }
 
-      .form-side {
-        padding: 32px 25px 38px;
-      }
-
-      .form-side h2 {
-        font-size: 29px;
-      }
-    }
-
-    @media (max-width: 480px) {
-
-      .topbar {
-        flex-direction: column;
-      }
-
-      .top-actions {
-        width: 100%;
-      }
-
-      .top-actions a {
-        flex: 1;
-        text-align: center;
-      }
-
-      .brand {
-        width: 100%;
+      .title {
+        font-size: 15px;
       }
     }
   </style>
@@ -435,141 +355,202 @@
 
 <body>
 
-  <!-- =========================
-       HEADER
-  ========================== -->
+  <div class="page">
 
-  <header class="topbar">
+    <header>
 
-    <div class="brand">
+      <a class="brand" href="index.html">
 
-      <div class="brand-photo">
-        <img
-          src="55.jpg"
-          alt="صورة مهندس محمد صلاح"
-        >
-      </div>
+        <div class="brand-image">
+          <img src="55.jpg" alt="مهندس محمد صلاح">
+        </div>
 
-      <div class="brand-info">
-        <h1>مهندس محمد صلاح</h1>
-        <p>مدرس الفيزياء</p>
-      </div>
+        <div class="brand-name">
+          <strong>منصة محمد صلاح</strong>
+          <span>فيزياء</span>
+        </div>
 
-    </div>
-
-    <nav class="top-actions">
-
-      <a
-        class="login-link"
-        href="login.html"
-      >
-        تسجيل الدخول
       </a>
 
-      <a
-        class="register-link"
-        href="register.html"
-      >
-        إنشاء حساب جديد
+      <a class="back" href="index.html">
+        العودة للرئيسية
       </a>
 
-    </nav>
+    </header>
 
-  </header>
 
-  <!-- =========================
-       LOGIN
-  ========================== -->
+    <main class="content">
 
-  <main class="login-box">
+      <section class="login-box">
 
-    <!-- صورة المدرس -->
+        <div class="teacher">
 
-    <section class="teacher-side">
+          <div class="teacher-image">
+            <img src="55.jpg" alt="مهندس محمد صلاح">
+          </div>
 
-      <div class="teacher-photo">
+          <h1>مهندس محمد صلاح</h1>
 
-        <img
-          src="55.jpg"
-          alt="صورة مهندس محمد صلاح"
-        >
-
-      </div>
-
-      <h2>
-        مهندس محمد صلاح
-      </h2>
-
-      <p>
-        مدرس الفيزياء
-      </p>
-
-    </section>
-
-    <!-- نموذج الدخول -->
-
-    <section class="form-side">
-
-      <h2>
-        أهلاً بيك 👋
-      </h2>
-
-      <p class="subtitle">
-        سجل دخولك إلى منصة مهندس محمد صلاح
-        وابدأ رحلتك في الفيزياء.
-      </p>
-
-      <form>
-
-        <div class="field">
-
-          <label for="code">
-            كود المنصة
-          </label>
-
-          <input
-            id="code"
-            type="text"
-            placeholder="اكتب كود المنصة"
-            autocomplete="off"
-          >
+          <p>منصة الفيزياء التعليمية</p>
 
         </div>
 
-        <div class="field">
 
-          <label for="password">
-            كلمة المرور
-          </label>
-
-          <input
-            id="password"
-            type="password"
-            placeholder="اكتب كلمة المرور"
-            autocomplete="current-password"
-          >
-
-        </div>
-
-        <button
-          class="login-submit"
-          type="submit"
-        >
+        <h2 class="title">
           تسجيل الدخول
-        </button>
+        </h2>
 
-      </form>
 
-      <a
-        class="back"
-        href="index.html"
-      >
-        العودة إلى الصفحة الرئيسية
-      </a>
+        <form id="loginForm">
 
-    </section>
+          <div class="field">
 
-  </main>
+            <label for="phone">
+              رقم الهاتف أو البريد الإلكتروني
+            </label>
+
+            <div class="input-wrap">
+              <input
+                id="phone"
+                type="text"
+                placeholder="اكتب رقم الهاتف أو البريد الإلكتروني"
+                autocomplete="username"
+                required
+              >
+            </div>
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="password">
+              كلمة المرور
+            </label>
+
+            <div class="input-wrap">
+              <input
+                id="password"
+                type="password"
+                placeholder="اكتب كلمة المرور"
+                autocomplete="current-password"
+                required
+              >
+            </div>
+
+          </div>
+
+
+          <div class="password-row">
+
+            <label class="remember">
+              <input
+                type="checkbox"
+                id="remember"
+              >
+              تذكرني
+            </label>
+
+            <a
+              class="forgot"
+              href="#"
+              onclick="forgotPassword(event)"
+            >
+              نسيت كلمة المرور؟
+            </a>
+
+          </div>
+
+
+          <button
+            class="login-button"
+            type="submit"
+          >
+            تسجيل الدخول
+          </button>
+
+
+          <div
+            class="message"
+            id="message"
+          ></div>
+
+        </form>
+
+
+        <div class="divider">
+          أو
+        </div>
+
+
+        <div class="register-text">
+
+          ليس لديك حساب؟
+
+          <a href="register.html">
+            إنشاء حساب جديد
+          </a>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+
+  <script>
+
+    const form = document.getElementById("loginForm");
+    const message = document.getElementById("message");
+
+    form.addEventListener("submit", function(event) {
+
+      event.preventDefault();
+
+      const username =
+        document.getElementById("phone").value.trim();
+
+      const password =
+        document.getElementById("password").value.trim();
+
+      if (!username || !password) {
+        showMessage("من فضلك اكتب بيانات تسجيل الدخول.");
+        return;
+      }
+
+      /*
+        تسجيل الدخول الحقيقي وقاعدة البيانات
+        هنربطهم في المرحلة القادمة.
+      */
+
+      showMessage(
+        "تم استلام البيانات. سيتم تفعيل تسجيل الدخول مع قاعدة البيانات في الخطوة القادمة."
+      );
+
+    });
+
+
+    function showMessage(text) {
+
+      message.textContent = text;
+      message.style.display = "block";
+
+    }
+
+
+    function forgotPassword(event) {
+
+      event.preventDefault();
+
+      showMessage(
+        "استعادة كلمة المرور سيتم تفعيلها مع نظام الحسابات."
+      );
+
+    }
+
+  </script>
 
 </body>
 </html>
