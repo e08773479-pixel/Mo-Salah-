@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#070d13">
+
+  <title>الامتحان | منصة مهندس محمد صلاح</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #070d13;
+      --panel: #0c151f;
+      --panel2: #101b26;
+      --line: #24313d;
+      --text: #f5f8fa;
+      --muted: #8c99a6;
+      --cyan: #22c7b8;
+      --blue: #159bd7;
+      --yellow: #f1c95b;
+      --danger: #e85d6a;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(
+          circle at 80% 0%,
+          rgba(21,155,215,.10),
+          transparent 30%
+        ),
+        var(--bg);
+      color: var(--text);
+      font-family: Tahoma, Arial, sans-serif;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
+
+    /* HEADER */
+
+    header {
+      height: 70px;
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+      background: rgba(7,13,19,.96);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-img {
+      width: 43px;
+      height: 43px;
+      border-radius: 11px;
+      overflow: hidden;
+    }
+
+    .brand-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 9px;
+      margin-top: 4px;
+    }
+
+    .back {
+      color: #b9c3cb;
+      text-decoration: none;
+      font-size: 10px;
+    }
+
+    /* PAGE */
+
+    .page {
+      width: min(1100px, calc(100% - 25px));
+      margin: auto;
+      padding: 25px 0 50px;
+    }
+
+    /* EXAM HEADER */
+
+    .exam-header {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      background: var(--panel);
+      margin-bottom: 16px;
+    }
+
+    .exam-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .exam-label {
+      color: var(--cyan);
+      font-size: 9px;
+      margin-bottom: 7px;
+    }
+
+    .exam-title h1 {
+      font-size: 21px;
+    }
+
+    .timer {
+      min-width: 110px;
+      padding: 11px 15px;
+      text-align: center;
+      border: 1px solid rgba(34,199,184,.25);
+      border-radius: 9px;
+      background: #09151b;
+    }
+
+    .timer span {
+      display: block;
+      color: var(--muted);
+      font-size: 7px;
+      margin-bottom: 4px;
+    }
+
+    .timer strong {
+      color: var(--cyan);
+      font-size: 18px;
+      direction: ltr;
+      display: block;
+    }
+
+    .timer.warning {
+      border-color: rgba(232,93,106,.4);
+    }
+
+    .timer.warning strong {
+      color: var(--danger);
+    }
+
+    /* EXAM GRID */
+
+    .exam-grid {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--panel);
+      overflow: hidden;
+    }
+
+    /* QUESTION */
+
+    .question-box {
+      padding: 22px;
+    }
+
+    .question-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .question-number {
+      color: var(--cyan);
+      font-size: 10px;
+    }
+
+    .question-points {
+      color: var(--muted);
+      font-size: 8px;
+    }
+
+    .question-text {
+      font-size: 16px;
+      line-height: 2;
+      margin-bottom: 17px;
+    }
+
+    /* QUESTION IMAGE */
+
+    .question-image {
+      width: 100%;
+      max-height: 330px;
+      object-fit: contain;
+      display: block;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #050a0e;
+      margin-bottom: 18px;
+    }
+
+    .question-image-placeholder {
+      display: none;
+      width: 100%;
+      min-height: 180px;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 8px;
+      border: 1px dashed var(--line);
+      border-radius: 10px;
+      color: var(--muted);
+      background: #080f15;
+      margin-bottom: 18px;
+      font-size: 9px;
+    }
+
+    .question-image-placeholder strong {
+      color: var(--cyan);
+      font-size: 25px;
+    }
+
+    /* OPTIONS */
+
+    .options {
+      display: grid;
+      gap: 10px;
+    }
+
+    .option {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      width: 100%;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel2);
+      color: var(--text);
+      text-align: right;
+      transition: .2s;
+    }
+
+    .option:hover {
+      border-color: rgba(34,199,184,.45);
+      background: #12212a;
+    }
+
+    .option.selected {
+      border-color: var(--cyan);
+      background: rgba(34,199,184,.08);
+    }
+
+    .option-letter {
+      width: 30px;
+      height: 30px;
+      flex: 0 0 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 7px;
+      background: #182530;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .option.selected .option-letter {
+      background: var(--cyan);
+      color: #061014;
+    }
+
+    .option-text {
+      font-size: 10px;
+      line-height: 1.7;
+    }
+
+    /* NAVIGATION */
+
+    .question-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 20px;
+      padding-top: 17px;
+      border-top: 1px solid var(--line);
+    }
+
+    .nav-btn {
+      padding: 11px 17px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: var(--panel2);
+      color: var(--text);
+      font-size: 9px;
+    }
+
+    .nav-btn:hover {
+      border-color: var(--cyan);
+    }
+
+    .nav-btn.primary {
+      border: 0;
+      color: #041014;
+      font-weight: bold;
+      background: linear-gradient(
+        135deg,
+        var(--cyan),
+        var(--blue)
+      );
+    }
+
+    .nav-btn.finish {
+      border-color: rgba(232,93,106,.3);
+      color: #ff8b96;
+    }
+
+    /* SIDEBAR */
+
+    .sidebar {
+      padding: 16px;
+    }
+
+    .sidebar h2 {
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .sidebar-description {
+      color: var(--muted);
+      font-size: 8px;
+      line-height: 1.7;
+      margin-bottom: 15px;
+    }
+
+    .question-list {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 7px;
+    }
+
+    .question-number-btn {
+      height: 35px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: var(--panel2);
+      color: var(--muted);
+      font-size: 9px;
+    }
+
+    .question-number-btn.current {
+      color: #061014;
+      border-color: var(--cyan);
+      background: var(--cyan);
+    }
+
+    .question-number-btn.answered {
+      color: var(--cyan);
+      border-color: rgba(34,199,184,.3);
+    }
+
+    .question-number-btn.current.answered {
+      color: #061014;
+      background: var(--cyan);
+    }
+
+    /* EXAM INFO */
+
+    .exam-info {
+      margin-top: 18px;
+      padding-top: 15px;
+      border-top: 1px solid var(--line);
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      font-size: 8px;
+    }
+
+    .info-row span {
+      color: var(--muted);
+    }
+
+    .info-row strong {
+      color: #dce4e9;
+    }
+
+    /* RESULT */
+
+    .result-screen {
+      display: none;
+      text-align: center;
+      padding: 35px 20px;
+    }
+
+    .result-icon {
+      width: 75px;
+      height: 75px;
+      margin: 0 auto 17px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #061014;
+      background: linear-gradient(
+        135deg,
+        var(--cyan),
+        var(--blue)
+      );
+      font-size: 32px;
+    }
+
+    .result-screen h2 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .result-screen > p {
+      color: var(--muted);
+      font-size: 9px;
+      margin-bottom: 22px;
+    }
+
+    .result-number {
+      font-size: 43px;
+      font-weight: bold;
+      color: var(--cyan);
+    }
+
+    .result-label {
+      color: var(--muted);
+      font-size: 9px;
+    }
+
+    .result-details {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 9px;
+      max-width: 500px;
+      margin: 25px auto;
+    }
+
+    .result-card {
+      padding: 13px 8px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: var(--panel2);
+    }
+
+    .result-card strong {
+      display: block;
+      font-size: 15px;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .result-card span {
+      color: var(--muted);
+      font-size: 7px;
+    }
+
+    .result-message {
+      color: var(--muted);
+      font-size: 9px;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .back-course {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 8px;
+      color: #041014;
+      font-size: 9px;
+      font-weight: bold;
+      background: linear-gradient(
+        135deg,
+        var(--cyan),
+        var(--blue)
+      );
+      text-decoration: none;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:850px) {
+
+      .exam-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        order: 2;
+      }
+    }
+
+    @media(max-width:550px) {
+
+      header {
+        height: 64px;
+        padding: 0 14px;
+      }
+
+      .page {
+        width: calc(100% - 18px);
+        padding-top: 12px;
+      }
+
+      .exam-title {
+        align-items: flex-start;
+      }
+
+      .exam-title h1 {
+        font-size: 17px;
+      }
+
+      .timer {
+        min-width: 90px;
+      }
+
+      .question-box {
+        padding: 15px;
+      }
+
+      .question-text {
+        font-size: 13px;
+      }
+
+      .result-details {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <a class="brand" href="dashboard.html">
+
+    <div class="brand-img">
+      <img
+        src="55.jpg"
+        alt="مهندس محمد صلاح"
+      >
+    </div>
+
+    <div>
+      <strong>منصة محمد صلاح</strong>
+      <span>فيزياء</span>
+    </div>
+
+  </a>
+
+  <a class="back" href="course.html">
+    ← العودة للكورس
+  </a>
+
+</header>
+
+
+<main class="page">
+
+  <!-- عنوان الامتحان -->
+
+  <section class="exam-header">
+
+    <div class="exam-title">
+
+      <div>
+
+        <div class="exam-label">
+          اختبار الوحدة الثانية
+        </div>
+
+        <h1>
+          امتحان قوانين الحركة
+        </h1>
+
+      </div>
+
+      <div class="timer" id="timerBox">
+
+        <span>
+          الوقت المتبقي
+        </span>
+
+        <strong id="timer">
+          30:00
+        </strong>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- شاشة الامتحان -->
+
+  <div id="examScreen">
+
+    <div class="exam-grid">
+
+      <!-- السؤال -->
+
+      <section class="panel">
+
+        <div class="question-box">
+
+          <div class="question-top">
+
+            <span
+              class="question-number"
+              id="questionNumber"
+            >
+              السؤال 1 من 5
+            </span>
+
+            <span class="question-points">
+              درجة واحدة
+            </span>
+
+          </div>
+
+
+          <div
+            class="question-text"
+            id="questionText"
+          >
+            إذا تحرك جسم بسرعة ثابتة مقدارها
+            20 متر/ثانية، فما المسافة التي يقطعها
+            خلال 5 ثوانٍ؟
+          </div>
+
+
+          <!--
+
+            هنا مكان صورة السؤال.
+
+            كل سؤال تقدر تحط له صورة مختلفة.
+            فقط غيّر اسم الملف في JavaScript
+            الموجود في آخر الصفحة.
+
+          -->
+
+          <img
+            id="questionImage"
+            class="question-image"
+            src=""
+            alt="صورة السؤال"
+            style="display:none;"
+          >
+
+          <div
+            id="questionImagePlaceholder"
+            class="question-image-placeholder"
+          >
+
+            <strong>
+              🖼
+            </strong>
+
+            <span>
+              لا توجد صورة لهذا السؤال
+            </span>
+
+          </div>
+
+
+          <!-- الاختيارات -->
+
+          <div
+            class="options"
+            id="options"
+          >
+          </div>
+
+
+          <!-- أزرار التنقل -->
+
+          <div class="question-actions">
+
+            <button
+              class="nav-btn"
+              id="previousBtn"
+            >
+              → السابق
+            </button>
+
+            <button
+              class="nav-btn primary"
+              id="nextBtn"
+            >
+              التالي ←
+            </button>
+
+            <button
+              class="nav-btn finish"
+              id="finishBtn"
+              style="display:none;"
+            >
+              إنهاء الامتحان
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- القائمة الجانبية -->
+
+      <aside class="panel sidebar">
+
+        <h2>
+          أسئلة الامتحان
+        </h2>
+
+        <p class="sidebar-description">
+          يمكنك الانتقال لأي سؤال مباشرة.
+          السؤال الذي تم حله يظهر باللون الأخضر.
+        </p>
+
+
+        <div
+          class="question-list"
+          id="questionList"
+        >
+        </div>
+
+
+        <div class="exam-info">
+
+          <div class="info-row">
+            <span>عدد الأسئلة</span>
+            <strong id="totalQuestions">5</strong>
+          </div>
+
+          <div class="info-row">
+            <span>تمت الإجابة</span>
+            <strong id="answeredQuestions">0</strong>
+          </div>
+
+          <div class="info-row">
+            <span>الدرجة الكلية</span>
+            <strong id="totalPoints">5</strong>
+          </div>
+
+        </div>
+
+      </aside>
+
+    </div>
+
+  </div>
+
+
+  <!-- شاشة النتيجة -->
+
+  <section
+    class="panel result-screen"
+    id="resultScreen"
+  >
+
+    <div class="result-icon">
+      ✓
+    </div>
+
+    <h2>
+      تم إنهاء الامتحان
+    </h2>
+
+    <p>
+      تم تسجيل نتيجتك في هذه الجلسة.
+    </p>
+
+    <div
+      class="result-number"
+      id="resultPercentage"
+    >
+      0%
+    </div>
+
+    <div class="result-label">
+      النتيجة النهائية
+    </div>
+
+
+    <div class="result-details">
+
+      <div class="result-card">
+
+        <strong id="correctAnswers">
+          0
+        </strong>
+
+        <span>
+          إجابات صحيحة
+        </span>
+
+      </div>
+
+
+      <div class="result-card">
+
+        <strong id="wrongAnswers">
+          0
+        </strong>
+
+        <span>
+          إجابات خاطئة
+        </span>
+
+      </div>
+
+
+      <div class="result-card">
+
+        <strong id="finalScore">
+          0 / 5
+        </strong>
+
+        <span>
+          الدرجة
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <p
+      class="result-message"
+      id="resultMessage"
+    >
+    </p>
+
+
+    <a
+      class="back-course"
+      href="course.html"
+    >
+      العودة للكورس
+    </a>
+
+  </section>
+
+</main>
+
+
+<script>
+
+  /*
+  ==================================================
+  بيانات الامتحان
+  ==================================================
+
+  دي نسخة تجريبية.
+
+  لاحقاً البيانات دي هتطلع من قاعدة البيانات.
+
+  لإضافة صورة لسؤال:
+  غيّر قيمة image إلى اسم الصورة.
+
+  مثال:
+  image: "question-01.jpg"
+
+  ولو السؤال بدون صورة:
+  image: ""
+  */
+
+  const questions = [
+
+    {
+      text:
+        "إذا تحرك جسم بسرعة ثابتة مقدارها 20 متر/ثانية، فما المسافة التي يقطعها خلال 5 ثوانٍ؟",
+
+      image: "",
+
+      options: [
+        "25 متر",
+        "50 متر",
+        "100 متر",
+        "200 متر"
+      ],
+
+      correct: 2
+    },
+
+
+    {
+      text:
+        "ما وحدة قياس السرعة في النظام الدولي للوحدات؟",
+
+      image: "",
+
+      options: [
+        "متر",
+        "متر/ثانية",
+        "ثانية",
+        "نيوتن"
+      ],
+
+      correct: 1
+    },
+
+
+    {
+      text:
+        "إذا كانت عجلة جسم تساوي صفر، فإن سرعة الجسم تكون...",
+
+      image: "",
+
+      options: [
+        "متغيرة دائماً",
+        "تساوي صفر دائماً",
+        "ثابتة",
+        "سالبة دائماً"
+      ],
+
+      correct: 2
+    },
+
+
+    {
+      text:
+        "أي كمية فيزيائية تحتاج إلى مقدار واتجاه معاً؟",
+
+      image: "",
+
+      options: [
+        "الكتلة",
+        "الزمن",
+        "السرعة المتجهة",
+        "درجة الحرارة"
+      ],
+
+      correct: 2
+    },
+
+
+    {
+      text:
+        "ما العلاقة الصحيحة بين المسافة والسرعة والزمن؟",
+
+      image: "",
+      
+      options: [
+        "المسافة = السرعة × الزمن",
+        "المسافة = السرعة ÷ الزمن",
+        "السرعة = المسافة × الزمن",
+        "الزمن = المسافة × السرعة"
+      ],
+
+      correct: 0
+    }
+
+  ];
+
+
+  /*
+  ==================================================
+  المتغيرات الأساسية
+  ==================================================
+  */
+
+  let currentQuestion = 0;
+
+  let answers =
+    new Array(questions.length).fill(null);
+
+  let examFinished = false;
+
+
+  /*
+  ==================================================
+  عناصر الصفحة
+  ==================================================
+  */
+
+  const questionNumber =
+    document.getElementById("questionNumber");
+
+  const questionText =
+    document.getElementById("questionText");
+
+  const questionImage =
+    document.getElementById("questionImage");
+
+  const questionImagePlaceholder =
+    document.getElementById(
+      "questionImagePlaceholder"
+    );
+
+  const optionsContainer =
+    document.getElementById("options");
+
+  const questionList =
+    document.getElementById("questionList");
+
+  const previousBtn =
+    document.getElementById("previousBtn");
+
+  const nextBtn =
+    document.getElementById("nextBtn");
+
+  const finishBtn =
+    document.getElementById("finishBtn");
+
+  const answeredQuestions =
+    document.getElementById(
+      "answeredQuestions"
+    );
+
+
+  /*
+  ==================================================
+  عرض السؤال
+  ==================================================
+  */
+
+  function renderQuestion() {
+
+    const question =
+      questions[currentQuestion];
+
+    questionNumber.textContent =
+      "السؤال " +
+      (currentQuestion + 1) +
+      " من " +
+      questions.length;
+
+
+    questionText.textContent =
+      question.text;
+
+
+    /*
+      صورة السؤال
+    */
+
+    if (question.image) {
+
+      questionImage.src =
+        question.image;
+
+      questionImage.style.display =
+        "block";
+
+      questionImagePlaceholder.style.display =
+        "none";
+
+    } else {
+
+      questionImage.removeAttribute("src");
+
+      questionImage.style.display =
+        "none";
+
+      questionImagePlaceholder.style.display =
+        "flex";
+
+    }
+
+
+    /*
+      الاختيارات
+    */
+
+    optionsContainer.innerHTML = "";
+
+
+    const letters = [
+      "أ",
+      "ب",
+      "ج",
+      "د"
+    ];
+
+
+    question.options.forEach(
+      function(option, index) {
+
+        const button =
+          document.createElement("button");
+
+        button.className =
+          "option";
+
+
+        if (
+          answers[currentQuestion] ===
+          index
+        ) {
+
+          button.classList.add(
+            "selected"
+          );
+
+        }
+
+
+        button.innerHTML = `
+
+          <span class="option-letter">
+            ${letters[index]}
+          </span>
+
+          <span class="option-text">
+            ${option}
+          </span>
+
+        `;
+
+
+        button.addEventListener(
+          "click",
+          function() {
+
+            selectAnswer(index);
+
+          }
+        );
+
+
+        optionsContainer.appendChild(
+          button
+        );
+
+      }
+    );
+
+
+    previousBtn.disabled =
+      currentQuestion === 0;
+
+    previousBtn.style.opacity =
+      currentQuestion === 0
+        ? ".45"
+        : "1";
+
+
+    if (
+      currentQuestion ===
+      questions.length - 1
+    ) {
+
+      nextBtn.style.display =
+        "none";
+
+      finishBtn.style.display =
+        "block";
+
+    } else {
+
+      nextBtn.style.display =
+        "block";
+
+      finishBtn.style.display =
+        "none";
+
+    }
+
+
+    renderQuestionList();
+
+    updateAnsweredCount();
+
+  }
+
+
+  /*
+  ==================================================
+  اختيار إجابة
+  ==================================================
+  */
+
+  function selectAnswer(index) {
+
+    answers[currentQuestion] =
+      index;
+
+    renderQuestion();
+
+  }
+
+
+  /*
+  ==================================================
+  قائمة أرقام الأسئلة
+  ==================================================
+  */
+
+  function renderQuestionList() {
+
+    questionList.innerHTML = "";
+
+
+    questions.forEach(
+      function(_, index) {
+
+        const button =
+          document.createElement("button");
+
+        button.className =
+          "question-number-btn";
+
+
+        button.textContent =
+          index + 1;
+
+
+        if (
+          index === currentQuestion
+        ) {
+
+          button.classList.add(
+            "current"
+          );
+
+        }
+
+
+        if (
+          answers[index] !== null
+        ) {
+
+          button.classList.add(
+            "answered"
+          );
+
+        }
+
+
+        button.addEventListener(
+          "click",
+          function() {
+
+            currentQuestion =
+              index;
+
+            renderQuestion();
+
+          }
+        );
+
+
+        questionList.appendChild(
+          button
+        );
+
+      }
+    );
+
+  }
+
+
+  /*
+  ==================================================
+  عدد الأسئلة المجاب عنها
+  ==================================================
+  */
+
+  function updateAnsweredCount() {
+
+    const count =
+      answers.filter(
+        answer =>
+          answer !== null
+      ).length;
+
+
+    answeredQuestions.textContent =
+      count;
+
+  }
+
+
+  /*
+  ==================================================
+  التالي
+  ==================================================
+  */
+
+  nextBtn.addEventListener(
+    "click",
+    function() {
+
+      if (
+        currentQuestion <
+        questions.length - 1
+      ) {
+
+        currentQuestion++;
+
+        renderQuestion();
+
+      }
+
+    }
+  );
+
+
+  /*
+  ==================================================
+  السابق
+  ==================================================
+  */
+
+  previousBtn.addEventListener(
+    "click",
+    function() {
+
+      if (currentQuestion > 0) {
+
+        currentQuestion--;
+
+        renderQuestion();
+
+      }
+
+    }
+  );
+
+
+  /*
+  ==================================================
+  إنهاء الامتحان
+  ==================================================
+  */
+
+  finishBtn.addEventListener(
+    "click",
+    finishExam
+  );
+
+
+  function finishExam() {
+
+    if (examFinished) return;
+
+
+    const unanswered =
+      answers.filter(
+        answer =>
+          answer === null
+      ).length;
+
+
+    if (unanswered > 0) {
+
+      const confirmFinish =
+        confirm(
+          "لسه فيه " +
+          unanswered +
+          " سؤال بدون إجابة. هل تريد إنهاء الامتحان؟"
+        );
+
+
+      if (!confirmFinish) {
+
+        return;
+
+      }
+
+    }
+
+
+    examFinished = true;
+
+
+    calculateResult();
+
+  }
+
+
+  /*
+  ==================================================
+  حساب النتيجة
+  ==================================================
+  */
+
+  function calculateResult() {
+
+    let correct = 0;
+
+
+    questions.forEach(
+      function(question, index) {
+
+        if (
+          answers[index] ===
+          question.correct
+        ) {
+
+          correct++;
+
+        }
+
+      }
+    );
+
+
+    const total =
+      questions.length;
+
+
+    const wrong =
+      total - correct;
+
+
+    const percentage =
+      Math.round(
+        (correct / total) * 100
+      );
+
+
+    /*
+      عرض النتيجة
+    */
+
+    document.getElementById(
+      "correctAnswers"
+    ).textContent =
+      correct;
+
+
+    document.getElementById(
+      "wrongAnswers"
+    ).textContent =
+      wrong;
+
+
+    document.getElementById(
+      "finalScore"
+    ).textContent =
+      correct +
+      " / " +
+      total;
+
+
+    document.getElementById(
+      "resultPercentage"
+    ).textContent =
+      percentage +
+      "%";
+
+
+    let message = "";
+
+
+    if (percentage >= 90) {
+
+      message =
+        "ممتاز جداً! أداء قوي. استمر بنفس المستوى.";
+
+    } else if (percentage >= 75) {
+
+      message =
+        "أداء جيد جداً. راجع الأخطاء البسيطة وحاول تحسن نتيجتك.";
+
+    } else if (percentage >= 50) {
+
+      message =
+        "نتيجة جيدة، لكن محتاج تراجع بعض أجزاء الوحدة.";
+
+    } else {
+
+      message =
+        "راجع المحاضرات مرة أخرى وحاول حل الامتحان من جديد.";
+
+    }
+
+
+    document.getElementById(
+      "resultMessage"
+    ).textContent =
+      message;
+
+
+    document.getElementById(
+      "examScreen"
+    ).style.display =
+      "none";
+
+
+    document.getElementById(
+      "resultScreen"
+    ).style.display =
+      "block";
+
+
+    /*
+      ==================================================
+      مكان الربط مع قاعدة البيانات لاحقاً
+      ==================================================
+
+      هنا هنرسل:
+
+      - رقم الطالب
+      - رقم الامتحان
+      - الدرجة
+      - النسبة
+      - الإجابات
+      - وقت الامتحان
+
+      وبعد التسجيل في قاعدة البيانات:
+
+      قاعدة البيانات
+          ↓
+      تحديث تقدم الطالب
+          ↓
+      إرسال إشعار ولي الأمر
+
+      لن نضع بيانات حقيقية هنا حالياً.
+      */
+
+
+    saveLocalResult(
+      correct,
+      total,
+      percentage
+    );
+
+  }
+
+
+  /*
+  ==================================================
+  حفظ تجريبي على الجهاز
+  ==================================================
+  */
+
+  function saveLocalResult(
+    correct,
+    total,
+    percentage
+  ) {
+
+    const result = {
+
+      exam:
+        "امتحان قوانين الحركة",
+
+      correct:
+        correct,
+
+      total:
+        total,
+
+      percentage:
+        percentage,
+
+      date:
+        new Date().toISOString()
+
+    };
+
+
+    localStorage.setItem(
+      "lastExamResult",
+      JSON.stringify(result)
+    );
+
+  }
+
+
+  /*
+  ==================================================
+  TIMER
+  ==================================================
+  */
+
+  let timeLeft =
+    30 * 60;
+
+
+  const timer =
+    document.getElementById("timer");
+
+  const timerBox =
+    document.getElementById("timerBox");
+
+
+  const timerInterval =
+    setInterval(
+      function() {
+
+        if (examFinished) {
+
+          clearInterval(
+            timerInterval
+          );
+
+          return;
+
+        }
+
+
+        const minutes =
+          Math.floor(
+            timeLeft / 60
+          );
+
+
+        const seconds =
+          timeLeft % 60;
+
+
+        timer.textContent =
+          String(minutes).padStart(2, "0") +
+          ":" +
+          String(seconds).padStart(2, "0");
+
+
+        if (timeLeft <= 300) {
+
+          timerBox.classList.add(
+            "warning"
+          );
+
+        }
+
+
+        if (timeLeft <= 0) {
+
+          clearInterval(
+            timerInterval
+          );
+
+          finishExam();
+
+          return;
+
+        }
+
+
+        timeLeft--;
+
+      },
+      1000
+    );
+
+
+  /*
+  ==================================================
+  بداية الصفحة
+  ==================================================
+  */
+
+  document.getElementById(
+    "totalQuestions"
+  ).textContent =
+    questions.length;
+
+
+  document.getElementById(
+    "totalPoints"
+  ).textContent =
+    questions.length;
+
+
+  renderQuestion();
+
+</script>
+
+</body>
+</html>
