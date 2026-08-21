@@ -1,1083 +1,2150 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#070d13">
 
-  <title>إنشاء حساب | منصة مهندس محمد صلاح</title>
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="theme-color"
+    content="#070d13"
+  >
+
+  <title>
+    إنشاء حساب | منصة مهندس محمد صلاح
+  </title>
+
+
+  <!-- Supabase -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+
     :root {
+
       --bg: #070d13;
+
       --panel: #0c151f;
+
       --panel2: #101b26;
+
       --line: #24313d;
+
       --text: #f5f8fa;
+
       --muted: #8c99a6;
+
       --cyan: #22c7b8;
+
       --blue: #159bd7;
+
       --danger: #e85d6a;
+
     }
 
+
     body {
+
       min-height: 100vh;
+
       background:
+
         radial-gradient(
           circle at 50% 0%,
           rgba(21,155,215,.12),
           transparent 35%
         ),
+
         var(--bg);
+
       color: var(--text);
-      font-family: Tahoma, Arial, sans-serif;
+
+      font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
+
     }
 
+
+    button,
     input,
-    button {
+    select {
+
       font: inherit;
+
     }
+
 
     a {
+
       color: inherit;
+
       text-decoration: none;
+
     }
+
 
     .page {
+
       min-height: 100vh;
+
       display: flex;
-      justify-content: center;
+
       align-items: center;
+
+      justify-content: center;
+
       padding: 25px 15px;
+
     }
 
-    .wrapper {
+
+    .register-wrapper {
+
       width: 100%;
-      max-width: 480px;
+
+      max-width: 470px;
+
     }
 
-    /* الهوية */
+
+    /* =========================
+       الهوية
+    ========================== */
+
 
     .brand {
+
       text-align: center;
+
       margin-bottom: 20px;
+
     }
+
 
     .teacher-image {
-      width: 90px;
-      height: 90px;
+
+      width: 95px;
+
+      height: 95px;
+
       margin: 0 auto 12px;
+
       border-radius: 50%;
+
       overflow: hidden;
+
       border: 2px solid var(--cyan);
+
       box-shadow:
-        0 0 0 6px rgba(34,199,184,.06),
-        0 10px 35px rgba(0,0,0,.35);
+
+        0 0 0 6px
+        rgba(34,199,184,.06),
+
+        0 10px 35px
+        rgba(0,0,0,.35);
+
     }
+
 
     .teacher-image img {
+
       width: 100%;
+
       height: 100%;
+
       object-fit: cover;
+
       display: block;
+
     }
+
 
     .brand h1 {
-      font-size: 21px;
-      margin-bottom: 6px;
+
+      font-size: 22px;
+
+      margin-bottom: 7px;
+
     }
+
 
     .brand p {
+
       color: var(--muted);
-      font-size: 9px;
+
+      font-size: 10px;
+
     }
 
-    /* الكارت */
 
-    .card {
-      padding: 24px;
+    /* =========================
+       الكارت
+    ========================== */
+
+
+    .register-card {
+
+      width: 100%;
+
+      padding: 25px;
+
       border: 1px solid var(--line);
+
       border-radius: 18px;
+
       background:
+
         linear-gradient(
           145deg,
           rgba(16,27,38,.97),
           rgba(8,15,22,.97)
         );
+
       box-shadow:
-        0 20px 60px rgba(0,0,0,.35);
+
+        0 20px 60px
+        rgba(0,0,0,.35);
+
     }
 
-    .title {
+
+    .card-title {
+
       margin-bottom: 20px;
+
     }
 
-    .title h2 {
+
+    .card-title h2 {
+
       font-size: 17px;
+
       margin-bottom: 6px;
+
     }
 
-    .title p {
+
+    .card-title p {
+
       color: var(--muted);
+
       font-size: 9px;
+
       line-height: 1.8;
+
     }
 
-    /* العناوين */
 
-    .section-title {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin: 20px 0 12px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--line);
-    }
+    /* =========================
+       الحقول
+    ========================== */
 
-    .section-title:first-of-type {
-      margin-top: 0;
-    }
-
-    .section-title span {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--cyan);
-    }
-
-    .section-title h3 {
-      font-size: 10px;
-    }
-
-    /* الحقول */
 
     .field {
+
       margin-bottom: 13px;
+
     }
+
 
     .field label {
+
       display: block;
+
       margin-bottom: 7px;
+
       color: #dce4e9;
+
       font-size: 9px;
+
     }
 
-    .field input {
-      width: 100%;
-      height: 46px;
-      padding: 0 13px;
-      border: 1px solid var(--line);
-      border-radius: 9px;
-      outline: none;
-      background: var(--panel2);
-      color: var(--text);
-      font-size: 10px;
-      transition: .2s;
+
+    .required {
+
+      color: var(--cyan);
+
     }
 
-    .field input:focus {
-      border-color: var(--cyan);
-      box-shadow:
-        0 0 0 3px rgba(34,199,184,.07);
-    }
 
-    .field input::placeholder {
-      color: #62717d;
-    }
+    .optional {
 
-    .hint {
-      display: block;
-      margin-top: 5px;
-      color: #61717c;
+      color: #63717c;
+
       font-size: 7px;
+
+      margin-right: 4px;
+
     }
 
-    /* الصفوف */
 
-    .two-columns {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+    .input-wrapper {
+
+      position: relative;
+
     }
 
-    /* كلمة المرور */
+
+    .input-wrapper input,
+    .input-wrapper select {
+
+      width: 100%;
+
+      height: 47px;
+
+      padding: 0 42px 0 14px;
+
+      border: 1px solid var(--line);
+
+      border-radius: 9px;
+
+      outline: none;
+
+      background: var(--panel2);
+
+      color: var(--text);
+
+      font-size: 10px;
+
+      transition: .2s;
+
+    }
+
+
+    .input-wrapper input {
+
+      direction: rtl;
+
+    }
+
+
+    .input-wrapper input::placeholder {
+
+      color: #62717d;
+
+    }
+
+
+    .input-wrapper input:focus,
+    .input-wrapper select:focus {
+
+      border-color: var(--cyan);
+
+      box-shadow:
+
+        0 0 0 3px
+        rgba(34,199,184,.07);
+
+    }
+
+
+    .input-wrapper select {
+
+      cursor: pointer;
+
+      appearance: auto;
+
+    }
+
+
+    .input-icon {
+
+      position: absolute;
+
+      right: 14px;
+
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      color: var(--cyan);
+
+      font-size: 14px;
+
+      pointer-events: none;
+
+    }
+
+
+    /* =========================
+       تقسيم
+    ========================== */
+
+
+    .section-title {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 9px;
+
+      margin: 20px 0 13px;
+
+      color: var(--cyan);
+
+      font-size: 10px;
+
+      font-weight: bold;
+
+    }
+
+
+    .section-title::after {
+
+      content: "";
+
+      height: 1px;
+
+      flex: 1;
+
+      background: var(--line);
+
+    }
+
+
+    /* =========================
+       كلمة المرور
+    ========================== */
+
 
     .password-wrapper {
+
       position: relative;
+
     }
+
 
     .password-wrapper input {
+
       padding-left: 55px;
+
     }
+
 
     .show-password {
+
       position: absolute;
-      left: 9px;
+
+      left: 10px;
+
       top: 50%;
+
       transform: translateY(-50%);
+
       border: 0;
+
       background: transparent;
+
       color: var(--muted);
+
       font-size: 8px;
+
       cursor: pointer;
+
     }
+
 
     .show-password:hover {
+
       color: var(--cyan);
+
     }
 
-    /* الموافقة */
+
+    .password-strength {
+
+      height: 3px;
+
+      margin-top: 7px;
+
+      border-radius: 5px;
+
+      background: #1c2832;
+
+      overflow: hidden;
+
+    }
+
+
+    .password-strength-bar {
+
+      height: 100%;
+
+      width: 0%;
+
+      transition: .25s;
+
+    }
+
+
+    .password-hint {
+
+      margin-top: 6px;
+
+      color: #63717c;
+
+      font-size: 7px;
+
+    }
+
+
+    /* =========================
+       الموافقة
+    ========================== */
+
 
     .terms {
+
       display: flex;
+
       align-items: flex-start;
+
       gap: 8px;
+
       margin: 17px 0;
+
       color: var(--muted);
+
       font-size: 8px;
-      line-height: 1.8;
+
+      line-height: 1.7;
+
     }
+
 
     .terms input {
+
       margin-top: 3px;
+
       accent-color: var(--cyan);
+
     }
 
-    /* زر إنشاء الحساب */
 
-    .submit-button {
+    /* =========================
+       زر التسجيل
+    ========================== */
+
+
+    .register-button {
+
       width: 100%;
+
       height: 48px;
+
       border: 0;
+
       border-radius: 9px;
+
       color: #041014;
+
       font-size: 10px;
+
       font-weight: bold;
-      cursor: pointer;
+
       background:
+
         linear-gradient(
           135deg,
           var(--cyan),
           var(--blue)
         );
+
+      cursor: pointer;
+
       transition: .2s;
+
     }
 
-    .submit-button:hover {
+
+    .register-button:hover {
+
       transform: translateY(-1px);
+
       box-shadow:
-        0 8px 25px rgba(34,199,184,.15);
+
+        0 8px 25px
+        rgba(34,199,184,.15);
+
     }
 
-    .submit-button:disabled {
+
+    .register-button:disabled {
+
       opacity: .65;
+
       cursor: wait;
+
       transform: none;
+
     }
 
-    /* الرسالة */
+
+    /* =========================
+       الرسائل
+    ========================== */
+
 
     .message {
+
       display: none;
+
       margin-top: 12px;
+
       padding: 10px;
+
       border-radius: 8px;
+
       font-size: 8px;
+
       line-height: 1.7;
+
       text-align: center;
+
     }
+
 
     .message.error {
+
       display: block;
+
       color: #ff9ca5;
-      border: 1px solid rgba(232,93,106,.25);
-      background: rgba(232,93,106,.06);
+
+      border:
+
+        1px solid
+        rgba(232,93,106,.25);
+
+      background:
+
+        rgba(232,93,106,.06);
+
     }
+
 
     .message.success {
+
       display: block;
+
       color: var(--cyan);
-      border: 1px solid rgba(34,199,184,.25);
-      background: rgba(34,199,184,.06);
+
+      border:
+
+        1px solid
+        rgba(34,199,184,.25);
+
+      background:
+
+        rgba(34,199,184,.06);
+
     }
 
-    /* تسجيل الدخول */
 
-    .login-link {
+    /* =========================
+       تسجيل الدخول
+    ========================== */
+
+
+    .login-box {
+
       margin-top: 18px;
+
       padding-top: 18px;
+
       border-top: 1px solid var(--line);
+
       text-align: center;
+
     }
 
-    .login-link p {
+
+    .login-box p {
+
       color: var(--muted);
+
       font-size: 9px;
+
       margin-bottom: 9px;
+
     }
+
 
     .login-button {
+
       display: block;
+
       width: 100%;
+
       padding: 12px;
-      border: 1px solid rgba(34,199,184,.25);
+
+      border:
+
+        1px solid
+        rgba(34,199,184,.25);
+
       border-radius: 9px;
+
       color: var(--cyan);
-      background: rgba(34,199,184,.04);
+
+      background:
+
+        rgba(34,199,184,.04);
+
       font-size: 9px;
+
       transition: .2s;
+
     }
+
 
     .login-button:hover {
-      background: rgba(34,199,184,.09);
+
+      background:
+
+        rgba(34,199,184,.09);
+
       border-color: var(--cyan);
+
     }
+
+
+    /* =========================
+       Footer
+    ========================== */
+
 
     .footer {
+
       text-align: center;
-      margin-top: 16px;
+
+      margin-top: 17px;
+
       color: #566571;
+
       font-size: 7px;
+
       line-height: 1.8;
+
     }
+
 
     @media (max-width: 480px) {
+
       .page {
-        padding: 15px 10px;
+
+        padding: 18px 12px;
+
       }
 
-      .card {
-        padding: 18px;
-        border-radius: 15px;
-      }
 
       .teacher-image {
-        width: 80px;
-        height: 80px;
+
+        width: 82px;
+
+        height: 82px;
+
       }
+
 
       .brand h1 {
+
         font-size: 19px;
+
       }
 
-      .two-columns {
-        grid-template-columns: 1fr;
-        gap: 0;
+
+      .register-card {
+
+        padding: 19px;
+
+        border-radius: 15px;
+
       }
+
     }
+
   </style>
+
 </head>
+
 
 <body>
 
-<main class="page">
 
-  <div class="wrapper">
-
-    <!-- هوية المنصة -->
-
-    <section class="brand">
-
-      <div class="teacher-image">
-
-        <img
-          src="55.jpg"
-          alt="مهندس محمد صلاح"
-        >
-
-      </div>
-
-      <h1>
-        مهندس محمد صلاح
-      </h1>
-
-      <p>
-        منصة تعليم الفيزياء
-      </p>
-
-    </section>
+  <main class="page">
 
 
-    <!-- إنشاء الحساب -->
-
-    <section class="card">
-
-      <div class="title">
-
-        <h2>
-          إنشاء حساب جديد
-        </h2>
-
-        <p>
-          أنشئ حساب الطالب للوصول إلى
-          الكورسات والامتحانات ومتابعة التقدم.
-        </p>
-
-      </div>
+    <div class="register-wrapper">
 
 
-      <form id="registerForm">
-
-        <!-- بيانات الطالب -->
-
-        <div class="section-title">
-
-          <span></span>
-
-          <h3>
-            بيانات الطالب
-          </h3>
-
-        </div>
+      <!-- =====================
+           الهوية
+      ====================== -->
 
 
-        <div class="field">
+      <section class="brand">
 
-          <label for="studentName">
-            اسم الطالب بالكامل
-          </label>
 
-          <input
-            id="studentName"
-            name="studentName"
-            type="text"
-            autocomplete="name"
-            placeholder="اكتب اسم الطالب بالكامل"
-            required
+        <div class="teacher-image">
+
+          <img
+            src="55.jpg"
+            alt="مهندس محمد صلاح"
           >
 
         </div>
 
 
-        <div class="two-columns">
+        <h1>
+          مهندس محمد صلاح
+        </h1>
+
+
+        <p>
+          منصة تعليم الفيزياء
+        </p>
+
+
+      </section>
+
+
+
+      <!-- =====================
+           التسجيل
+      ====================== -->
+
+
+      <section class="register-card">
+
+
+        <div class="card-title">
+
+          <h2>
+            إنشاء حساب جديد
+          </h2>
+
+          <p>
+            أدخل بياناتك لإنشاء حسابك
+            على منصة مهندس محمد صلاح.
+          </p>
+
+        </div>
+
+
+
+        <form id="registerForm">
+
+
+          <!-- =====================
+               بيانات الطالب
+          ====================== -->
+
+
+          <div class="section-title">
+            بيانات الطالب
+          </div>
+
+
+
+          <!-- الاسم -->
+
+
+          <div class="field">
+
+            <label for="fullName">
+
+              الاسم بالكامل
+
+              <span class="required">
+                *
+              </span>
+
+            </label>
+
+
+            <div class="input-wrapper">
+
+              <span class="input-icon">
+                👤
+              </span>
+
+
+              <input
+                id="fullName"
+                type="text"
+                placeholder="اكتب اسمك بالكامل"
+                autocomplete="name"
+                required
+              >
+
+            </div>
+
+          </div>
+
+
+
+          <!-- رقم الطالب -->
+
 
           <div class="field">
 
             <label for="studentPhone">
-              رقم هاتف الطالب
+
+              رقم الطالب
+
+              <span class="required">
+                *
+              </span>
+
             </label>
 
-            <input
-              id="studentPhone"
-              name="studentPhone"
-              type="tel"
-              inputmode="numeric"
-              autocomplete="tel"
-              placeholder="01xxxxxxxxx"
-              required
-            >
+
+            <div class="input-wrapper">
+
+              <span class="input-icon">
+                📱
+              </span>
+
+
+              <input
+                id="studentPhone"
+                type="tel"
+                inputmode="numeric"
+                placeholder="01xxxxxxxxx"
+                autocomplete="tel"
+                required
+              >
+
+            </div>
 
           </div>
+
+
+
+          <!-- الصف الدراسي -->
 
 
           <div class="field">
 
-            <label for="studentGrade">
-              الصف الدراسي
+            <label for="grade">
+
+              الفصل الدراسي / الصف
+
+              <span class="required">
+                *
+              </span>
+
             </label>
 
-            <input
-              id="studentGrade"
-              name="studentGrade"
-              type="text"
-              placeholder="مثال: الصف الثالث الثانوي"
-              required
-            >
+
+            <div class="input-wrapper">
+
+              <span class="input-icon">
+                🎓
+              </span>
+
+
+              <select
+                id="grade"
+                required
+              >
+
+                <option
+                  value=""
+                  selected
+                  disabled
+                >
+                  اختر الصف الدراسي
+                </option>
+
+
+                <option value="أولى ثانوي">
+                  أولى ثانوي
+                </option>
+
+
+                <option value="تانية ثانوي">
+                  تانية ثانوي
+                </option>
+
+
+                <option value="تالتة ثانوي">
+                  تالتة ثانوي
+                </option>
+
+              </select>
+
+            </div>
 
           </div>
 
-        </div>
 
 
-        <!-- بيانات ولي الأمر -->
+          <!-- كود المنصة -->
 
-        <div class="section-title">
 
-          <span></span>
+          <div class="field">
 
-          <h3>
+            <label for="platformCode">
+
+              كود المنصة
+
+              <span class="required">
+                *
+              </span>
+
+            </label>
+
+
+            <div class="input-wrapper">
+
+              <span class="input-icon">
+                🔑
+              </span>
+
+
+              <input
+                id="platformCode"
+                type="text"
+                placeholder="مثال: MSP-A7K92X4Q"
+                autocomplete="off"
+                autocapitalize="characters"
+                required
+              >
+
+            </div>
+
+          </div>
+
+
+
+          <!-- =====================
+               بيانات الحساب
+          ====================== -->
+
+
+          <div class="section-title">
+            بيانات الحساب
+          </div>
+
+
+
+          <!-- البريد -->
+
+
+          <div class="field">
+
+            <label for="email">
+
+              البريد الإلكتروني
+
+              <span class="optional">
+                اختياري
+              </span>
+
+            </label>
+
+
+            <div class="input-wrapper">
+
+              <span class="input-icon">
+                ✉
+              </span>
+
+
+              <input
+                id="email"
+                type="email"
+                placeholder="example@email.com"
+                autocomplete="email"
+              >
+
+            </div>
+
+          </div>
+
+
+
+          <!-- كلمة المرور -->
+
+
+          <div class="field">
+
+            <label for="password">
+
+              كلمة المرور
+
+              <span class="required">
+                *
+              </span>
+
+            </label>
+
+
+            <div class="password-wrapper">
+
+              <input
+                id="password"
+                type="password"
+                placeholder="6 أحرف أو أكثر"
+                autocomplete="new-password"
+                minlength="6"
+                required
+              >
+
+
+              <button
+                type="button"
+                class="show-password"
+                id="showPassword"
+              >
+                إظهار
+              </button>
+
+            </div>
+
+
+            <div class="password-strength">
+
+              <div
+                class="password-strength-bar"
+                id="passwordStrength"
+              ></div>
+
+            </div>
+
+
+            <div class="password-hint">
+              استخدم كلمة مرور قوية لا تقل عن 6 أحرف.
+            </div>
+
+          </div>
+
+
+
+          <!-- =====================
+               بيانات ولي الأمر
+          ====================== -->
+
+
+          <div class="section-title">
             بيانات ولي الأمر
-          </h3>
-
-        </div>
+          </div>
 
 
-        <div class="field">
 
-          <label for="parentName">
-            اسم ولي الأمر
-          </label>
-
-          <input
-            id="parentName"
-            name="parentName"
-            type="text"
-            placeholder="اكتب اسم ولي الأمر"
-            required
-          >
-
-        </div>
+          <!-- اسم ولي الأمر -->
 
 
-        <div class="field">
+          <div class="field">
 
-          <label for="parentPhone">
-            رقم هاتف ولي الأمر
-          </label>
+            <label for="parentName">
 
-          <input
-            id="parentPhone"
-            name="parentPhone"
-            type="tel"
-            inputmode="numeric"
-            autocomplete="tel"
-            placeholder="01xxxxxxxxx"
-            required
-          >
+              اسم ولي الأمر
 
-          <span class="hint">
-            سيُستخدم لاحقًا لإرسال إشعارات النتائج والتقدم بعد تفعيل النظام.
-          </span>
+              <span class="required">
+                *
+              </span>
 
-        </div>
+            </label>
 
 
-        <!-- بيانات الحساب -->
+            <div class="input-wrapper">
 
-        <div class="section-title">
-
-          <span></span>
-
-          <h3>
-            بيانات الدخول
-          </h3>
-
-        </div>
+              <span class="input-icon">
+                👨‍👩‍👦
+              </span>
 
 
-        <div class="field">
+              <input
+                id="parentName"
+                type="text"
+                placeholder="اسم ولي الأمر"
+                autocomplete="name"
+                required
+              >
 
-          <label for="platformCode">
-            كود المنصة
-          </label>
-
-          <input
-            id="platformCode"
-            name="platformCode"
-            type="text"
-            autocomplete="off"
-            placeholder="أدخل كود المنصة المرسل لك"
-            required
-          >
-
-        </div>
-
-
-        <div class="field">
-
-          <label for="password">
-            كلمة المرور
-          </label>
-
-          <div class="password-wrapper">
-
-            <input
-              id="password"
-              name="password"
-              type="password"
-              autocomplete="new-password"
-              placeholder="أنشئ كلمة مرور قوية"
-              minlength="6"
-              required
-            >
-
-            <button
-              type="button"
-              class="show-password"
-              id="showPassword"
-            >
-              إظهار
-            </button>
+            </div>
 
           </div>
 
-        </div>
 
 
-        <div class="field">
+          <!-- رقم ولي الأمر -->
 
-          <label for="confirmPassword">
-            تأكيد كلمة المرور
-          </label>
 
-          <div class="password-wrapper">
+          <div class="field">
 
-            <input
-              id="confirmPassword"
-              name="confirmPassword"
-              type="password"
-              autocomplete="new-password"
-              placeholder="اكتب كلمة المرور مرة أخرى"
-              minlength="6"
-              required
-            >
+            <label for="parentPhone">
 
-            <button
-              type="button"
-              class="show-password"
-              id="showConfirmPassword"
-            >
-              إظهار
-            </button>
+              رقم هاتف ولي الأمر
+
+              <span class="required">
+                *
+              </span>
+
+            </label>
+
+
+            <div class="input-wrapper">
+
+              <span class="input-icon">
+                📞
+              </span>
+
+
+              <input
+                id="parentPhone"
+                type="tel"
+                inputmode="numeric"
+                placeholder="01xxxxxxxxx"
+                autocomplete="tel"
+                required
+              >
+
+            </div>
 
           </div>
 
+
+
+          <!-- =====================
+               الموافقة
+          ====================== -->
+
+
+          <label class="terms">
+
+            <input
+              type="checkbox"
+              id="terms"
+              required
+            >
+
+
+            <span>
+
+              أوافق على إنشاء حساب على المنصة
+              وأؤكد أن البيانات التي أدخلتها صحيحة.
+
+            </span>
+
+          </label>
+
+
+
+          <!-- =====================
+               زر التسجيل
+          ====================== -->
+
+
+          <button
+            type="submit"
+            class="register-button"
+            id="registerButton"
+          >
+
+            إنشاء الحساب
+
+          </button>
+
+
+
+          <!-- الرسالة -->
+
+
+          <div
+            class="message"
+            id="message"
+          ></div>
+
+
+        </form>
+
+
+
+        <!-- =====================
+             تسجيل الدخول
+        ====================== -->
+
+
+        <div class="login-box">
+
+          <p>
+            لديك حساب بالفعل؟
+          </p>
+
+
+          <a
+            href="login.html"
+            class="login-button"
+          >
+
+            تسجيل الدخول
+
+          </a>
+
         </div>
 
 
-        <!-- الموافقة -->
-
-        <label class="terms">
-
-          <input
-            type="checkbox"
-            id="terms"
-            required
-          >
-
-          <span>
-            أوافق على بيانات التسجيل وأتعهد بأن البيانات
-            المدخلة صحيحة، وأوافق على استخدام رقم ولي الأمر
-            لإشعارات الطالب المتعلقة بالمنصة.
-          </span>
-
-        </label>
+      </section>
 
 
-        <!-- إنشاء الحساب -->
 
-        <button
-          type="submit"
-          class="submit-button"
-          id="submitButton"
-        >
-          إنشاء الحساب
-        </button>
+      <!-- Footer -->
 
 
-        <div
-          class="message"
-          id="message"
-        ></div>
+      <div class="footer">
 
-      </form>
+        منصة مهندس محمد صلاح للفيزياء
 
+        <br>
 
-      <!-- الرجوع لتسجيل الدخول -->
-
-      <div class="login-link">
-
-        <p>
-          لديك حساب بالفعل؟
-        </p>
-
-        <a
-          href="login.html"
-          class="login-button"
-        >
-          تسجيل الدخول
-        </a>
+        جميع الحقوق محفوظة © 2026
 
       </div>
 
-    </section>
-
-
-    <div class="footer">
-
-      منصة مهندس محمد صلاح للفيزياء
-
-      <br>
-
-      جميع الحقوق محفوظة © 2026
 
     </div>
 
-  </div>
-
-</main>
+  </main>
 
 
-<script>
 
-  /*
-  ==================================================
-  register.html
-  ==================================================
-
-  هذه الصفحة حالياً واجهة وتجهيز فقط.
-
-  لا يتم إرسال أو تخزين بيانات الطلاب
-  على GitHub.
-
-  بعد تجهيز الواجهات سيتم ربطها بقاعدة
-  البيانات والـ Backend بشكل آمن.
-
-  ==================================================
-  */
+  <script>
 
 
-  const form =
-    document.getElementById("registerForm");
-
-  const password =
-    document.getElementById("password");
-
-  const confirmPassword =
-    document.getElementById(
-      "confirmPassword"
-    );
-
-  const showPassword =
-    document.getElementById(
-      "showPassword"
-    );
-
-  const showConfirmPassword =
-    document.getElementById(
-      "showConfirmPassword"
-    );
-
-  const submitButton =
-    document.getElementById(
-      "submitButton"
-    );
-
-  const message =
-    document.getElementById(
-      "message"
-    );
+    /* ==================================================
+       إعداد Supabase
+    ================================================== */
 
 
-  /*
-  ==================================================
-  إظهار كلمة المرور
-  ==================================================
-  */
+    const SUPABASE_URL =
+      "https://sbntgoxxrxnbsqgfvjkc.supabase.co";
 
-  showPassword.addEventListener(
-    "click",
-    function () {
 
-      if (
-        password.type ===
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_MIaPgcpnmUYdXQZHWcv15A_f5bOkfMc";
+
+
+    const {
+      createClient
+    } = window.supabase;
+
+
+    const supabaseClient =
+      createClient(
+
+        SUPABASE_URL,
+
+        SUPABASE_PUBLISHABLE_KEY,
+
+        {
+          auth: {
+            persistSession: true,
+            autoRefreshToken: true,
+            detectSessionInUrl: true
+          }
+        }
+
+      );
+
+
+
+    /* ==================================================
+       عناصر الصفحة
+    ================================================== */
+
+
+    const registerForm =
+      document.getElementById(
+        "registerForm"
+      );
+
+
+    const fullNameInput =
+      document.getElementById(
+        "fullName"
+      );
+
+
+    const studentPhoneInput =
+      document.getElementById(
+        "studentPhone"
+      );
+
+
+    const gradeInput =
+      document.getElementById(
+        "grade"
+      );
+
+
+    const platformCodeInput =
+      document.getElementById(
+        "platformCode"
+      );
+
+
+    const emailInput =
+      document.getElementById(
+        "email"
+      );
+
+
+    const passwordInput =
+      document.getElementById(
         "password"
-      ) {
+      );
 
-        password.type = "text";
 
-        showPassword.textContent =
-          "إخفاء";
+    const parentNameInput =
+      document.getElementById(
+        "parentName"
+      );
 
-      } else {
 
-        password.type = "password";
+    const parentPhoneInput =
+      document.getElementById(
+        "parentPhone"
+      );
 
-        showPassword.textContent =
-          "إظهار";
+
+    const termsInput =
+      document.getElementById(
+        "terms"
+      );
+
+
+    const registerButton =
+      document.getElementById(
+        "registerButton"
+      );
+
+
+    const message =
+      document.getElementById(
+        "message"
+      );
+
+
+    const showPassword =
+      document.getElementById(
+        "showPassword"
+      );
+
+
+    const passwordStrength =
+      document.getElementById(
+        "passwordStrength"
+      );
+
+
+
+    /* ==================================================
+       إظهار / إخفاء كلمة المرور
+    ================================================== */
+
+
+    showPassword.addEventListener(
+      "click",
+      function () {
+
+
+        if (
+          passwordInput.type ===
+          "password"
+        ) {
+
+
+          passwordInput.type =
+            "text";
+
+
+          showPassword.textContent =
+            "إخفاء";
+
+
+        } else {
+
+
+          passwordInput.type =
+            "password";
+
+
+          showPassword.textContent =
+            "إظهار";
+
+        }
 
       }
+    );
+
+
+
+    /* ==================================================
+       قوة كلمة المرور
+    ================================================== */
+
+
+    passwordInput.addEventListener(
+      "input",
+      function () {
+
+
+        const password =
+          passwordInput.value;
+
+
+        let strength = 0;
+
+
+        if (password.length >= 6) {
+          strength += 25;
+        }
+
+
+        if (password.length >= 8) {
+          strength += 25;
+        }
+
+
+        if (/[A-Z]/.test(password)) {
+          strength += 20;
+        }
+
+
+        if (/[0-9]/.test(password)) {
+          strength += 15;
+        }
+
+
+        if (
+          /[^A-Za-z0-9]/.test(password)
+        ) {
+
+          strength += 15;
+
+        }
+
+
+        passwordStrength.style.width =
+          strength + "%";
+
+
+      }
+    );
+
+
+
+    /* ==================================================
+       تنظيف كود المنصة
+    ================================================== */
+
+
+    platformCodeInput.addEventListener(
+      "input",
+      function () {
+
+
+        platformCodeInput.value =
+          platformCodeInput.value
+            .trim()
+            .toUpperCase();
+
+      }
+    );
+
+
+
+    /* ==================================================
+       التحقق من رقم الهاتف المصري
+    ================================================== */
+
+
+    function isValidEgyptianPhone(
+      phone
+    ) {
+
+
+      return /^01[0125][0-9]{8}$/
+        .test(phone);
 
     }
-  );
 
 
-  /*
-  ==================================================
-  إظهار تأكيد كلمة المرور
-  ==================================================
-  */
 
-  showConfirmPassword.addEventListener(
-    "click",
-    function () {
+    /* ==================================================
+       إنشاء بريد تقني عند عدم إدخال البريد
+    ================================================== */
 
-      if (
-        confirmPassword.type ===
-        "password"
-      ) {
 
-        confirmPassword.type =
-          "text";
+    function createInternalEmail(
+      studentPhone
+    ) {
 
-        showConfirmPassword.textContent =
-          "إخفاء";
 
-      } else {
+      const cleanPhone =
+        studentPhone.replace(
+          /\D/g,
+          ""
+        );
 
-        confirmPassword.type =
-          "password";
 
-        showConfirmPassword.textContent =
-          "إظهار";
-
-      }
+      return (
+        "student_" +
+        cleanPhone +
+        "@mohamedsalah-platform.local"
+      );
 
     }
-  );
 
 
-  /*
-  ==================================================
-  إرسال النموذج
-  ==================================================
-  */
 
-  form.addEventListener(
-    "submit",
-    function (event) {
-
-      event.preventDefault();
+    /* ==================================================
+       رسالة للمستخدم
+    ================================================== */
 
 
-      const studentName =
-        document.getElementById(
-          "studentName"
-        ).value.trim();
-
-      const studentPhone =
-        document.getElementById(
-          "studentPhone"
-        ).value.trim();
-
-      const studentGrade =
-        document.getElementById(
-          "studentGrade"
-        ).value.trim();
-
-      const parentName =
-        document.getElementById(
-          "parentName"
-        ).value.trim();
-
-      const parentPhone =
-        document.getElementById(
-          "parentPhone"
-        ).value.trim();
-
-      const platformCode =
-        document.getElementById(
-          "platformCode"
-        ).value.trim();
-
-      const terms =
-        document.getElementById(
-          "terms"
-        ).checked;
+    function showMessage(
+      text,
+      type
+    ) {
 
 
-      /*
-      التحقق من رقم الطالب
-      */
-
-      if (
-        studentPhone.length < 10
-      ) {
-
-        showMessage(
-          "من فضلك اكتب رقم هاتف الطالب بشكل صحيح.",
-          "error"
-        );
-
-        return;
-
-      }
+      message.textContent =
+        text;
 
 
-      /*
-      التحقق من رقم ولي الأمر
-      */
+      message.className =
+        "message " + type;
 
-      if (
-        parentPhone.length < 10
-      ) {
-
-        showMessage(
-          "من فضلك اكتب رقم هاتف ولي الأمر بشكل صحيح.",
-          "error"
-        );
-
-        return;
-
-      }
+    }
 
 
-      /*
-      التحقق من كود المنصة
-      */
 
-      if (!platformCode) {
-
-        showMessage(
-          "من فضلك اكتب كود المنصة.",
-          "error"
-        );
-
-        return;
-
-      }
+    function clearMessage() {
 
 
-      /*
-      تطابق كلمات المرور
-      */
-
-      if (
-        password.value !==
-        confirmPassword.value
-      ) {
-
-        showMessage(
-          "كلمتا المرور غير متطابقتين.",
-          "error"
-        );
-
-        confirmPassword.focus();
-
-        return;
-
-      }
+      message.textContent =
+        "";
 
 
-      /*
-      طول كلمة المرور
-      */
+      message.className =
+        "message";
 
-      if (
-        password.value.length < 6
-      ) {
-
-        showMessage(
-          "كلمة المرور يجب أن تكون 6 أحرف أو أكثر.",
-          "error"
-        );
-
-        password.focus();
-
-        return;
-
-      }
+    }
 
 
-      /*
-      الموافقة
-      */
 
-      if (!terms) {
-
-        showMessage(
-          "يجب الموافقة على شروط التسجيل.",
-          "error"
-        );
-
-        return;
-
-      }
+    /* ==================================================
+       التسجيل
+    ================================================== */
 
 
-      /*
-      زر التحميل
-      */
-
-      submitButton.disabled = true;
-
-      submitButton.textContent =
-        "جاري تجهيز الحساب...";
+    registerForm.addEventListener(
+      "submit",
+      async function (event) {
 
 
-      /*
-      ==================================================
-      مؤقتاً فقط
-      ==================================================
+        event.preventDefault();
 
-      لا يوجد Backend حتى الآن.
 
-      لن يتم حفظ بيانات الطالب في GitHub.
+        clearMessage();
 
-      ==================================================
-      */
 
-      setTimeout(
-        function () {
+        const fullName =
+          fullNameInput.value.trim();
 
-          submitButton.disabled =
-            false;
 
-          submitButton.textContent =
-            "إنشاء الحساب";
+        const studentPhone =
+          studentPhoneInput.value.trim();
+
+
+        const grade =
+          gradeInput.value;
+
+
+        const platformCode =
+          platformCodeInput.value
+            .trim()
+            .toUpperCase();
+
+
+        const email =
+          emailInput.value.trim();
+
+
+        const password =
+          passwordInput.value;
+
+
+        const parentName =
+          parentNameInput.value.trim();
+
+
+        const parentPhone =
+          parentPhoneInput.value.trim();
+
+
+
+        /* =========================
+           التحقق
+        ========================== */
+
+
+        if (!fullName) {
+
+          showMessage(
+            "اكتب اسم الطالب بالكامل.",
+            "error"
+          );
+
+          fullNameInput.focus();
+
+          return;
+
+        }
+
+
+
+        if (
+          !isValidEgyptianPhone(
+            studentPhone
+          )
+        ) {
+
+          showMessage(
+            "اكتب رقم طالب مصري صحيح مكون من 11 رقم.",
+            "error"
+          );
+
+          studentPhoneInput.focus();
+
+          return;
+
+        }
+
+
+
+        if (!grade) {
+
+          showMessage(
+            "اختار الصف الدراسي.",
+            "error"
+          );
+
+          gradeInput.focus();
+
+          return;
+
+        }
+
+
+
+        if (!platformCode) {
+
+          showMessage(
+            "اكتب كود المنصة.",
+            "error"
+          );
+
+          platformCodeInput.focus();
+
+          return;
+
+        }
+
+
+
+        if (
+          password.length < 6
+        ) {
+
+          showMessage(
+            "كلمة المرور يجب ألا تقل عن 6 أحرف.",
+            "error"
+          );
+
+          passwordInput.focus();
+
+          return;
+
+        }
+
+
+
+        if (!parentName) {
+
+          showMessage(
+            "اكتب اسم ولي الأمر.",
+            "error"
+          );
+
+          parentNameInput.focus();
+
+          return;
+
+        }
+
+
+
+        if (
+          !isValidEgyptianPhone(
+            parentPhone
+          )
+        ) {
+
+          showMessage(
+            "اكتب رقم ولي الأمر المصري بشكل صحيح.",
+            "error"
+          );
+
+          parentPhoneInput.focus();
+
+          return;
+
+        }
+
+
+
+        if (!termsInput.checked) {
+
+          showMessage(
+            "يجب الموافقة على الشروط لإنشاء الحساب.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+
+        /* =========================
+           البريد
+        ========================== */
+
+
+        const accountEmail =
+          email ||
+          createInternalEmail(
+            studentPhone
+          );
+
+
+
+        /* =========================
+           تعطيل الزر
+        ========================== */
+
+
+        registerButton.disabled =
+          true;
+
+
+        registerButton.textContent =
+          "جاري إنشاء الحساب...";
+
+
+
+        try {
+
+
+          /* =======================
+             1. التأكد من كود المنصة
+          ======================== */
+
+
+          const {
+            data: codeData,
+            error: codeError
+          } =
+            await supabaseClient
+
+              .from("platform_codes")
+
+              .select(
+                "code, used"
+              )
+
+              .eq(
+                "code",
+                platformCode
+              )
+
+              .maybeSingle();
+
+
+
+          if (codeError) {
+
+            console.error(
+              codeError
+            );
+
+            showMessage(
+              "تعذر التحقق من كود المنصة. تأكد أن قاعدة البيانات جاهزة.",
+              "error"
+            );
+
+            return;
+
+          }
+
+
+
+          if (!codeData) {
+
+            showMessage(
+              "كود المنصة غير موجود.",
+              "error"
+            );
+
+            return;
+
+          }
+
+
+
+          if (codeData.used) {
+
+            showMessage(
+              "كود المنصة مستخدم بالفعل.",
+              "error"
+            );
+
+            return;
+
+          }
+
+
+
+          /* =======================
+             2. التأكد من عدم تكرار الرقم
+          ======================== */
+
+
+          const {
+            data: existingStudents,
+            error: existingError
+          } =
+            await supabaseClient
+
+              .from("profiles")
+
+              .select("id")
+
+              .eq(
+                "student_phone",
+                studentPhone
+              )
+
+              .limit(1);
+
+
+
+          if (existingError) {
+
+            console.error(
+              existingError
+            );
+
+          } else if (
+            existingStudents &&
+            existingStudents.length > 0
+          ) {
+
+            showMessage(
+              "رقم الطالب مسجل بالفعل.",
+              "error"
+            );
+
+            return;
+
+          }
+
+
+
+          /* =======================
+             3. إنشاء الحساب
+          ======================== */
+
+
+          const {
+            data,
+            error
+          } =
+            await supabaseClient.auth
+              .signUp({
+
+                email:
+                  accountEmail,
+
+                password:
+                  password,
+
+                options: {
+
+                  data: {
+
+                    full_name:
+                      fullName,
+
+                    student_phone:
+                      studentPhone,
+
+                    grade:
+                      grade,
+
+                    platform_code:
+                      platformCode,
+
+                    parent_name:
+                      parentName,
+
+                    parent_phone:
+                      parentPhone
+
+                  }
+
+                }
+
+              });
+
+
+
+          if (error) {
+
+            console.error(
+              "Signup error:",
+              error
+            );
+
+
+            let errorMessage =
+              "تعذر إنشاء الحساب.";
+
+
+            if (
+              error.message
+                .toLowerCase()
+                .includes(
+                  "already registered"
+                )
+            ) {
+
+              errorMessage =
+                "هذا الحساب مسجل بالفعل.";
+
+            }
+
+
+            showMessage(
+              errorMessage,
+              "error"
+            );
+
+            return;
+
+          }
+
+
+
+          /* =======================
+             4. نجاح
+          ======================== */
 
 
           showMessage(
-            "صفحة إنشاء الحساب جاهزة. الخطوة التالية هي ربطها بقاعدة البيانات لإنشاء الحساب الحقيقي.",
+            "تم إنشاء الحساب بنجاح. جاري الانتقال...",
             "success"
           );
 
 
-          /*
-          لاحقاً هنا سيكون:
-
-          POST /api/register
-
-          ويتم إرسال:
-
-          studentName
-          studentPhone
-          studentGrade
-          parentName
-          parentPhone
-          platformCode
-          password
-
-          إلى الخادم بشكل آمن.
-
-          كلمة المرور يجب أن تُخزن مشفرة
-          باستخدام Backend، وليس داخل GitHub.
-          */
-
-        },
-        800
-      );
-
-    }
-  );
+          registerButton.textContent =
+            "تم إنشاء الحساب";
 
 
-  /*
-  ==================================================
-  عرض رسالة
-  ==================================================
-  */
+          setTimeout(
+            function () {
 
-  function showMessage(
-    text,
-    type
-  ) {
 
-    message.textContent =
-      text;
+              /*
+               * مؤقتًا نذهب إلى تسجيل الدخول.
+               *
+               * بعد ما نعمل Dashboard
+               * هنوجه الطالب إليه مباشرة.
+               */
 
-    message.className =
-      "message " + type;
 
-  }
+              window.location.href =
+                "login.html";
 
-</script>
+
+            },
+            1200
+          );
+
+
+        } catch (error) {
+
+
+          console.error(
+            "Unexpected registration error:",
+            error
+          );
+
+
+          showMessage(
+            "حدث خطأ غير متوقع. حاول مرة أخرى.",
+            "error"
+          );
+
+
+        } finally {
+
+
+          if (
+            registerButton.textContent !==
+            "تم إنشاء الحساب"
+          ) {
+
+
+            registerButton.disabled =
+              false;
+
+
+            registerButton.textContent =
+              "إنشاء الحساب";
+
+          }
+
+        }
+
+      }
+    );
+
+  </script>
+
 
 </body>
+
 </html>
