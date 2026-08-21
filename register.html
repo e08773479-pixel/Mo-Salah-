@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#070d13">
-  <title>إنشاء حساب | مهندس محمد صلاح</title>
+
+  <title>إنشاء حساب | منصة مهندس محمد صلاح</title>
 
   <style>
     * {
@@ -15,13 +16,14 @@
 
     :root {
       --bg: #070d13;
-      --card: #0c151f;
+      --panel: #0c151f;
+      --panel2: #101b26;
       --line: #24313d;
       --text: #f5f8fa;
       --muted: #8c99a6;
       --cyan: #22c7b8;
       --blue: #159bd7;
-      --danger: #ff6b6b;
+      --danger: #e85d6a;
     }
 
     body {
@@ -29,22 +31,12 @@
       background:
         radial-gradient(
           circle at 50% 0%,
-          rgba(24, 155, 215, .12),
-          transparent 38%
-        ),
-        radial-gradient(
-          circle at 15% 80%,
-          rgba(34, 199, 184, .06),
-          transparent 30%
+          rgba(21,155,215,.12),
+          transparent 35%
         ),
         var(--bg);
       color: var(--text);
       font-family: Tahoma, Arial, sans-serif;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
     }
 
     input,
@@ -52,222 +44,222 @@
       font: inherit;
     }
 
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
     .page {
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
-    }
-
-    /* HEADER */
-
-    header {
-      height: 70px;
-      padding: 0 7%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--line);
-      background: rgba(7, 13, 19, .88);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-    }
-
-    .brand-image {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      overflow: hidden;
-      background: linear-gradient(
-        145deg,
-        var(--cyan),
-        var(--blue)
-      );
-    }
-
-    .brand-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .brand-name strong {
-      display: block;
-      font-size: 14px;
-    }
-
-    .brand-name span {
-      display: block;
-      color: var(--muted);
-      font-size: 9px;
-      margin-top: 4px;
-    }
-
-    .back {
-      color: #b9c3cb;
-      font-size: 11px;
-    }
-
-    .back:hover {
-      color: var(--cyan);
-    }
-
-    /* CONTENT */
-
-    .content {
-      flex: 1;
-      display: flex;
       justify-content: center;
       align-items: center;
-      padding: 35px 20px;
+      padding: 25px 15px;
     }
 
-    .register-box {
+    .wrapper {
       width: 100%;
-      max-width: 470px;
-      padding: 30px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background:
-        linear-gradient(
-          145deg,
-          rgba(16, 27, 38, .97),
-          rgba(9, 17, 25, .97)
-        );
-      box-shadow: 0 25px 70px rgba(0, 0, 0, .42);
+      max-width: 480px;
     }
 
-    .teacher {
+    /* الهوية */
+
+    .brand {
       text-align: center;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
     .teacher-image {
-      width: 76px;
-      height: 76px;
-      margin: 0 auto 11px;
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 12px;
       border-radius: 50%;
       overflow: hidden;
       border: 2px solid var(--cyan);
       box-shadow:
-        0 0 0 5px rgba(34, 199, 184, .07),
-        0 15px 35px rgba(0, 0, 0, .35);
+        0 0 0 6px rgba(34,199,184,.06),
+        0 10px 35px rgba(0,0,0,.35);
     }
 
     .teacher-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
     }
 
-    .teacher h1 {
-      font-size: 20px;
+    .brand h1 {
+      font-size: 21px;
       margin-bottom: 6px;
     }
 
-    .teacher p {
+    .brand p {
       color: var(--muted);
-      font-size: 10px;
+      font-size: 9px;
+    }
+
+    /* الكارت */
+
+    .card {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(16,27,38,.97),
+          rgba(8,15,22,.97)
+        );
+      box-shadow:
+        0 20px 60px rgba(0,0,0,.35);
     }
 
     .title {
-      text-align: center;
-      font-size: 16px;
-      margin-bottom: 21px;
+      margin-bottom: 20px;
     }
 
-    /* FORM */
+    .title h2 {
+      font-size: 17px;
+      margin-bottom: 6px;
+    }
+
+    .title p {
+      color: var(--muted);
+      font-size: 9px;
+      line-height: 1.8;
+    }
+
+    /* العناوين */
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 20px 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-title:first-of-type {
+      margin-top: 0;
+    }
+
+    .section-title span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--cyan);
+    }
+
+    .section-title h3 {
+      font-size: 10px;
+    }
+
+    /* الحقول */
 
     .field {
-      margin-bottom: 14px;
+      margin-bottom: 13px;
     }
 
     .field label {
       display: block;
-      color: #dbe3e8;
-      font-size: 10px;
       margin-bottom: 7px;
+      color: #dce4e9;
+      font-size: 9px;
     }
 
-    .input {
+    .field input {
       width: 100%;
       height: 46px;
-      padding: 0 14px;
-      border: 1px solid #263541;
-      outline: none;
+      padding: 0 13px;
+      border: 1px solid var(--line);
       border-radius: 9px;
-      background: #08111a;
-      color: white;
+      outline: none;
+      background: var(--panel2);
+      color: var(--text);
+      font-size: 10px;
       transition: .2s;
     }
 
-    .input:focus {
+    .field input:focus {
       border-color: var(--cyan);
       box-shadow:
-        0 0 0 3px rgba(34, 199, 184, .08);
+        0 0 0 3px rgba(34,199,184,.07);
     }
 
-    .input::placeholder {
-      color: #667581;
-    }
-
-    .platform-code {
-      border-color: rgba(34, 199, 184, .35);
+    .field input::placeholder {
+      color: #62717d;
     }
 
     .hint {
-      color: #65737e;
-      font-size: 8px;
-      margin-top: 6px;
-      line-height: 1.6;
-    }
-
-    .password-strength {
-      height: 3px;
-      margin-top: 7px;
-      border-radius: 10px;
-      background: #1b2731;
-      overflow: hidden;
-    }
-
-    .password-strength span {
       display: block;
-      height: 100%;
-      width: 0;
-      transition: .25s;
+      margin-top: 5px;
+      color: #61717c;
+      font-size: 7px;
     }
+
+    /* الصفوف */
+
+    .two-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    /* كلمة المرور */
+
+    .password-wrapper {
+      position: relative;
+    }
+
+    .password-wrapper input {
+      padding-left: 55px;
+    }
+
+    .show-password {
+      position: absolute;
+      left: 9px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font-size: 8px;
+      cursor: pointer;
+    }
+
+    .show-password:hover {
+      color: var(--cyan);
+    }
+
+    /* الموافقة */
 
     .terms {
       display: flex;
       align-items: flex-start;
       gap: 8px;
-      margin: 16px 0;
+      margin: 17px 0;
       color: var(--muted);
-      font-size: 9px;
-      line-height: 1.7;
+      font-size: 8px;
+      line-height: 1.8;
     }
 
     .terms input {
-      margin-top: 2px;
+      margin-top: 3px;
       accent-color: var(--cyan);
     }
 
-    .terms a {
-      color: var(--cyan);
-    }
+    /* زر إنشاء الحساب */
 
-    .register-button {
+    .submit-button {
       width: 100%;
       height: 48px;
       border: 0;
       border-radius: 9px;
-      cursor: pointer;
       color: #041014;
-      font-size: 12px;
+      font-size: 10px;
       font-weight: bold;
+      cursor: pointer;
       background:
         linear-gradient(
           135deg,
@@ -277,113 +269,106 @@
       transition: .2s;
     }
 
-    .register-button:hover {
+    .submit-button:hover {
       transform: translateY(-1px);
-      filter: brightness(1.08);
+      box-shadow:
+        0 8px 25px rgba(34,199,184,.15);
     }
+
+    .submit-button:disabled {
+      opacity: .65;
+      cursor: wait;
+      transform: none;
+    }
+
+    /* الرسالة */
 
     .message {
       display: none;
-      margin-top: 13px;
+      margin-top: 12px;
       padding: 10px;
       border-radius: 8px;
-      text-align: center;
-      font-size: 9px;
+      font-size: 8px;
       line-height: 1.7;
-    }
-
-    .message.success {
-      display: block;
-      color: #9de8df;
-      background: rgba(34, 199, 184, .08);
-      border: 1px solid rgba(34, 199, 184, .2);
+      text-align: center;
     }
 
     .message.error {
       display: block;
-      color: #ffb0b0;
-      background: rgba(255, 107, 107, .07);
-      border: 1px solid rgba(255, 107, 107, .2);
+      color: #ff9ca5;
+      border: 1px solid rgba(232,93,106,.25);
+      background: rgba(232,93,106,.06);
     }
 
-    .divider {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: #65737e;
-      font-size: 9px;
-      margin: 20px 0;
-    }
-
-    .divider::before,
-    .divider::after {
-      content: "";
-      height: 1px;
-      flex: 1;
-      background: var(--line);
-    }
-
-    .login-text {
-      text-align: center;
-      color: var(--muted);
-      font-size: 10px;
-    }
-
-    .login-text a {
+    .message.success {
+      display: block;
       color: var(--cyan);
-      font-weight: bold;
+      border: 1px solid rgba(34,199,184,.25);
+      background: rgba(34,199,184,.06);
     }
 
-    /* MOBILE */
+    /* تسجيل الدخول */
 
-    @media (max-width: 520px) {
+    .login-link {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      text-align: center;
+    }
 
-      header {
-        height: 64px;
-        padding: 0 16px;
+    .login-link p {
+      color: var(--muted);
+      font-size: 9px;
+      margin-bottom: 9px;
+    }
+
+    .login-button {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      border: 1px solid rgba(34,199,184,.25);
+      border-radius: 9px;
+      color: var(--cyan);
+      background: rgba(34,199,184,.04);
+      font-size: 9px;
+      transition: .2s;
+    }
+
+    .login-button:hover {
+      background: rgba(34,199,184,.09);
+      border-color: var(--cyan);
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 16px;
+      color: #566571;
+      font-size: 7px;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 480px) {
+      .page {
+        padding: 15px 10px;
       }
 
-      .brand-image {
-        width: 39px;
-        height: 39px;
-      }
-
-      .brand-name strong {
-        font-size: 12px;
-      }
-
-      .brand-name span {
-        font-size: 8px;
-      }
-
-      .back {
-        font-size: 9px;
-      }
-
-      .content {
-        padding: 22px 14px;
-      }
-
-      .register-box {
-        padding: 23px 18px;
+      .card {
+        padding: 18px;
         border-radius: 15px;
       }
 
       .teacher-image {
-        width: 70px;
-        height: 70px;
+        width: 80px;
+        height: 80px;
       }
 
-      .teacher h1 {
-        font-size: 18px;
+      .brand h1 {
+        font-size: 19px;
       }
 
-      .title {
-        font-size: 14px;
-      }
-
-      .input {
-        height: 45px;
+      .two-columns {
+        grid-template-columns: 1fr;
+        gap: 0;
       }
     }
   </style>
@@ -391,405 +376,708 @@
 
 <body>
 
-  <div class="page">
+<main class="page">
 
-    <header>
+  <div class="wrapper">
 
-      <a class="brand" href="index.html">
+    <!-- هوية المنصة -->
 
-        <div class="brand-image">
-          <img
-            src="55.jpg"
-            alt="مهندس محمد صلاح"
-          >
-        </div>
+    <section class="brand">
 
-        <div class="brand-name">
-          <strong>منصة محمد صلاح</strong>
-          <span>فيزياء</span>
-        </div>
+      <div class="teacher-image">
 
-      </a>
+        <img
+          src="55.jpg"
+          alt="مهندس محمد صلاح"
+        >
 
-      <a
-        class="back"
-        href="index.html"
-      >
-        العودة للرئيسية
-      </a>
+      </div>
 
-    </header>
+      <h1>
+        مهندس محمد صلاح
+      </h1>
+
+      <p>
+        منصة تعليم الفيزياء
+      </p>
+
+    </section>
 
 
-    <main class="content">
+    <!-- إنشاء الحساب -->
 
-      <section class="register-box">
+    <section class="card">
 
-        <div class="teacher">
+      <div class="title">
 
-          <div class="teacher-image">
-            <img
-              src="55.jpg"
-              alt="مهندس محمد صلاح"
-            >
-          </div>
-
-          <h1>مهندس محمد صلاح</h1>
-
-          <p>منصة الفيزياء التعليمية</p>
-
-        </div>
-
-
-        <h2 class="title">
+        <h2>
           إنشاء حساب جديد
         </h2>
 
+        <p>
+          أنشئ حساب الطالب للوصول إلى
+          الكورسات والامتحانات ومتابعة التقدم.
+        </p>
 
-        <form id="registerForm">
-
-          <div class="field">
-
-            <label for="name">
-              الاسم بالكامل
-            </label>
-
-            <input
-              class="input"
-              id="name"
-              type="text"
-              placeholder="اكتب اسمك بالكامل"
-              autocomplete="name"
-              required
-            >
-
-          </div>
+      </div>
 
 
-          <div class="field">
+      <form id="registerForm">
 
-            <label for="phone">
-              رقم الهاتف
-            </label>
+        <!-- بيانات الطالب -->
 
-            <input
-              class="input"
-              id="phone"
-              type="tel"
-              inputmode="tel"
-              placeholder="01xxxxxxxxx"
-              autocomplete="tel"
-              required
-            >
+        <div class="section-title">
 
-          </div>
+          <span></span>
+
+          <h3>
+            بيانات الطالب
+          </h3>
+
+        </div>
 
 
-          <div class="field">
+        <div class="field">
 
-            <label for="email">
-              البريد الإلكتروني
-              <span style="color:#65737e;">
-                (اختياري)
-              </span>
-            </label>
-
-            <input
-              class="input"
-              id="email"
-              type="email"
-              placeholder="example@email.com"
-              autocomplete="email"
-            >
-
-          </div>
-
-
-          <div class="field">
-
-            <label for="platformCode">
-              كود المنصة
-            </label>
-
-            <input
-              class="input platform-code"
-              id="platformCode"
-              type="text"
-              placeholder="اكتب كود المنصة"
-              autocomplete="off"
-              required
-            >
-
-            <div class="hint">
-              كود المنصة سيتم استخدامه للتحقق من صلاحية إنشاء الحساب.
-            </div>
-
-          </div>
-
-
-          <div class="field">
-
-            <label for="password">
-              كلمة المرور
-            </label>
-
-            <input
-              class="input"
-              id="password"
-              type="password"
-              placeholder="اكتب كلمة مرور قوية"
-              autocomplete="new-password"
-              required
-            >
-
-            <div class="password-strength">
-              <span id="strengthBar"></span>
-            </div>
-
-          </div>
-
-
-          <div class="field">
-
-            <label for="confirmPassword">
-              تأكيد كلمة المرور
-            </label>
-
-            <input
-              class="input"
-              id="confirmPassword"
-              type="password"
-              placeholder="أعد كتابة كلمة المرور"
-              autocomplete="new-password"
-              required
-            >
-
-          </div>
-
-
-          <label class="terms">
-
-            <input
-              type="checkbox"
-              id="terms"
-              required
-            >
-
-            <span>
-              أوافق على شروط استخدام المنصة
-              وسياسة الاستخدام.
-            </span>
-
+          <label for="studentName">
+            اسم الطالب بالكامل
           </label>
 
-
-          <button
-            class="register-button"
-            type="submit"
+          <input
+            id="studentName"
+            name="studentName"
+            type="text"
+            autocomplete="name"
+            placeholder="اكتب اسم الطالب بالكامل"
+            required
           >
-            إنشاء الحساب
-          </button>
 
-
-          <div
-            id="message"
-            class="message"
-          ></div>
-
-        </form>
-
-
-        <div class="divider">
-          أو
         </div>
 
 
-        <div class="login-text">
+        <div class="two-columns">
 
+          <div class="field">
+
+            <label for="studentPhone">
+              رقم هاتف الطالب
+            </label>
+
+            <input
+              id="studentPhone"
+              name="studentPhone"
+              type="tel"
+              inputmode="numeric"
+              autocomplete="tel"
+              placeholder="01xxxxxxxxx"
+              required
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label for="studentGrade">
+              الصف الدراسي
+            </label>
+
+            <input
+              id="studentGrade"
+              name="studentGrade"
+              type="text"
+              placeholder="مثال: الصف الثالث الثانوي"
+              required
+            >
+
+          </div>
+
+        </div>
+
+
+        <!-- بيانات ولي الأمر -->
+
+        <div class="section-title">
+
+          <span></span>
+
+          <h3>
+            بيانات ولي الأمر
+          </h3>
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="parentName">
+            اسم ولي الأمر
+          </label>
+
+          <input
+            id="parentName"
+            name="parentName"
+            type="text"
+            placeholder="اكتب اسم ولي الأمر"
+            required
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="parentPhone">
+            رقم هاتف ولي الأمر
+          </label>
+
+          <input
+            id="parentPhone"
+            name="parentPhone"
+            type="tel"
+            inputmode="numeric"
+            autocomplete="tel"
+            placeholder="01xxxxxxxxx"
+            required
+          >
+
+          <span class="hint">
+            سيُستخدم لاحقًا لإرسال إشعارات النتائج والتقدم بعد تفعيل النظام.
+          </span>
+
+        </div>
+
+
+        <!-- بيانات الحساب -->
+
+        <div class="section-title">
+
+          <span></span>
+
+          <h3>
+            بيانات الدخول
+          </h3>
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="platformCode">
+            كود المنصة
+          </label>
+
+          <input
+            id="platformCode"
+            name="platformCode"
+            type="text"
+            autocomplete="off"
+            placeholder="أدخل كود المنصة المرسل لك"
+            required
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="password">
+            كلمة المرور
+          </label>
+
+          <div class="password-wrapper">
+
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="new-password"
+              placeholder="أنشئ كلمة مرور قوية"
+              minlength="6"
+              required
+            >
+
+            <button
+              type="button"
+              class="show-password"
+              id="showPassword"
+            >
+              إظهار
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="confirmPassword">
+            تأكيد كلمة المرور
+          </label>
+
+          <div class="password-wrapper">
+
+            <input
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              autocomplete="new-password"
+              placeholder="اكتب كلمة المرور مرة أخرى"
+              minlength="6"
+              required
+            >
+
+            <button
+              type="button"
+              class="show-password"
+              id="showConfirmPassword"
+            >
+              إظهار
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- الموافقة -->
+
+        <label class="terms">
+
+          <input
+            type="checkbox"
+            id="terms"
+            required
+          >
+
+          <span>
+            أوافق على بيانات التسجيل وأتعهد بأن البيانات
+            المدخلة صحيحة، وأوافق على استخدام رقم ولي الأمر
+            لإشعارات الطالب المتعلقة بالمنصة.
+          </span>
+
+        </label>
+
+
+        <!-- إنشاء الحساب -->
+
+        <button
+          type="submit"
+          class="submit-button"
+          id="submitButton"
+        >
+          إنشاء الحساب
+        </button>
+
+
+        <div
+          class="message"
+          id="message"
+        ></div>
+
+      </form>
+
+
+      <!-- الرجوع لتسجيل الدخول -->
+
+      <div class="login-link">
+
+        <p>
           لديك حساب بالفعل؟
+        </p>
 
-          <a href="login.html">
-            تسجيل الدخول
-          </a>
+        <a
+          href="login.html"
+          class="login-button"
+        >
+          تسجيل الدخول
+        </a>
 
-        </div>
+      </div>
 
-      </section>
+    </section>
 
-    </main>
+
+    <div class="footer">
+
+      منصة مهندس محمد صلاح للفيزياء
+
+      <br>
+
+      جميع الحقوق محفوظة © 2026
+
+    </div>
 
   </div>
 
-
-  <script>
-
-    const form =
-      document.getElementById("registerForm");
-
-    const password =
-      document.getElementById("password");
-
-    const confirmPassword =
-      document.getElementById("confirmPassword");
-
-    const strengthBar =
-      document.getElementById("strengthBar");
-
-    const message =
-      document.getElementById("message");
+</main>
 
 
-    /* PASSWORD STRENGTH */
+<script>
 
-    password.addEventListener(
-      "input",
-      function () {
+  /*
+  ==================================================
+  register.html
+  ==================================================
 
-        const value = password.value;
+  هذه الصفحة حالياً واجهة وتجهيز فقط.
 
-        let strength = 0;
+  لا يتم إرسال أو تخزين بيانات الطلاب
+  على GitHub.
 
-        if (value.length >= 6) {
-          strength += 25;
-        }
+  بعد تجهيز الواجهات سيتم ربطها بقاعدة
+  البيانات والـ Backend بشكل آمن.
 
-        if (/[A-Z]/.test(value)) {
-          strength += 25;
-        }
+  ==================================================
+  */
 
-        if (/[0-9]/.test(value)) {
-          strength += 25;
-        }
 
-        if (/[^A-Za-z0-9]/.test(value)) {
-          strength += 25;
-        }
+  const form =
+    document.getElementById("registerForm");
 
-        strengthBar.style.width =
-          strength + "%";
+  const password =
+    document.getElementById("password");
 
-      }
+  const confirmPassword =
+    document.getElementById(
+      "confirmPassword"
+    );
+
+  const showPassword =
+    document.getElementById(
+      "showPassword"
+    );
+
+  const showConfirmPassword =
+    document.getElementById(
+      "showConfirmPassword"
+    );
+
+  const submitButton =
+    document.getElementById(
+      "submitButton"
+    );
+
+  const message =
+    document.getElementById(
+      "message"
     );
 
 
-    /* REGISTER */
+  /*
+  ==================================================
+  إظهار كلمة المرور
+  ==================================================
+  */
 
-    form.addEventListener(
-      "submit",
-      function (event) {
+  showPassword.addEventListener(
+    "click",
+    function () {
 
-        event.preventDefault();
+      if (
+        password.type ===
+        "password"
+      ) {
 
-        const name =
-          document.getElementById("name")
-            .value.trim();
+        password.type = "text";
 
-        const phone =
-          document.getElementById("phone")
-            .value.trim();
+        showPassword.textContent =
+          "إخفاء";
 
-        const email =
-          document.getElementById("email")
-            .value.trim();
+      } else {
 
-        const platformCode =
-          document.getElementById("platformCode")
-            .value.trim();
+        password.type = "password";
 
-        const passwordValue =
-          password.value;
+        showPassword.textContent =
+          "إظهار";
 
-        const confirmValue =
-          confirmPassword.value;
+      }
 
-        const terms =
-          document.getElementById("terms")
-            .checked;
+    }
+  );
 
 
-        if (
-          !name ||
-          !phone ||
-          !platformCode ||
-          !passwordValue ||
-          !confirmValue
-        ) {
+  /*
+  ==================================================
+  إظهار تأكيد كلمة المرور
+  ==================================================
+  */
 
-          showError(
-            "من فضلك أكمل جميع البيانات المطلوبة."
-          );
+  showConfirmPassword.addEventListener(
+    "click",
+    function () {
 
-          return;
-        }
+      if (
+        confirmPassword.type ===
+        "password"
+      ) {
 
+        confirmPassword.type =
+          "text";
 
-        if (
-          passwordValue.length < 6
-        ) {
+        showConfirmPassword.textContent =
+          "إخفاء";
 
-          showError(
-            "كلمة المرور يجب أن تكون 6 أحرف على الأقل."
-          );
+      } else {
 
-          return;
-        }
+        confirmPassword.type =
+          "password";
 
+        showConfirmPassword.textContent =
+          "إظهار";
 
-        if (
-          passwordValue !== confirmValue
-        ) {
+      }
 
-          showError(
-            "كلمتا المرور غير متطابقتين."
-          );
-
-          return;
-        }
+    }
+  );
 
 
-        if (!terms) {
+  /*
+  ==================================================
+  إرسال النموذج
+  ==================================================
+  */
 
-          showError(
-            "يجب الموافقة على شروط استخدام المنصة."
-          );
+  form.addEventListener(
+    "submit",
+    function (event) {
 
-          return;
-        }
+      event.preventDefault();
 
 
-        /*
-          قاعدة البيانات والتحقق من كود المنصة
-          سيتم ربطهما في المرحلة القادمة.
-        */
+      const studentName =
+        document.getElementById(
+          "studentName"
+        ).value.trim();
 
-        showSuccess(
-          "تم استلام بيانات التسجيل بنجاح. سيتم تفعيل إنشاء الحساب الحقيقي عند ربط قاعدة البيانات."
+      const studentPhone =
+        document.getElementById(
+          "studentPhone"
+        ).value.trim();
+
+      const studentGrade =
+        document.getElementById(
+          "studentGrade"
+        ).value.trim();
+
+      const parentName =
+        document.getElementById(
+          "parentName"
+        ).value.trim();
+
+      const parentPhone =
+        document.getElementById(
+          "parentPhone"
+        ).value.trim();
+
+      const platformCode =
+        document.getElementById(
+          "platformCode"
+        ).value.trim();
+
+      const terms =
+        document.getElementById(
+          "terms"
+        ).checked;
+
+
+      /*
+      التحقق من رقم الطالب
+      */
+
+      if (
+        studentPhone.length < 10
+      ) {
+
+        showMessage(
+          "من فضلك اكتب رقم هاتف الطالب بشكل صحيح.",
+          "error"
         );
 
+        return;
+
       }
-    );
 
 
-    function showError(text) {
+      /*
+      التحقق من رقم ولي الأمر
+      */
 
-      message.textContent = text;
+      if (
+        parentPhone.length < 10
+      ) {
 
-      message.className =
-        "message error";
+        showMessage(
+          "من فضلك اكتب رقم هاتف ولي الأمر بشكل صحيح.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      /*
+      التحقق من كود المنصة
+      */
+
+      if (!platformCode) {
+
+        showMessage(
+          "من فضلك اكتب كود المنصة.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      /*
+      تطابق كلمات المرور
+      */
+
+      if (
+        password.value !==
+        confirmPassword.value
+      ) {
+
+        showMessage(
+          "كلمتا المرور غير متطابقتين.",
+          "error"
+        );
+
+        confirmPassword.focus();
+
+        return;
+
+      }
+
+
+      /*
+      طول كلمة المرور
+      */
+
+      if (
+        password.value.length < 6
+      ) {
+
+        showMessage(
+          "كلمة المرور يجب أن تكون 6 أحرف أو أكثر.",
+          "error"
+        );
+
+        password.focus();
+
+        return;
+
+      }
+
+
+      /*
+      الموافقة
+      */
+
+      if (!terms) {
+
+        showMessage(
+          "يجب الموافقة على شروط التسجيل.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      /*
+      زر التحميل
+      */
+
+      submitButton.disabled = true;
+
+      submitButton.textContent =
+        "جاري تجهيز الحساب...";
+
+
+      /*
+      ==================================================
+      مؤقتاً فقط
+      ==================================================
+
+      لا يوجد Backend حتى الآن.
+
+      لن يتم حفظ بيانات الطالب في GitHub.
+
+      ==================================================
+      */
+
+      setTimeout(
+        function () {
+
+          submitButton.disabled =
+            false;
+
+          submitButton.textContent =
+            "إنشاء الحساب";
+
+
+          showMessage(
+            "صفحة إنشاء الحساب جاهزة. الخطوة التالية هي ربطها بقاعدة البيانات لإنشاء الحساب الحقيقي.",
+            "success"
+          );
+
+
+          /*
+          لاحقاً هنا سيكون:
+
+          POST /api/register
+
+          ويتم إرسال:
+
+          studentName
+          studentPhone
+          studentGrade
+          parentName
+          parentPhone
+          platformCode
+          password
+
+          إلى الخادم بشكل آمن.
+
+          كلمة المرور يجب أن تُخزن مشفرة
+          باستخدام Backend، وليس داخل GitHub.
+          */
+
+        },
+        800
+      );
 
     }
+  );
 
 
-    function showSuccess(text) {
+  /*
+  ==================================================
+  عرض رسالة
+  ==================================================
+  */
 
-      message.textContent = text;
+  function showMessage(
+    text,
+    type
+  ) {
 
-      message.className =
-        "message success";
+    message.textContent =
+      text;
 
-    }
+    message.className =
+      "message " + type;
 
-  </script>
+  }
+
+</script>
 
 </body>
 </html>
