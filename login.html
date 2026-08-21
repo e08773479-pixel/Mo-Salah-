@@ -7,6 +7,9 @@
 
   <title>تسجيل الدخول | منصة مهندس محمد صلاح</title>
 
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <style>
     * {
       box-sizing: border-box;
@@ -28,6 +31,7 @@
 
     body {
       min-height: 100vh;
+
       background:
         radial-gradient(
           circle at 50% 0%,
@@ -37,6 +41,7 @@
         var(--bg);
 
       color: var(--text);
+
       font-family: Tahoma, Arial, sans-serif;
     }
 
@@ -49,10 +54,6 @@
       color: inherit;
       text-decoration: none;
     }
-
-    /* =========================
-       الصفحة
-    ========================= */
 
     .page {
       min-height: 100vh;
@@ -70,7 +71,7 @@
     }
 
     /* =========================
-       اللوجو والصورة
+       الهوية
     ========================= */
 
     .brand {
@@ -115,7 +116,7 @@
     }
 
     /* =========================
-       كارت تسجيل الدخول
+       الكارت
     ========================= */
 
     .login-card {
@@ -180,9 +181,7 @@
 
       height: 48px;
 
-      padding:
-        0 42px
-        0 13px;
+      padding: 0 42px 0 55px;
 
       border: 1px solid var(--line);
 
@@ -196,7 +195,9 @@
 
       font-size: 10px;
 
-      direction: rtl;
+      direction: ltr;
+
+      text-align: right;
 
       transition: .2s;
     }
@@ -209,8 +210,7 @@
       border-color: var(--cyan);
 
       box-shadow:
-        0 0 0 3px
-        rgba(34,199,184,.07);
+        0 0 0 3px rgba(34,199,184,.07);
     }
 
     .input-icon {
@@ -228,10 +228,6 @@
 
       pointer-events: none;
     }
-
-    /* =========================
-       إظهار كلمة المرور
-    ========================= */
 
     .show-password {
       position: absolute;
@@ -334,16 +330,21 @@
       transform: translateY(-1px);
 
       box-shadow:
-        0 8px 25px
-        rgba(34,199,184,.15);
+        0 8px 25px rgba(34,199,184,.15);
     }
 
     .login-button:active {
       transform: translateY(0);
     }
 
+    .login-button:disabled {
+      opacity: .65;
+      cursor: wait;
+      transform: none;
+    }
+
     /* =========================
-       رسالة الخطأ / النجاح
+       الرسائل
     ========================= */
 
     .message {
@@ -411,15 +412,13 @@
 
       padding: 12px;
 
-      border: 1px solid
-        rgba(34,199,184,.25);
+      border: 1px solid rgba(34,199,184,.25);
 
       border-radius: 9px;
 
       color: var(--cyan);
 
-      background:
-        rgba(34,199,184,.04);
+      background: rgba(34,199,184,.04);
 
       font-size: 9px;
 
@@ -427,14 +426,13 @@
     }
 
     .register-button:hover {
-      background:
-        rgba(34,199,184,.09);
+      background: rgba(34,199,184,.09);
 
       border-color: var(--cyan);
     }
 
     /* =========================
-       أسفل الصفحة
+       Footer
     ========================= */
 
     .footer {
@@ -477,7 +475,6 @@
         font-size: 15px;
       }
     }
-
   </style>
 </head>
 
@@ -488,7 +485,7 @@
     <div class="login-wrapper">
 
       <!-- =====================
-           بيانات المهندس
+           صورة المهندس
       ====================== -->
 
       <section class="brand">
@@ -535,55 +532,26 @@
 
         <form id="loginForm">
 
-          <!-- رقم الهاتف -->
+          <!-- البريد الإلكتروني -->
 
           <div class="field">
 
-            <label for="phone">
-              رقم الهاتف
+            <label for="email">
+              البريد الإلكتروني
             </label>
 
             <div class="input-wrapper">
 
               <span class="input-icon">
-                ☎
+                ✉
               </span>
 
               <input
-                id="phone"
-                name="phone"
-                type="tel"
-                inputmode="numeric"
-                autocomplete="tel"
-                placeholder="اكتب رقم الهاتف"
-                required
-              >
-
-            </div>
-
-          </div>
-
-
-          <!-- كود المنصة -->
-
-          <div class="field">
-
-            <label for="platformCode">
-              كود المنصة
-            </label>
-
-            <div class="input-wrapper">
-
-              <span class="input-icon">
-                🔑
-              </span>
-
-              <input
-                id="platformCode"
-                name="platformCode"
-                type="text"
-                autocomplete="off"
-                placeholder="اكتب كود المنصة"
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                placeholder="example@email.com"
                 required
               >
 
@@ -655,7 +623,7 @@
           </div>
 
 
-          <!-- زر الدخول -->
+          <!-- تسجيل الدخول -->
 
           <button
             type="submit"
@@ -715,36 +683,49 @@
 
   <script>
 
-    /*
-    ==========================================
-    تسجيل الدخول - المرحلة التجريبية
-    ==========================================
+    /* ==================================================
+       إعداد Supabase
+       ================================================== */
 
-    مهم:
+    const SUPABASE_URL =
+      "https://sbntgoxxrxnbsqgfvjkc.supabase.co";
 
-    الصفحة حالياً واجهة فقط.
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_MIaPgcpnmUYdXQZHWcv15A_f5bOkfMc";
 
-    لن نضع بيانات طلاب أو كلمات مرور
-    حقيقية داخل GitHub.
+    const {
+      createClient
+    } = window.supabase;
 
-    في المرحلة القادمة سيتم ربط النموذج
-    بقاعدة البيانات والـBackend.
+    const supabaseClient =
+      createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY,
+        {
+          auth: {
+            persistSession: true,
+            autoRefreshToken: true,
+            detectSessionInUrl: true
+          }
+        }
+      );
 
-    ==========================================
-    */
 
+    /* ==================================================
+       عناصر الصفحة
+       ================================================== */
 
     const loginForm =
       document.getElementById("loginForm");
 
-    const phoneInput =
-      document.getElementById("phone");
-
-    const codeInput =
-      document.getElementById("platformCode");
+    const emailInput =
+      document.getElementById("email");
 
     const passwordInput =
       document.getElementById("password");
+
+    const rememberInput =
+      document.getElementById("remember");
 
     const loginButton =
       document.getElementById("loginButton");
@@ -759,31 +740,26 @@
       document.getElementById("forgotPassword");
 
 
-    /*
-    ==========================================
-    إظهار / إخفاء كلمة المرور
-    ==========================================
-    */
+    /* ==================================================
+       إظهار / إخفاء كلمة المرور
+       ================================================== */
 
     showPassword.addEventListener(
       "click",
       function () {
 
         if (
-          passwordInput.type ===
-          "password"
+          passwordInput.type === "password"
         ) {
 
-          passwordInput.type =
-            "text";
+          passwordInput.type = "text";
 
           showPassword.textContent =
             "إخفاء";
 
         } else {
 
-          passwordInput.type =
-            "password";
+          passwordInput.type = "password";
 
           showPassword.textContent =
             "إظهار";
@@ -794,72 +770,81 @@
     );
 
 
-    /*
-    ==========================================
-    نسيت كلمة المرور
-    ==========================================
-    */
+    /* ==================================================
+       التحقق من وجود جلسة بالفعل
+       ================================================== */
 
-    forgotPassword.addEventListener(
-      "click",
-      function (event) {
-
-        event.preventDefault();
-
-        showMessage(
-          "استرجاع كلمة المرور سيتم تفعيله عند ربط النظام بقاعدة البيانات.",
-          "success"
-        );
-
-      }
-    );
+    checkExistingSession();
 
 
-    /*
-    ==========================================
-    تسجيل الدخول
-    ==========================================
-    */
+    async function checkExistingSession() {
 
-    loginForm.addEventListener(
-      "submit",
-      function (event) {
+      try {
 
-        event.preventDefault();
+        const {
+          data,
+          error
+        } =
+          await supabaseClient.auth.getSession();
 
 
-        const phone =
-          phoneInput.value.trim();
-
-        const platformCode =
-          codeInput.value.trim();
-
-        const password =
-          passwordInput.value.trim();
-
-
-        if (!phone) {
-
-          showMessage(
-            "من فضلك اكتب رقم الهاتف.",
-            "error"
-          );
-
-          phoneInput.focus();
-
+        if (error) {
           return;
-
         }
 
 
-        if (!platformCode) {
+        if (data.session) {
+
+          /*
+           * لو عندك صفحة dashboard.html
+           * هنوجه الطالب إليها.
+           *
+           * لو لسه ما عملناهاش، هنترك
+           * الطالب في الصفحة مؤقتًا.
+           */
+
+          // window.location.href = "dashboard.html";
+
+        }
+
+      } catch (error) {
+
+        console.error(
+          "Session check error:",
+          error
+        );
+
+      }
+
+    }
+
+
+    /* ==================================================
+       تسجيل الدخول الحقيقي
+       ================================================== */
+
+    loginForm.addEventListener(
+      "submit",
+      async function (event) {
+
+        event.preventDefault();
+
+
+        const email =
+          emailInput.value.trim();
+
+        const password =
+          passwordInput.value;
+
+
+        if (!email) {
 
           showMessage(
-            "من فضلك اكتب كود المنصة.",
+            "اكتب البريد الإلكتروني.",
             "error"
           );
 
-          codeInput.focus();
+          emailInput.focus();
 
           return;
 
@@ -869,7 +854,7 @@
         if (!password) {
 
           showMessage(
-            "من فضلك اكتب كلمة المرور.",
+            "اكتب كلمة المرور.",
             "error"
           );
 
@@ -880,22 +865,125 @@
         }
 
 
-        /*
-        ------------------------------------------
-        مؤقتاً فقط:
-        لا يوجد Backend حتى الآن.
-
-        ------------------------------------------
-        */
-
         loginButton.disabled = true;
 
         loginButton.textContent =
-          "جاري التحقق...";
+          "جاري تسجيل الدخول...";
+
+        clearMessage();
 
 
-        setTimeout(
-          function () {
+        try {
+
+          const {
+            data,
+            error
+          } =
+            await supabaseClient.auth.signInWithPassword(
+              {
+                email: email,
+                password: password
+              }
+            );
+
+
+          if (error) {
+
+            console.error(
+              "Login error:",
+              error
+            );
+
+
+            let errorMessage =
+              "تعذر تسجيل الدخول.";
+
+
+            if (
+              error.message
+                .toLowerCase()
+                .includes("invalid login credentials")
+            ) {
+
+              errorMessage =
+                "البريد الإلكتروني أو كلمة المرور غير صحيحة.";
+
+            }
+
+
+            showMessage(
+              errorMessage,
+              "error"
+            );
+
+            return;
+
+          }
+
+
+          if (!data.session) {
+
+            showMessage(
+              "تم التحقق ولكن لم يتم إنشاء جلسة الدخول.",
+              "error"
+            );
+
+            return;
+
+          }
+
+
+          showMessage(
+            "تم تسجيل الدخول بنجاح.",
+            "success"
+          );
+
+
+          loginButton.textContent =
+            "تم الدخول";
+
+
+          /*
+           * بعد إنشاء Dashboard:
+           * غيّر السطر التالي إلى:
+           *
+           * window.location.href = "dashboard.html";
+           */
+
+          setTimeout(
+            function () {
+
+              window.location.href =
+                "dashboard.html";
+
+            },
+            700
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            "Unexpected login error:",
+            error
+          );
+
+          showMessage(
+            "حدث خطأ غير متوقع. حاول مرة أخرى.",
+            "error"
+          );
+
+        } finally {
+
+          /*
+           * لا نعيد تفعيل الزر لو تم
+           * الانتقال إلى Dashboard.
+           */
+
+          if (
+            loginButton.textContent !==
+            "تم الدخول"
+          ) {
 
             loginButton.disabled =
               false;
@@ -903,25 +991,102 @@
             loginButton.textContent =
               "تسجيل الدخول";
 
+          }
 
-            showMessage(
-              "واجهة تسجيل الدخول جاهزة. سيتم تفعيل الدخول الحقيقي بعد ربط قاعدة البيانات.",
-              "success"
-            );
-
-          },
-          700
-        );
+        }
 
       }
     );
 
 
-    /*
-    ==========================================
-    عرض رسالة
-    ==========================================
-    */
+    /* ==================================================
+       نسيت كلمة المرور
+       ================================================== */
+
+    forgotPassword.addEventListener(
+      "click",
+      async function (event) {
+
+        event.preventDefault();
+
+
+        const email =
+          emailInput.value.trim();
+
+
+        if (!email) {
+
+          showMessage(
+            "اكتب بريدك الإلكتروني أولًا، ثم اضغط نسيت كلمة المرور.",
+            "error"
+          );
+
+          emailInput.focus();
+
+          return;
+
+        }
+
+
+        try {
+
+          const {
+            error
+          } =
+            await supabaseClient.auth.resetPasswordForEmail(
+              email,
+              {
+                redirectTo:
+                  window.location.origin +
+                  "/reset-password.html"
+              }
+            );
+
+
+          if (error) {
+
+            console.error(
+              "Password reset error:",
+              error
+            );
+
+            showMessage(
+              "تعذر إرسال رابط استعادة كلمة المرور.",
+              "error"
+            );
+
+            return;
+
+          }
+
+
+          showMessage(
+            "تم إرسال رابط استعادة كلمة المرور إلى بريدك الإلكتروني إذا كان الحساب موجودًا.",
+            "success"
+          );
+
+
+        } catch (error) {
+
+          console.error(
+            "Unexpected reset error:",
+            error
+          );
+
+          showMessage(
+            "حدث خطأ أثناء محاولة استعادة كلمة المرور.",
+            "error"
+          );
+
+        }
+
+      }
+    );
+
+
+    /* ==================================================
+       الرسائل
+       ================================================== */
 
     function showMessage(
       text,
@@ -933,6 +1098,17 @@
 
       message.className =
         "message " + type;
+
+    }
+
+
+    function clearMessage() {
+
+      message.textContent =
+        "";
+
+      message.className =
+        "message";
 
     }
 
