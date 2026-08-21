@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#070d13">
-  <title>تسجيل الدخول | مهندس محمد صلاح</title>
+
+  <title>تسجيل الدخول | منصة مهندس محمد صلاح</title>
 
   <style>
     * {
@@ -15,13 +16,14 @@
 
     :root {
       --bg: #070d13;
-      --card: #0c151f;
-      --card2: #101b26;
+      --panel: #0c151f;
+      --panel2: #101b26;
       --line: #24313d;
       --text: #f5f8fa;
       --muted: #8c99a6;
       --cyan: #22c7b8;
       --blue: #159bd7;
+      --danger: #e85d6a;
     }
 
     body {
@@ -29,22 +31,13 @@
       background:
         radial-gradient(
           circle at 50% 0%,
-          rgba(24, 155, 215, .12),
-          transparent 38%
-        ),
-        radial-gradient(
-          circle at 15% 80%,
-          rgba(34, 199, 184, .06),
-          transparent 30%
+          rgba(21,155,215,.12),
+          transparent 35%
         ),
         var(--bg);
+
       color: var(--text);
       font-family: Tahoma, Arial, sans-serif;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
     }
 
     button,
@@ -52,182 +45,244 @@
       font: inherit;
     }
 
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* =========================
+       الصفحة
+    ========================= */
+
     .page {
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
 
-    /* HEADER */
-
-    header {
-      height: 70px;
-      padding: 0 7%;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--line);
-      background: rgba(7, 13, 19, .88);
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-    }
-
-    .brand-image {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      overflow: hidden;
-      background: linear-gradient(
-        145deg,
-        var(--cyan),
-        var(--blue)
-      );
-    }
-
-    .brand-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .brand-name strong {
-      display: block;
-      font-size: 14px;
-    }
-
-    .brand-name span {
-      display: block;
-      color: var(--muted);
-      font-size: 9px;
-      margin-top: 4px;
-    }
-
-    .back {
-      color: #b9c3cb;
-      font-size: 11px;
-    }
-
-    .back:hover {
-      color: var(--cyan);
-    }
-
-    /* CONTENT */
-
-    .content {
-      flex: 1;
-      display: flex;
       justify-content: center;
-      align-items: center;
-      padding: 40px 20px;
+
+      padding: 25px 15px;
     }
 
-    .login-box {
+    .login-wrapper {
       width: 100%;
       max-width: 430px;
-      padding: 32px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background:
-        linear-gradient(
-          145deg,
-          rgba(16, 27, 38, .96),
-          rgba(9, 17, 25, .96)
-        );
-      box-shadow: 0 25px 70px rgba(0, 0, 0, .42);
     }
 
-    .teacher {
+    /* =========================
+       اللوجو والصورة
+    ========================= */
+
+    .brand {
       text-align: center;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .teacher-image {
-      width: 82px;
-      height: 82px;
-      margin: 0 auto 13px;
+      width: 95px;
+      height: 95px;
+
+      margin: 0 auto 12px;
+
       border-radius: 50%;
+
       overflow: hidden;
+
       border: 2px solid var(--cyan);
+
       box-shadow:
-        0 0 0 5px rgba(34, 199, 184, .07),
-        0 15px 35px rgba(0, 0, 0, .35);
+        0 0 0 6px rgba(34,199,184,.06),
+        0 10px 35px rgba(0,0,0,.35);
     }
 
     .teacher-image img {
       width: 100%;
       height: 100%;
+
       object-fit: cover;
+
+      display: block;
     }
 
-    .teacher h1 {
+    .brand h1 {
       font-size: 22px;
       margin-bottom: 7px;
     }
 
-    .teacher p {
+    .brand p {
       color: var(--muted);
-      font-size: 11px;
+      font-size: 10px;
     }
 
-    .title {
-      text-align: center;
-      font-size: 16px;
-      margin-bottom: 23px;
+    /* =========================
+       كارت تسجيل الدخول
+    ========================= */
+
+    .login-card {
+      width: 100%;
+
+      padding: 25px;
+
+      border: 1px solid var(--line);
+
+      border-radius: 18px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(16,27,38,.97),
+          rgba(8,15,22,.97)
+        );
+
+      box-shadow:
+        0 20px 60px rgba(0,0,0,.35);
     }
+
+    .card-title {
+      margin-bottom: 21px;
+    }
+
+    .card-title h2 {
+      font-size: 17px;
+      margin-bottom: 6px;
+    }
+
+    .card-title p {
+      color: var(--muted);
+      font-size: 9px;
+      line-height: 1.8;
+    }
+
+    /* =========================
+       الحقول
+    ========================= */
 
     .field {
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .field label {
       display: block;
-      font-size: 11px;
-      color: #dbe3e8;
-      margin-bottom: 8px;
+
+      margin-bottom: 7px;
+
+      color: #dce4e9;
+
+      font-size: 9px;
     }
 
-    .input-wrap {
+    .input-wrapper {
       position: relative;
     }
 
-    .input-wrap input {
+    .input-wrapper input {
       width: 100%;
+
       height: 48px;
-      border: 1px solid #263541;
-      outline: none;
+
+      padding:
+        0 42px
+        0 13px;
+
+      border: 1px solid var(--line);
+
       border-radius: 9px;
-      background: #08111a;
-      color: white;
-      padding: 0 15px;
+
+      outline: none;
+
+      background: var(--panel2);
+
+      color: var(--text);
+
+      font-size: 10px;
+
+      direction: rtl;
+
       transition: .2s;
     }
 
-    .input-wrap input:focus {
+    .input-wrapper input::placeholder {
+      color: #62717d;
+    }
+
+    .input-wrapper input:focus {
       border-color: var(--cyan);
-      box-shadow: 0 0 0 3px rgba(34, 199, 184, .08);
+
+      box-shadow:
+        0 0 0 3px
+        rgba(34,199,184,.07);
     }
 
-    .input-wrap input::placeholder {
-      color: #667581;
+    .input-icon {
+      position: absolute;
+
+      right: 14px;
+
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      color: var(--cyan);
+
+      font-size: 15px;
+
+      pointer-events: none;
     }
 
-    .password-row {
+    /* =========================
+       إظهار كلمة المرور
+    ========================= */
+
+    .show-password {
+      position: absolute;
+
+      left: 10px;
+
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      border: 0;
+
+      background: transparent;
+
+      color: var(--muted);
+
+      font-size: 8px;
+
+      cursor: pointer;
+    }
+
+    .show-password:hover {
+      color: var(--cyan);
+    }
+
+    /* =========================
+       الخيارات
+    ========================= */
+
+    .form-options {
       display: flex;
-      align-items: center;
+
       justify-content: space-between;
-      margin-bottom: 18px;
+
+      align-items: center;
+
+      margin: 5px 0 17px;
+
+      gap: 10px;
     }
 
     .remember {
       display: flex;
+
       align-items: center;
-      gap: 7px;
+
+      gap: 6px;
+
       color: var(--muted);
-      font-size: 10px;
+
+      font-size: 8px;
     }
 
     .remember input {
@@ -236,191 +291,308 @@
 
     .forgot {
       color: var(--cyan);
-      font-size: 10px;
+
+      font-size: 8px;
     }
+
+    .forgot:hover {
+      text-decoration: underline;
+    }
+
+    /* =========================
+       زر الدخول
+    ========================= */
 
     .login-button {
       width: 100%;
+
       height: 48px;
+
       border: 0;
+
       border-radius: 9px;
-      cursor: pointer;
+
       color: #041014;
-      font-size: 12px;
+
+      font-size: 10px;
+
       font-weight: bold;
+
       background:
         linear-gradient(
           135deg,
           var(--cyan),
           var(--blue)
         );
+
+      cursor: pointer;
+
       transition: .2s;
     }
 
     .login-button:hover {
       transform: translateY(-1px);
-      filter: brightness(1.08);
+
+      box-shadow:
+        0 8px 25px
+        rgba(34,199,184,.15);
     }
 
-    .divider {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: #65737e;
-      font-size: 9px;
-      margin: 22px 0;
+    .login-button:active {
+      transform: translateY(0);
     }
 
-    .divider::before,
-    .divider::after {
-      content: "";
-      height: 1px;
-      flex: 1;
-      background: var(--line);
-    }
-
-    .register-text {
-      text-align: center;
-      color: var(--muted);
-      font-size: 10px;
-    }
-
-    .register-text a {
-      color: var(--cyan);
-      font-weight: bold;
-    }
+    /* =========================
+       رسالة الخطأ / النجاح
+    ========================= */
 
     .message {
       display: none;
-      margin-top: 14px;
+
+      margin-top: 12px;
+
       padding: 10px;
+
       border-radius: 8px;
-      background: rgba(34, 199, 184, .08);
-      border: 1px solid rgba(34, 199, 184, .2);
-      color: #9de8df;
+
+      font-size: 8px;
+
+      line-height: 1.7;
+
       text-align: center;
-      font-size: 10px;
     }
 
-    /* MOBILE */
+    .message.error {
+      display: block;
 
-    @media (max-width: 520px) {
+      color: #ff9ca5;
 
-      header {
-        height: 64px;
-        padding: 0 16px;
-      }
+      border: 1px solid rgba(232,93,106,.25);
 
-      .brand-image {
-        width: 39px;
-        height: 39px;
-      }
+      background: rgba(232,93,106,.06);
+    }
 
-      .brand-name strong {
-        font-size: 12px;
-      }
+    .message.success {
+      display: block;
 
-      .brand-name span {
-        font-size: 8px;
-      }
+      color: var(--cyan);
 
-      .back {
-        font-size: 9px;
-      }
+      border: 1px solid rgba(34,199,184,.25);
 
-      .content {
-        padding: 24px 15px;
-      }
+      background: rgba(34,199,184,.06);
+    }
 
-      .login-box {
-        padding: 25px 19px;
-        border-radius: 15px;
+    /* =========================
+       إنشاء حساب
+    ========================= */
+
+    .register-box {
+      margin-top: 18px;
+
+      padding-top: 18px;
+
+      border-top: 1px solid var(--line);
+
+      text-align: center;
+    }
+
+    .register-box p {
+      color: var(--muted);
+
+      font-size: 9px;
+
+      margin-bottom: 9px;
+    }
+
+    .register-button {
+      display: block;
+
+      width: 100%;
+
+      padding: 12px;
+
+      border: 1px solid
+        rgba(34,199,184,.25);
+
+      border-radius: 9px;
+
+      color: var(--cyan);
+
+      background:
+        rgba(34,199,184,.04);
+
+      font-size: 9px;
+
+      transition: .2s;
+    }
+
+    .register-button:hover {
+      background:
+        rgba(34,199,184,.09);
+
+      border-color: var(--cyan);
+    }
+
+    /* =========================
+       أسفل الصفحة
+    ========================= */
+
+    .footer {
+      text-align: center;
+
+      margin-top: 17px;
+
+      color: #566571;
+
+      font-size: 7px;
+
+      line-height: 1.8;
+    }
+
+    /* =========================
+       الموبايل
+    ========================= */
+
+    @media (max-width: 480px) {
+
+      .page {
+        padding: 18px 12px;
       }
 
       .teacher-image {
-        width: 76px;
-        height: 76px;
+        width: 82px;
+        height: 82px;
       }
 
-      .teacher h1 {
-        font-size: 20px;
+      .brand h1 {
+        font-size: 19px;
       }
 
-      .title {
+      .login-card {
+        padding: 19px;
+        border-radius: 15px;
+      }
+
+      .card-title h2 {
         font-size: 15px;
       }
     }
+
   </style>
 </head>
 
 <body>
 
-  <div class="page">
+  <main class="page">
 
-    <header>
+    <div class="login-wrapper">
 
-      <a class="brand" href="index.html">
+      <!-- =====================
+           بيانات المهندس
+      ====================== -->
 
-        <div class="brand-image">
-          <img src="55.jpg" alt="مهندس محمد صلاح">
-        </div>
+      <section class="brand">
 
-        <div class="brand-name">
-          <strong>منصة محمد صلاح</strong>
-          <span>فيزياء</span>
-        </div>
+        <div class="teacher-image">
 
-      </a>
-
-      <a class="back" href="index.html">
-        العودة للرئيسية
-      </a>
-
-    </header>
-
-
-    <main class="content">
-
-      <section class="login-box">
-
-        <div class="teacher">
-
-          <div class="teacher-image">
-            <img src="55.jpg" alt="مهندس محمد صلاح">
-          </div>
-
-          <h1>مهندس محمد صلاح</h1>
-
-          <p>منصة الفيزياء التعليمية</p>
+          <img
+            src="55.jpg"
+            alt="مهندس محمد صلاح"
+          >
 
         </div>
 
+        <h1>
+          مهندس محمد صلاح
+        </h1>
 
-        <h2 class="title">
-          تسجيل الدخول
-        </h2>
+        <p>
+          منصة تعليم الفيزياء
+        </p>
+
+      </section>
+
+
+      <!-- =====================
+           تسجيل الدخول
+      ====================== -->
+
+      <section class="login-card">
+
+        <div class="card-title">
+
+          <h2>
+            تسجيل الدخول
+          </h2>
+
+          <p>
+            سجل دخولك للوصول إلى الكورسات
+            والمحاضرات والامتحانات ونتائجك.
+          </p>
+
+        </div>
 
 
         <form id="loginForm">
 
+          <!-- رقم الهاتف -->
+
           <div class="field">
 
             <label for="phone">
-              رقم الهاتف أو البريد الإلكتروني
+              رقم الهاتف
             </label>
 
-            <div class="input-wrap">
+            <div class="input-wrapper">
+
+              <span class="input-icon">
+                ☎
+              </span>
+
               <input
                 id="phone"
-                type="text"
-                placeholder="اكتب رقم الهاتف أو البريد الإلكتروني"
-                autocomplete="username"
+                name="phone"
+                type="tel"
+                inputmode="numeric"
+                autocomplete="tel"
+                placeholder="اكتب رقم الهاتف"
                 required
               >
+
             </div>
 
           </div>
 
+
+          <!-- كود المنصة -->
+
+          <div class="field">
+
+            <label for="platformCode">
+              كود المنصة
+            </label>
+
+            <div class="input-wrapper">
+
+              <span class="input-icon">
+                🔑
+              </span>
+
+              <input
+                id="platformCode"
+                name="platformCode"
+                type="text"
+                autocomplete="off"
+                placeholder="اكتب كود المنصة"
+                required
+              >
+
+            </div>
+
+          </div>
+
+
+          <!-- كلمة المرور -->
 
           <div class="field">
 
@@ -428,33 +600,54 @@
               كلمة المرور
             </label>
 
-            <div class="input-wrap">
+            <div class="input-wrapper">
+
+              <span class="input-icon">
+                🔒
+              </span>
+
               <input
                 id="password"
+                name="password"
                 type="password"
-                placeholder="اكتب كلمة المرور"
                 autocomplete="current-password"
+                placeholder="اكتب كلمة المرور"
                 required
               >
+
+              <button
+                type="button"
+                class="show-password"
+                id="showPassword"
+              >
+                إظهار
+              </button>
+
             </div>
 
           </div>
 
 
-          <div class="password-row">
+          <!-- الخيارات -->
+
+          <div class="form-options">
 
             <label class="remember">
+
               <input
                 type="checkbox"
                 id="remember"
               >
+
               تذكرني
+
             </label>
 
+
             <a
-              class="forgot"
               href="#"
-              onclick="forgotPassword(event)"
+              class="forgot"
+              id="forgotPassword"
             >
               نسيت كلمة المرور؟
             </a>
@@ -462,13 +655,18 @@
           </div>
 
 
+          <!-- زر الدخول -->
+
           <button
-            class="login-button"
             type="submit"
+            class="login-button"
+            id="loginButton"
           >
             تسجيل الدخول
           </button>
 
+
+          <!-- الرسالة -->
 
           <div
             class="message"
@@ -478,16 +676,18 @@
         </form>
 
 
-        <div class="divider">
-          أو
-        </div>
+        <!-- إنشاء حساب -->
 
+        <div class="register-box">
 
-        <div class="register-text">
+          <p>
+            أول مرة تستخدم المنصة؟
+          </p>
 
-          ليس لديك حساب؟
-
-          <a href="register.html">
+          <a
+            href="register.html"
+            class="register-button"
+          >
             إنشاء حساب جديد
           </a>
 
@@ -495,58 +695,244 @@
 
       </section>
 
-    </main>
 
-  </div>
+      <!-- Footer -->
+
+      <div class="footer">
+
+        منصة مهندس محمد صلاح للفيزياء
+
+        <br>
+
+        جميع الحقوق محفوظة © 2026
+
+      </div>
+
+    </div>
+
+  </main>
 
 
   <script>
 
-    const form = document.getElementById("loginForm");
-    const message = document.getElementById("message");
+    /*
+    ==========================================
+    تسجيل الدخول - المرحلة التجريبية
+    ==========================================
 
-    form.addEventListener("submit", function(event) {
+    مهم:
 
-      event.preventDefault();
+    الصفحة حالياً واجهة فقط.
 
-      const username =
-        document.getElementById("phone").value.trim();
+    لن نضع بيانات طلاب أو كلمات مرور
+    حقيقية داخل GitHub.
 
-      const password =
-        document.getElementById("password").value.trim();
+    في المرحلة القادمة سيتم ربط النموذج
+    بقاعدة البيانات والـBackend.
 
-      if (!username || !password) {
-        showMessage("من فضلك اكتب بيانات تسجيل الدخول.");
-        return;
+    ==========================================
+    */
+
+
+    const loginForm =
+      document.getElementById("loginForm");
+
+    const phoneInput =
+      document.getElementById("phone");
+
+    const codeInput =
+      document.getElementById("platformCode");
+
+    const passwordInput =
+      document.getElementById("password");
+
+    const loginButton =
+      document.getElementById("loginButton");
+
+    const message =
+      document.getElementById("message");
+
+    const showPassword =
+      document.getElementById("showPassword");
+
+    const forgotPassword =
+      document.getElementById("forgotPassword");
+
+
+    /*
+    ==========================================
+    إظهار / إخفاء كلمة المرور
+    ==========================================
+    */
+
+    showPassword.addEventListener(
+      "click",
+      function () {
+
+        if (
+          passwordInput.type ===
+          "password"
+        ) {
+
+          passwordInput.type =
+            "text";
+
+          showPassword.textContent =
+            "إخفاء";
+
+        } else {
+
+          passwordInput.type =
+            "password";
+
+          showPassword.textContent =
+            "إظهار";
+
+        }
+
       }
-
-      /*
-        تسجيل الدخول الحقيقي وقاعدة البيانات
-        هنربطهم في المرحلة القادمة.
-      */
-
-      showMessage(
-        "تم استلام البيانات. سيتم تفعيل تسجيل الدخول مع قاعدة البيانات في الخطوة القادمة."
-      );
-
-    });
+    );
 
 
-    function showMessage(text) {
+    /*
+    ==========================================
+    نسيت كلمة المرور
+    ==========================================
+    */
 
-      message.textContent = text;
-      message.style.display = "block";
+    forgotPassword.addEventListener(
+      "click",
+      function (event) {
 
-    }
+        event.preventDefault();
+
+        showMessage(
+          "استرجاع كلمة المرور سيتم تفعيله عند ربط النظام بقاعدة البيانات.",
+          "success"
+        );
+
+      }
+    );
 
 
-    function forgotPassword(event) {
+    /*
+    ==========================================
+    تسجيل الدخول
+    ==========================================
+    */
 
-      event.preventDefault();
+    loginForm.addEventListener(
+      "submit",
+      function (event) {
 
-      showMessage(
-        "استعادة كلمة المرور سيتم تفعيلها مع نظام الحسابات."
-      );
+        event.preventDefault();
+
+
+        const phone =
+          phoneInput.value.trim();
+
+        const platformCode =
+          codeInput.value.trim();
+
+        const password =
+          passwordInput.value.trim();
+
+
+        if (!phone) {
+
+          showMessage(
+            "من فضلك اكتب رقم الهاتف.",
+            "error"
+          );
+
+          phoneInput.focus();
+
+          return;
+
+        }
+
+
+        if (!platformCode) {
+
+          showMessage(
+            "من فضلك اكتب كود المنصة.",
+            "error"
+          );
+
+          codeInput.focus();
+
+          return;
+
+        }
+
+
+        if (!password) {
+
+          showMessage(
+            "من فضلك اكتب كلمة المرور.",
+            "error"
+          );
+
+          passwordInput.focus();
+
+          return;
+
+        }
+
+
+        /*
+        ------------------------------------------
+        مؤقتاً فقط:
+        لا يوجد Backend حتى الآن.
+
+        ------------------------------------------
+        */
+
+        loginButton.disabled = true;
+
+        loginButton.textContent =
+          "جاري التحقق...";
+
+
+        setTimeout(
+          function () {
+
+            loginButton.disabled =
+              false;
+
+            loginButton.textContent =
+              "تسجيل الدخول";
+
+
+            showMessage(
+              "واجهة تسجيل الدخول جاهزة. سيتم تفعيل الدخول الحقيقي بعد ربط قاعدة البيانات.",
+              "success"
+            );
+
+          },
+          700
+        );
+
+      }
+    );
+
+
+    /*
+    ==========================================
+    عرض رسالة
+    ==========================================
+    */
+
+    function showMessage(
+      text,
+      type
+    ) {
+
+      message.textContent =
+        text;
+
+      message.className =
+        "message " + type;
 
     }
 
