@@ -3,266 +3,532 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>مهندس محمد صلاح | منصة الفيزياء</title>
-
-  <meta
-    name="description"
-    content="منصة مهندس محمد صلاح التعليمية للفيزياء"
-  >
+  <meta name="theme-color" content="#070d13">
+  <title>منصة مهندس محمد صلاح | الفيزياء</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#070d13;
+      --panel:#0b131c;
+      --panel2:#101a24;
+      --line:#202c38;
+      --text:#f7fafc;
+      --muted:#8c99a6;
+      --cyan:#22c7b8;
+      --cyan2:#12a99f;
+      --blue:#159bd7;
+    }
+    html{scroll-behavior:smooth}
+    body{
+      min-height:100vh;
+      background:
+        radial-gradient(circle at 80% 10%,rgba(18,155,215,.08),transparent 30%),
+        radial-gradient(circle at 20% 35%,rgba(34,199,184,.05),transparent 28%),
+        var(--bg);
+      color:var(--text);
+      font-family:Tahoma,Arial,sans-serif;
+      overflow-x:hidden;
+    }
+    a{text-decoration:none;color:inherit}
+    button,input{font:inherit}
+
+    .shell{
+      width:min(1440px,calc(100% - 28px));
+      margin:12px auto;
+      border:1px solid #26323d;
+      border-radius:24px;
+      overflow:hidden;
+      background:linear-gradient(180deg,#081018,#070d13);
+      box-shadow:0 25px 80px rgba(0,0,0,.42);
     }
 
-    body {
-      font-family: Arial, Tahoma, sans-serif;
-      background: #080d18;
-      color: #ffffff;
-      min-height: 100vh;
+    header{
+      height:68px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      padding:0 28px;
+      border-bottom:1px solid var(--line);
     }
 
-    .container {
-      width: min(1200px, 92%);
-      margin: auto;
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      order:1;
     }
 
-    /* الهيدر */
-    header {
-      padding: 22px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      background: rgba(8,13,24,0.95);
+    .brand-mark{
+      width:42px;
+      height:42px;
+      border-radius:11px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(145deg,#25d1c0,#138dbf);
+      color:#061017;
+      font-size:23px;
+      font-weight:900;
+      overflow:hidden;
     }
 
-    .navbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
+    .brand-mark img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .brand-text strong{
+      display:block;
+      font-size:15px;
     }
 
-    .brand-logo {
-      width: 48px;
-      height: 48px;
-      border-radius: 15px;
-      background: linear-gradient(135deg, #00d4ff, #2563eb);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
-      font-size: 20px;
+    .brand-text span{
+      display:block;
+      color:var(--muted);
+      font-size:10px;
+      margin-top:4px;
     }
 
-    .brand-text h1 {
-      font-size: 18px;
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      color:#c3cbd2;
+      font-size:12px;
+      order:2;
     }
 
-    .brand-text p {
-      color: #8f9bad;
-      font-size: 12px;
-      margin-top: 4px;
+    .nav a{
+      padding:25px 0 22px;
+      border-bottom:2px solid transparent;
     }
 
-    .login-button {
-      border: 0;
-      background: #0ea5e9;
-      color: white;
-      padding: 12px 22px;
-      border-radius: 12px;
-      font-weight: bold;
-      cursor: pointer;
+    .nav a.active,
+    .nav a:hover{
+      color:var(--cyan);
+      border-bottom-color:var(--cyan);
     }
 
-    /* الهيرو */
-    .hero {
-      min-height: 560px;
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      align-items: center;
-      gap: 50px;
-      padding: 70px 0;
+    .actions{
+      display:flex;
+      align-items:center;
+      gap:20px;
+      order:3;
+      font-size:12px;
     }
 
-    .hero-content h2 {
-      font-size: clamp(38px, 6vw, 72px);
-      line-height: 1.05;
-      margin-bottom: 22px;
+    .login{
+      color:#e7edf1;
     }
 
-    .hero-content h2 span {
-      color: #22d3ee;
+    .register{
+      padding:10px 20px;
+      border-radius:8px;
+      color:#061014;
+      font-weight:700;
+      background:linear-gradient(135deg,#29c9bb,#159bc7);
     }
 
-    .hero-content p {
-      color: #9aa6b8;
-      font-size: 18px;
-      line-height: 1.9;
-      max-width: 650px;
-      margin-bottom: 30px;
+    .hero{
+      min-height:510px;
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      align-items:center;
+      padding:30px 58px 20px;
+      position:relative;
+      overflow:hidden;
     }
 
-    .hero-buttons {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .primary-button,
-    .secondary-button {
-      padding: 15px 25px;
-      border-radius: 14px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .primary-button {
-      background: linear-gradient(135deg, #06b6d4, #2563eb);
-      color: white;
-    }
-
-    .secondary-button {
-      background: #111827;
-      color: white;
-      border: 1px solid #263246;
-    }
-
-    /* كارت الصورة */
-    .teacher-card {
-      background: linear-gradient(
-        145deg,
-        rgba(22,32,51,0.95),
-        rgba(12,19,33,0.95)
+    .hero:after{
+      content:"";
+      position:absolute;
+      width:520px;
+      height:520px;
+      left:-180px;
+      top:-160px;
+      background:radial-gradient(
+        circle,
+        rgba(24,151,207,.12),
+        transparent 65%
       );
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 30px;
-      padding: 25px;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+      pointer-events:none;
     }
 
-    .teacher-photo {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      border-radius: 24px;
-      background: #111827;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.08);
+    .hero-copy{
+      position:relative;
+      z-index:2;
+      padding-right:15px;
     }
 
-    .teacher-photo span {
-      color: #64748b;
-      font-size: 14px;
+    .hero h1{
+      font-size:52px;
+      line-height:1.2;
+      letter-spacing:-1px;
+      margin-bottom:18px;
+      max-width:620px;
     }
 
-    .teacher-info {
-      padding: 20px 5px 5px;
+    .hero h1 span{
+      color:var(--cyan);
     }
 
-    .teacher-info h3 {
-      font-size: 25px;
-      margin-bottom: 7px;
+    .hero p{
+      color:#9aa6b2;
+      font-size:15px;
+      line-height:2;
+      max-width:520px;
+      margin-bottom:26px;
     }
 
-    .teacher-info p {
-      color: #8f9bad;
+    .hero-buttons{
+      display:flex;
+      gap:14px;
     }
 
-    /* الكورسات */
-    .section {
-      padding: 70px 0;
+    .btn{
+      min-width:145px;
+      padding:13px 22px;
+      border-radius:7px;
+      text-align:center;
+      font-size:12px;
+      font-weight:700;
+      border:1px solid var(--cyan);
     }
 
-    .section-title {
-      margin-bottom: 30px;
+    .btn-primary{
+      background:linear-gradient(135deg,#22c7b8,#159bd7);
+      color:#041014;
     }
 
-    .section-title h2 {
-      font-size: 32px;
-      margin-bottom: 8px;
+    .btn-outline{
+      color:#d9e2e8;
+      background:#09121b;
     }
 
-    .section-title p {
-      color: #7f8ca0;
+    .hero-person{
+      align-self:stretch;
+      min-height:470px;
+      position:relative;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
     }
 
-    .courses {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+    .hero-person:before{
+      content:"";
+      position:absolute;
+      width:430px;
+      height:430px;
+      bottom:-120px;
+      right:5px;
+      border-radius:50%;
+      background:radial-gradient(
+        circle,
+        rgba(15,142,194,.2),
+        transparent 67%
+      );
     }
 
-    .course {
-      background: #101827;
-      border: 1px solid #1d2a3d;
-      border-radius: 20px;
-      padding: 24px;
+    .person-frame{
+      position:relative;
+      z-index:2;
+      width:min(390px,100%);
+      height:100%;
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
     }
 
-    .course-icon {
-      width: 55px;
-      height: 55px;
-      border-radius: 16px;
-      background: rgba(14,165,233,0.12);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 25px;
-      margin-bottom: 18px;
+    .person-frame img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      object-position:center bottom;
+      filter:drop-shadow(0 30px 35px rgba(0,0,0,.45));
     }
 
-    .course h3 {
-      margin-bottom: 10px;
+    .benefits{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+      padding:0 58px 28px;
     }
 
-    .course p {
-      color: #8793a6;
-      line-height: 1.7;
-      font-size: 14px;
+    .benefit{
+      min-height:75px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:12px 15px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:rgba(14,23,32,.7);
     }
 
-    /* الفوتر */
-    footer {
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding: 30px 0;
-      color: #68758a;
-      text-align: center;
-      margin-top: 50px;
+    .benefit-icon{
+      width:42px;
+      height:42px;
+      flex:0 0 42px;
+      display:grid;
+      place-items:center;
+      border-radius:12px;
+      background:rgba(34,199,184,.1);
+      color:var(--cyan);
+      font-size:19px;
     }
 
-    /* الموبايل */
-    @media (max-width: 850px) {
-      .hero {
-        grid-template-columns: 1fr;
-        padding: 45px 0;
+    .benefit strong{
+      display:block;
+      font-size:12px;
+      margin-bottom:5px;
+    }
+
+    .benefit span{
+      display:block;
+      color:var(--muted);
+      font-size:9px;
+      line-height:1.7;
+    }
+
+    .courses-section{
+      padding:0 58px 42px;
+    }
+
+    .section-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:14px;
+    }
+
+    .section-head h2{
+      font-size:20px;
+    }
+
+    .section-head a{
+      color:var(--cyan);
+      font-size:10px;
+    }
+
+    .courses{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+    }
+
+    .course{
+      background:#0c151f;
+      border:1px solid var(--line);
+      border-radius:10px;
+      overflow:hidden;
+      transition:.2s;
+    }
+
+    .course:hover{
+      transform:translateY(-3px);
+      border-color:#2b746f;
+    }
+
+    .course-img{
+      height:118px;
+      background:linear-gradient(135deg,#132536,#0c151e);
+      display:grid;
+      place-items:center;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .course-placeholder{
+      font-size:32px;
+      color:var(--cyan);
+    }
+
+    .course-body{
+      padding:11px;
+    }
+
+    .course h3{
+      font-size:12px;
+      line-height:1.6;
+      margin-bottom:8px;
+    }
+
+    .course-meta{
+      display:flex;
+      justify-content:space-between;
+      color:#84909c;
+      font-size:9px;
+    }
+
+    .course-meta b{
+      color:#f1c95b;
+    }
+
+    @media(max-width:900px){
+
+      .shell{
+        width:100%;
+        margin:0;
+        border-radius:0;
+        border-left:0;
+        border-right:0;
       }
 
-      .courses {
-        grid-template-columns: 1fr;
+      header{
+        height:auto;
+        min-height:66px;
+        padding:10px 14px;
       }
 
-      .hero-content {
-        text-align: center;
+      .nav{
+        display:none;
       }
 
-      .hero-buttons {
-        justify-content: center;
+      .actions{
+        gap:12px;
       }
 
-      .teacher-card {
-        max-width: 430px;
-        width: 100%;
-        margin: auto;
+      .register{
+        padding:9px 13px;
+      }
+
+      .hero{
+        min-height:calc(100svh - 66px);
+        grid-template-columns:1fr;
+        padding:35px 24px 25px;
+        text-align:right;
+      }
+
+      .hero-copy{
+        padding:0;
+        order:1;
+      }
+
+      .hero-person{
+        order:0;
+        min-height:300px;
+        max-height:42svh;
+      }
+
+      .person-frame{
+        width:min(310px,85vw);
+      }
+
+      .hero h1{
+        font-size:39px;
+      }
+
+      .hero p{
+        font-size:13px;
+      }
+
+      .hero-buttons{
+        justify-content:flex-start;
+      }
+
+      .benefits{
+        grid-template-columns:repeat(2,1fr);
+        padding:0 20px 25px;
+      }
+
+      .courses-section{
+        padding:0 20px 35px;
+      }
+
+      .courses{
+        grid-template-columns:repeat(2,1fr);
+      }
+    }
+
+    @media(max-width:520px){
+
+      .brand-text strong{
+        font-size:13px;
+      }
+
+      .brand-text span{
+        font-size:9px;
+      }
+
+      .brand-mark{
+        width:39px;
+        height:39px;
+      }
+
+      .login{
+        font-size:10px;
+      }
+
+      .register{
+        font-size:10px;
+        padding:8px 11px;
+      }
+
+      .hero{
+        padding-top:22px;
+      }
+
+      .hero-person{
+        min-height:270px;
+      }
+
+      .hero h1{
+        font-size:35px;
+      }
+
+      .hero p{
+        font-size:12px;
+        line-height:1.9;
+      }
+
+      .hero-buttons{
+        gap:8px;
+      }
+
+      .btn{
+        min-width:0;
+        flex:1;
+        padding:12px 10px;
+        font-size:11px;
+      }
+
+      .benefits{
+        grid-template-columns:1fr 1fr;
+        gap:8px;
+      }
+
+      .benefit{
+        min-height:70px;
+        padding:9px;
+      }
+
+      .benefit-icon{
+        width:35px;
+        height:35px;
+        flex-basis:35px;
+      }
+
+      .benefit strong{
+        font-size:10px;
+      }
+
+      .benefit span{
+        font-size:8px;
+      }
+
+      .courses{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .course-img{
+        height:105px;
+      }
+
+      .course h3{
+        font-size:10px;
       }
     }
   </style>
@@ -270,113 +536,208 @@
 
 <body>
 
-  <header>
-    <div class="container navbar">
+  <div class="shell">
 
-      <div class="brand">
-        <div class="brand-logo">م</div>
+    <header>
+
+      <a class="brand" href="index.html">
+
+        <div class="brand-mark">
+          <img src="55.jpg" alt="مهندس محمد صلاح">
+        </div>
 
         <div class="brand-text">
-          <h1>مهندس محمد صلاح</h1>
-          <p>مدرس الفيزياء</p>
+          <strong>منصة محمد صلاح</strong>
+          <span>فيزياء</span>
         </div>
+
+      </a>
+
+      <nav class="nav">
+        <a class="active" href="index.html">الرئيسية</a>
+        <a href="#courses">الكورسات</a>
+        <a href="#teachers">المدرسين</a>
+        <a href="#exams">الامتحانات</a>
+        <a href="#articles">المقالات</a>
+      </nav>
+
+      <div class="actions">
+        <a class="login" href="login.html">تسجيل الدخول</a>
+        <a class="register" href="register.html">إنشاء حساب</a>
       </div>
 
-      <button class="login-button">
-        تسجيل الدخول
-      </button>
+    </header>
 
-    </div>
-  </header>
+    <main>
 
-  <main>
+      <section class="hero">
 
-    <section class="container hero">
+        <div class="hero-copy">
 
-      <div class="hero-content">
+          <h1>
+            تعلم بذكاء،
+            <br>
+            <span>واستثمر</span> في مستقبلك
+          </h1>
 
-        <h2>
-          اتعلم الفيزياء
-          <span>بطريقة مختلفة</span>
-        </h2>
+          <p>
+            منصة تعليمية متكاملة تساعدك على تعلم الفيزياء
+            وفهمها بطريقة واضحة، مع متابعة مستواك
+            والاختبارات والكورسات في مكان واحد.
+          </p>
 
-        <p>
-          منصة تعليمية متكاملة مع مهندس محمد صلاح،
-          تساعدك على فهم الفيزياء ومتابعة دروسك
-          وامتحاناتك وتقدمك في مكان واحد.
-        </p>
+          <div class="hero-buttons">
+            <a class="btn btn-primary" href="login.html">
+              ابدأ التعلم الآن
+            </a>
 
-        <div class="hero-buttons">
-          <a href="#" class="primary-button">
-            ابدأ التعلم
+            <a class="btn btn-outline" href="#courses">
+              استكشف الكورسات
+            </a>
+          </div>
+
+        </div>
+
+        <div class="hero-person">
+
+          <div class="person-frame">
+            <img src="55.jpg" alt="مهندس محمد صلاح">
+          </div>
+
+        </div>
+
+      </section>
+
+      <section class="benefits" id="teachers">
+
+        <div class="benefit">
+          <div class="benefit-icon">⚛</div>
+          <div>
+            <strong>مدرس فيزياء خبير</strong>
+            <span>شرح منظم ومتابعة مستمرة للمستوى الدراسي.</span>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="benefit-icon">◷</div>
+          <div>
+            <strong>تعلم في أي وقت</strong>
+            <span>المحتوى متاح لك وتقدر ترجع له وقت ما تحتاج.</span>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="benefit-icon">▣</div>
+          <div>
+            <strong>محتوى بجودة عالية</strong>
+            <span>محاضرات منظمة وأسئلة وتدريبات متنوعة.</span>
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="benefit-icon">♧</div>
+          <div>
+            <strong>شهادات معتمدة</strong>
+            <span>تابع إنجازك واستكمل الكورسات المطلوبة.</span>
+          </div>
+        </div>
+
+      </section>
+
+      <section class="courses-section" id="courses">
+
+        <div class="section-head">
+          <h2>أقوى الكورسات</h2>
+          <a href="login.html">عرض كل الكورسات</a>
+        </div>
+
+        <div class="courses">
+
+          <a class="course" href="login.html">
+            <div class="course-img">
+              <div class="course-placeholder">⚡</div>
+            </div>
+
+            <div class="course-body">
+              <h3>أساسيات الفيزياء</h3>
+
+              <div class="course-meta">
+                <span>25 محاضرة</span>
+                <b>★ 4.9</b>
+              </div>
+            </div>
           </a>
 
-          <a href="#" class="secondary-button">
-            استكشف الكورسات
+          <a class="course" href="login.html">
+            <div class="course-img">
+              <div class="course-placeholder">∑</div>
+            </div>
+
+            <div class="course-body">
+              <h3>حل مسائل الفيزياء</h3>
+
+              <div class="course-meta">
+                <span>30 محاضرة</span>
+                <b>★ 5.0</b>
+              </div>
+            </div>
           </a>
+
+          <a class="course" href="login.html">
+            <div class="course-img">
+              <div class="course-placeholder">◉</div>
+            </div>
+
+            <div class="course-body">
+              <h3>المراجعة النهائية</h3>
+
+              <div class="course-meta">
+                <span>20 محاضرة</span>
+                <b>★ 4.9</b>
+              </div>
+            </div>
+          </a>
+
+          <a class="course" href="login.html">
+            <div class="course-img">
+              <div class="course-placeholder">✦</div>
+            </div>
+
+            <div class="course-body">
+              <h3>بنك الأسئلة والامتحانات</h3>
+
+              <div class="course-meta">
+                <span>100+ سؤال</span>
+                <b>★ 5.0</b>
+              </div>
+            </div>
+          </a>
+
         </div>
 
-      </div>
+      </section>
 
-      <div class="teacher-card">
+      <section class="courses-section" id="exams">
 
-        <div class="teacher-photo">
-          <span>صورة مهندس محمد صلاح</span>
+        <div class="section-head">
+          <h2>الاختبارات</h2>
+          <a href="login.html">ابدأ الاختبار</a>
         </div>
 
-        <div class="teacher-info">
-          <h3>مهندس محمد صلاح</h3>
-          <p>مدرس الفيزياء</p>
+      </section>
+
+      <section class="courses-section" id="articles">
+
+        <div class="section-head">
+          <h2>المقالات</h2>
+          <a href="login.html">عرض المقالات</a>
         </div>
 
-      </div>
+      </section>
 
-    </section>
+    </main>
 
-    <section class="container section">
-
-      <div class="section-title">
-        <h2>الكورسات</h2>
-        <p>اختار الكورس المناسب وابدأ رحلتك التعليمية.</p>
-      </div>
-
-      <div class="courses">
-
-        <article class="course">
-          <div class="course-icon">⚡</div>
-          <h3>الفيزياء</h3>
-          <p>
-            شرح مبسط ومنظم مع متابعة مستواك خطوة بخطوة.
-          </p>
-        </article>
-
-        <article class="course">
-          <div class="course-icon">🎓</div>
-          <h3>المحاضرات</h3>
-          <p>
-            محاضرات منظمة تستطيع الوصول إليها من أي جهاز.
-          </p>
-        </article>
-
-        <article class="course">
-          <div class="course-icon">📝</div>
-          <h3>الامتحانات</h3>
-          <p>
-            اختبارات لمتابعة مستواك ومعرفة نقاط القوة والضعف.
-          </p>
-        </article>
-
-      </div>
-
-    </section>
-
-  </main>
-
-  <footer>
-    <div class="container">
-      © 2026 مهندس محمد صلاح — منصة الفيزياء
-    </div>
-  </footer>
+  </div>
 
 </body>
 </html>
