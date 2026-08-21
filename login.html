@@ -20,15 +20,80 @@
         radial-gradient(circle at top right, #12304a 0, transparent 35%),
         #080d18;
       color: #fff;
+      padding: 25px;
+    }
+
+    .topbar {
+      width: min(1100px, 100%);
+      margin: 0 auto 25px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 25px;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-photo {
+      width: 68px;
+      height: 68px;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #172235;
+      border: 1px solid rgba(255,255,255,0.12);
+      flex-shrink: 0;
+    }
+
+    .brand-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .brand-info h1 {
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+
+    .brand-info p {
+      color: #8d9aae;
+      font-size: 13px;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .top-actions a {
+      text-decoration: none;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .login-link {
+      color: #fff;
+      background: rgba(14,165,233,0.14);
+      border: 1px solid rgba(14,165,233,0.25);
+    }
+
+    .register-link {
+      color: #fff;
+      background: linear-gradient(135deg, #06b6d4, #2563eb);
     }
 
     .login-box {
       width: min(950px, 100%);
       min-height: 570px;
+      margin: auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
       overflow: hidden;
@@ -59,9 +124,6 @@
       border-radius: 28px;
       background: #172235;
       border: 1px solid rgba(255,255,255,0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
       overflow: hidden;
     }
 
@@ -72,7 +134,7 @@
       display: block;
     }
 
-    .teacher-side h1 {
+    .teacher-side h2 {
       text-align: center;
       font-size: 27px;
       margin-bottom: 8px;
@@ -150,6 +212,30 @@
     }
 
     @media (max-width: 750px) {
+
+      body {
+        padding: 15px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+      }
+
+      .brand-photo {
+        width: 58px;
+        height: 58px;
+        border-radius: 17px;
+      }
+
+      .brand-info h1 {
+        font-size: 16px;
+      }
+
+      .top-actions a {
+        padding: 10px 12px;
+        font-size: 12px;
+      }
+
       .login-box {
         grid-template-columns: 1fr;
       }
@@ -171,18 +257,42 @@
 
 <body>
 
+  <header class="topbar">
+
+    <div class="brand">
+
+      <div class="brand-photo">
+        <img id="brandImage" alt="مهندس محمد صلاح">
+      </div>
+
+      <div class="brand-info">
+        <h1>مهندس محمد صلاح</h1>
+        <p>مدرس الفيزياء</p>
+      </div>
+
+    </div>
+
+    <nav class="top-actions">
+      <a class="login-link" href="login.html">
+        تسجيل الدخول
+      </a>
+
+      <a class="register-link" href="register.html">
+        إنشاء حساب جديد
+      </a>
+    </nav>
+
+  </header>
+
   <main class="login-box">
 
     <section class="teacher-side">
 
       <div class="photo">
-        <img
-          id="teacherImage"
-          alt="صورة مهندس محمد صلاح"
-        >
+        <img id="teacherImage" alt="صورة مهندس محمد صلاح">
       </div>
 
-      <h1>مهندس محمد صلاح</h1>
+      <h2>مهندس محمد صلاح</h2>
       <p>مدرس الفيزياء</p>
 
     </section>
@@ -234,8 +344,6 @@
   </main>
 
   <script>
-    const image = document.getElementById("teacherImage");
-
     const imageNames = [
       "55",
       "55.jpg",
@@ -244,21 +352,26 @@
       "55.webp"
     ];
 
-    let currentImage = 0;
+    function loadImage(elementId) {
+      const element = document.getElementById(elementId);
 
-    function tryNextImage() {
-      if (currentImage >= imageNames.length) {
-        image.removeAttribute("src");
-        return;
+      let index = 0;
+
+      function tryImage() {
+        if (index >= imageNames.length) {
+          return;
+        }
+
+        element.src = imageNames[index];
+        index++;
       }
 
-      image.src = imageNames[currentImage];
-      currentImage++;
+      element.addEventListener("error", tryImage);
+      tryImage();
     }
 
-    image.addEventListener("error", tryNextImage);
-
-    tryNextImage();
+    loadImage("brandImage");
+    loadImage("teacherImage");
   </script>
 
 </body>
