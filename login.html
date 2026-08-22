@@ -1,1116 +1,346 @@
+login.html
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#070d13">
-
-  <title>تسجيل الدخول | منصة مهندس محمد صلاح</title>
-
-  <!-- Supabase -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <title>تسجيل الدخول - منصة محمد صلاح</title>
 
   <style>
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    :root {
-      --bg: #070d13;
-      --panel: #0c151f;
-      --panel2: #101b26;
-      --line: #24313d;
-      --text: #f5f8fa;
-      --muted: #8c99a6;
-      --cyan: #22c7b8;
-      --blue: #159bd7;
-      --danger: #e85d6a;
+      font-family: Arial, sans-serif;
     }
 
     body {
+      margin: 0;
       min-height: 100vh;
-
-      background:
-        radial-gradient(
-          circle at 50% 0%,
-          rgba(21,155,215,.12),
-          transparent 35%
-        ),
-        var(--bg);
-
-      color: var(--text);
-
-      font-family: Tahoma, Arial, sans-serif;
-    }
-
-    button,
-    input {
-      font: inherit;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .page {
-      min-height: 100vh;
-
+      background: linear-gradient(135deg, #111827, #1f2937);
       display: flex;
       align-items: center;
       justify-content: center;
-
-      padding: 25px 15px;
+      padding: 20px;
     }
 
-    .login-wrapper {
+    .container {
       width: 100%;
       max-width: 430px;
-    }
-
-    /* =========================
-       الهوية
-    ========================= */
-
-    .brand {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .teacher-image {
-      width: 95px;
-      height: 95px;
-
-      margin: 0 auto 12px;
-
-      border-radius: 50%;
-
-      overflow: hidden;
-
-      border: 2px solid var(--cyan);
-
-      box-shadow:
-        0 0 0 6px rgba(34,199,184,.06),
-        0 10px 35px rgba(0,0,0,.35);
-    }
-
-    .teacher-image img {
-      width: 100%;
-      height: 100%;
-
-      object-fit: cover;
-
-      display: block;
-    }
-
-    .brand h1 {
-      font-size: 22px;
-      margin-bottom: 7px;
-    }
-
-    .brand p {
-      color: var(--muted);
-      font-size: 10px;
-    }
-
-    /* =========================
-       الكارت
-    ========================= */
-
-    .login-card {
-      width: 100%;
-
-      padding: 25px;
-
-      border: 1px solid var(--line);
-
+      background: white;
       border-radius: 18px;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(16,27,38,.97),
-          rgba(8,15,22,.97)
-        );
-
-      box-shadow:
-        0 20px 60px rgba(0,0,0,.35);
+      padding: 30px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, .25);
     }
 
-    .card-title {
-      margin-bottom: 21px;
+    h1 {
+      text-align: center;
+      margin: 0 0 8px;
     }
 
-    .card-title h2 {
-      font-size: 17px;
-      margin-bottom: 6px;
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 25px;
     }
 
-    .card-title p {
-      color: var(--muted);
-      font-size: 9px;
-      line-height: 1.8;
-    }
-
-    /* =========================
-       الحقول
-    ========================= */
-
-    .field {
-      margin-bottom: 14px;
-    }
-
-    .field label {
+    label {
       display: block;
-
-      margin-bottom: 7px;
-
-      color: #dce4e9;
-
-      font-size: 9px;
-    }
-
-    .input-wrapper {
-      position: relative;
-    }
-
-    .input-wrapper input {
-      width: 100%;
-
-      height: 48px;
-
-      padding: 0 42px 0 55px;
-
-      border: 1px solid var(--line);
-
-      border-radius: 9px;
-
-      outline: none;
-
-      background: var(--panel2);
-
-      color: var(--text);
-
-      font-size: 10px;
-
-      direction: ltr;
-
-      text-align: right;
-
-      transition: .2s;
-    }
-
-    .input-wrapper input::placeholder {
-      color: #62717d;
-    }
-
-    .input-wrapper input:focus {
-      border-color: var(--cyan);
-
-      box-shadow:
-        0 0 0 3px rgba(34,199,184,.07);
-    }
-
-    .input-icon {
-      position: absolute;
-
-      right: 14px;
-
-      top: 50%;
-
-      transform: translateY(-50%);
-
-      color: var(--cyan);
-
-      font-size: 15px;
-
-      pointer-events: none;
-    }
-
-    .show-password {
-      position: absolute;
-
-      left: 10px;
-
-      top: 50%;
-
-      transform: translateY(-50%);
-
-      border: 0;
-
-      background: transparent;
-
-      color: var(--muted);
-
-      font-size: 8px;
-
-      cursor: pointer;
-    }
-
-    .show-password:hover {
-      color: var(--cyan);
-    }
-
-    /* =========================
-       الخيارات
-    ========================= */
-
-    .form-options {
-      display: flex;
-
-      justify-content: space-between;
-
-      align-items: center;
-
-      margin: 5px 0 17px;
-
-      gap: 10px;
-    }
-
-    .remember {
-      display: flex;
-
-      align-items: center;
-
-      gap: 6px;
-
-      color: var(--muted);
-
-      font-size: 8px;
-    }
-
-    .remember input {
-      accent-color: var(--cyan);
-    }
-
-    .forgot {
-      color: var(--cyan);
-
-      font-size: 8px;
-    }
-
-    .forgot:hover {
-      text-decoration: underline;
-    }
-
-    /* =========================
-       زر الدخول
-    ========================= */
-
-    .login-button {
-      width: 100%;
-
-      height: 48px;
-
-      border: 0;
-
-      border-radius: 9px;
-
-      color: #041014;
-
-      font-size: 10px;
-
+      margin: 15px 0 7px;
       font-weight: bold;
+    }
 
-      background:
-        linear-gradient(
-          135deg,
-          var(--cyan),
-          var(--blue)
-        );
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 16px;
+      outline: none;
+    }
 
+    input:focus {
+      border-color: #2563eb;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 14px;
+      border: 0;
+      border-radius: 10px;
+      background: #2563eb;
+      color: white;
+      font-size: 17px;
       cursor: pointer;
-
-      transition: .2s;
     }
 
-    .login-button:hover {
-      transform: translateY(-1px);
-
-      box-shadow:
-        0 8px 25px rgba(34,199,184,.15);
+    button:disabled {
+      opacity: .6;
+      cursor: not-allowed;
     }
-
-    .login-button:active {
-      transform: translateY(0);
-    }
-
-    .login-button:disabled {
-      opacity: .65;
-      cursor: wait;
-      transform: none;
-    }
-
-    /* =========================
-       الرسائل
-    ========================= */
 
     .message {
       display: none;
-
-      margin-top: 12px;
-
-      padding: 10px;
-
-      border-radius: 8px;
-
-      font-size: 8px;
-
-      line-height: 1.7;
-
-      text-align: center;
-    }
-
-    .message.error {
-      display: block;
-
-      color: #ff9ca5;
-
-      border: 1px solid rgba(232,93,106,.25);
-
-      background: rgba(232,93,106,.06);
-    }
-
-    .message.success {
-      display: block;
-
-      color: var(--cyan);
-
-      border: 1px solid rgba(34,199,184,.25);
-
-      background: rgba(34,199,184,.06);
-    }
-
-    /* =========================
-       إنشاء حساب
-    ========================= */
-
-    .register-box {
-      margin-top: 18px;
-
-      padding-top: 18px;
-
-      border-top: 1px solid var(--line);
-
-      text-align: center;
-    }
-
-    .register-box p {
-      color: var(--muted);
-
-      font-size: 9px;
-
-      margin-bottom: 9px;
-    }
-
-    .register-button {
-      display: block;
-
-      width: 100%;
-
+      margin-top: 15px;
       padding: 12px;
-
-      border: 1px solid rgba(34,199,184,.25);
-
-      border-radius: 9px;
-
-      color: var(--cyan);
-
-      background: rgba(34,199,184,.04);
-
-      font-size: 9px;
-
-      transition: .2s;
-    }
-
-    .register-button:hover {
-      background: rgba(34,199,184,.09);
-
-      border-color: var(--cyan);
-    }
-
-    /* =========================
-       Footer
-    ========================= */
-
-    .footer {
+      border-radius: 10px;
       text-align: center;
-
-      margin-top: 17px;
-
-      color: #566571;
-
-      font-size: 7px;
-
-      line-height: 1.8;
     }
 
-    /* =========================
-       الموبايل
-    ========================= */
+    .error {
+      background: #fee2e2;
+      color: #991b1b;
+    }
 
-    @media (max-width: 480px) {
+    .register-link {
+      text-align: center;
+      margin-top: 20px;
+    }
 
-      .page {
-        padding: 18px 12px;
-      }
-
-      .teacher-image {
-        width: 82px;
-        height: 82px;
-      }
-
-      .brand h1 {
-        font-size: 19px;
-      }
-
-      .login-card {
-        padding: 19px;
-        border-radius: 15px;
-      }
-
-      .card-title h2 {
-        font-size: 15px;
-      }
+    .register-link a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: bold;
     }
   </style>
 </head>
 
 <body>
 
-  <main class="page">
+  <div class="container">
 
-    <div class="login-wrapper">
+    <h1>تسجيل الدخول</h1>
 
-      <!-- =====================
-           صورة المهندس
-      ====================== -->
-
-      <section class="brand">
-
-        <div class="teacher-image">
-
-          <img
-            src="55.jpg"
-            alt="مهندس محمد صلاح"
-          >
-
-        </div>
-
-        <h1>
-          مهندس محمد صلاح
-        </h1>
-
-        <p>
-          منصة تعليم الفيزياء
-        </p>
-
-      </section>
-
-
-      <!-- =====================
-           تسجيل الدخول
-      ====================== -->
-
-      <section class="login-card">
-
-        <div class="card-title">
-
-          <h2>
-            تسجيل الدخول
-          </h2>
-
-          <p>
-            سجل دخولك للوصول إلى الكورسات
-            والمحاضرات والامتحانات ونتائجك.
-          </p>
-
-        </div>
-
-
-        <form id="loginForm">
-
-          <!-- البريد الإلكتروني -->
-
-          <div class="field">
-
-            <label for="email">
-              البريد الإلكتروني
-            </label>
-
-            <div class="input-wrapper">
-
-              <span class="input-icon">
-                ✉
-              </span>
-
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autocomplete="email"
-                placeholder="example@email.com"
-                required
-              >
-
-            </div>
-
-          </div>
-
-
-          <!-- كلمة المرور -->
-
-          <div class="field">
-
-            <label for="password">
-              كلمة المرور
-            </label>
-
-            <div class="input-wrapper">
-
-              <span class="input-icon">
-                🔒
-              </span>
-
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autocomplete="current-password"
-                placeholder="اكتب كلمة المرور"
-                required
-              >
-
-              <button
-                type="button"
-                class="show-password"
-                id="showPassword"
-              >
-                إظهار
-              </button>
-
-            </div>
-
-          </div>
-
-
-          <!-- الخيارات -->
-
-          <div class="form-options">
-
-            <label class="remember">
-
-              <input
-                type="checkbox"
-                id="remember"
-              >
-
-              تذكرني
-
-            </label>
-
-
-            <a
-              href="#"
-              class="forgot"
-              id="forgotPassword"
-            >
-              نسيت كلمة المرور؟
-            </a>
-
-          </div>
-
-
-          <!-- تسجيل الدخول -->
-
-          <button
-            type="submit"
-            class="login-button"
-            id="loginButton"
-          >
-            تسجيل الدخول
-          </button>
-
-
-          <!-- الرسالة -->
-
-          <div
-            class="message"
-            id="message"
-          ></div>
-
-        </form>
-
-
-        <!-- إنشاء حساب -->
-
-        <div class="register-box">
-
-          <p>
-            أول مرة تستخدم المنصة؟
-          </p>
-
-          <a
-            href="register.html"
-            class="register-button"
-          >
-            إنشاء حساب جديد
-          </a>
-
-        </div>
-
-      </section>
-
-
-      <!-- Footer -->
-
-      <div class="footer">
-
-        منصة مهندس محمد صلاح للفيزياء
-
-        <br>
-
-        جميع الحقوق محفوظة © 2026
-
-      </div>
-
+    <div class="subtitle">
+      منصة محمد صلاح التعليمية
     </div>
 
-  </main>
+    <form id="loginForm">
+
+      <label for="email">
+        البريد الإلكتروني
+      </label>
+
+      <input
+        type="email"
+        id="email"
+        placeholder="example@email.com"
+        autocomplete="email"
+        required
+      >
+
+      <label for="password">
+        كلمة المرور
+      </label>
+
+      <input
+        type="password"
+        id="password"
+        placeholder="اكتب كلمة المرور"
+        autocomplete="current-password"
+        required
+      >
+
+      <button
+        type="submit"
+        id="loginButton"
+      >
+        تسجيل الدخول
+      </button>
+
+    </form>
+
+    <div
+      id="errorMessage"
+      class="message error"
+    ></div>
+
+    <div class="register-link">
+      ليس لديك حساب؟
+      <a href="register.html">إنشاء حساب جديد</a>
+    </div>
+
+  </div>
 
 
-  <script>
+  <script type="module">
 
-    /* ==================================================
-       إعداد Supabase
-       ================================================== */
+    import { initializeApp } from
+      "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
-    const SUPABASE_URL =
-      "https://sbntgoxxrxnbsqgfvjkc.supabase.co";
-
-    const SUPABASE_PUBLISHABLE_KEY =
-      "sb_publishable_MIaPgcpnmUYdXQZHWcv15A_f5bOkfMc";
-
-    const {
-      createClient
-    } = window.supabase;
-
-    const supabaseClient =
-      createClient(
-        SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY,
-        {
-          auth: {
-            persistSession: true,
-            autoRefreshToken: true,
-            detectSessionInUrl: true
-          }
-        }
-      );
+    import {
+      getAuth,
+      signInWithEmailAndPassword
+    } from
+      "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 
-    /* ==================================================
-       عناصر الصفحة
-       ================================================== */
+    // ==========================================
+    // Firebase Configuration
+    // ==========================================
 
-    const loginForm =
+    const firebaseConfig = {
+
+      apiKey: "ضع_apiKey_هنا",
+
+      authDomain:
+        "mo-salah-physics.firebaseapp.com",
+
+      databaseURL:
+        "https://mo-salah-physics-default-rtdb.firebaseio.com",
+
+      projectId:
+        "mo-salah-physics",
+
+      storageBucket:
+        "mo-salah-physics.firebasestorage.app",
+
+      messagingSenderId:
+        "475289360145",
+
+      appId:
+        "1:475289360145:web:94b4ec58765a230f09deb0",
+
+      measurementId:
+        "G-JDEJE0CJBX"
+    };
+
+
+    // تشغيل Firebase
+
+    const app =
+      initializeApp(firebaseConfig);
+
+    const auth =
+      getAuth(app);
+
+
+    // عناصر الصفحة
+
+    const form =
       document.getElementById("loginForm");
 
-    const emailInput =
-      document.getElementById("email");
-
-    const passwordInput =
-      document.getElementById("password");
-
-    const rememberInput =
-      document.getElementById("remember");
-
-    const loginButton =
+    const button =
       document.getElementById("loginButton");
 
-    const message =
-      document.getElementById("message");
-
-    const showPassword =
-      document.getElementById("showPassword");
-
-    const forgotPassword =
-      document.getElementById("forgotPassword");
+    const errorMessage =
+      document.getElementById("errorMessage");
 
 
-    /* ==================================================
-       إظهار / إخفاء كلمة المرور
-       ================================================== */
+    function showError(message) {
 
-    showPassword.addEventListener(
-      "click",
-      function () {
+      errorMessage.textContent =
+        message;
 
-        if (
-          passwordInput.type === "password"
-        ) {
-
-          passwordInput.type = "text";
-
-          showPassword.textContent =
-            "إخفاء";
-
-        } else {
-
-          passwordInput.type = "password";
-
-          showPassword.textContent =
-            "إظهار";
-
-        }
-
-      }
-    );
-
-
-    /* ==================================================
-       التحقق من وجود جلسة بالفعل
-       ================================================== */
-
-    checkExistingSession();
-
-
-    async function checkExistingSession() {
-
-      try {
-
-        const {
-          data,
-          error
-        } =
-          await supabaseClient.auth.getSession();
-
-
-        if (error) {
-          return;
-        }
-
-
-        if (data.session) {
-
-          /*
-           * لو عندك صفحة dashboard.html
-           * هنوجه الطالب إليها.
-           *
-           * لو لسه ما عملناهاش، هنترك
-           * الطالب في الصفحة مؤقتًا.
-           */
-
-          // window.location.href = "dashboard.html";
-
-        }
-
-      } catch (error) {
-
-        console.error(
-          "Session check error:",
-          error
-        );
-
-      }
-
+      errorMessage.style.display =
+        "block";
     }
 
 
-    /* ==================================================
-       تسجيل الدخول الحقيقي
-       ================================================== */
-
-    loginForm.addEventListener(
+    form.addEventListener(
       "submit",
-      async function (event) {
+      async (event) => {
 
         event.preventDefault();
 
+        errorMessage.style.display =
+          "none";
 
-        const email =
-          emailInput.value.trim();
+        button.disabled = true;
 
-        const password =
-          passwordInput.value;
-
-
-        if (!email) {
-
-          showMessage(
-            "اكتب البريد الإلكتروني.",
-            "error"
-          );
-
-          emailInput.focus();
-
-          return;
-
-        }
-
-
-        if (!password) {
-
-          showMessage(
-            "اكتب كلمة المرور.",
-            "error"
-          );
-
-          passwordInput.focus();
-
-          return;
-
-        }
-
-
-        loginButton.disabled = true;
-
-        loginButton.textContent =
+        button.textContent =
           "جاري تسجيل الدخول...";
-
-        clearMessage();
 
 
         try {
 
-          const {
-            data,
-            error
-          } =
-            await supabaseClient.auth.signInWithPassword(
-              {
-                email: email,
-                password: password
-              }
+          const email =
+            document
+              .getElementById("email")
+              .value
+              .trim();
+
+          const password =
+            document
+              .getElementById("password")
+              .value;
+
+
+          const userCredential =
+            await signInWithEmailAndPassword(
+              auth,
+              email,
+              password
             );
 
 
-          if (error) {
+          // تسجيل الدخول نجح
 
-            console.error(
-              "Login error:",
-              error
-            );
-
-
-            let errorMessage =
-              "تعذر تسجيل الدخول.";
-
-
-            if (
-              error.message
-                .toLowerCase()
-                .includes("invalid login credentials")
-            ) {
-
-              errorMessage =
-                "البريد الإلكتروني أو كلمة المرور غير صحيحة.";
-
-            }
-
-
-            showMessage(
-              errorMessage,
-              "error"
-            );
-
-            return;
-
-          }
-
-
-          if (!data.session) {
-
-            showMessage(
-              "تم التحقق ولكن لم يتم إنشاء جلسة الدخول.",
-              "error"
-            );
-
-            return;
-
-          }
-
-
-          showMessage(
-            "تم تسجيل الدخول بنجاح.",
-            "success"
+          console.log(
+            "Logged in user:",
+            userCredential.user.uid
           );
 
 
-          loginButton.textContent =
-            "تم الدخول";
-
-
-          /*
-           * بعد إنشاء Dashboard:
-           * غيّر السطر التالي إلى:
-           *
-           * window.location.href = "dashboard.html";
-           */
-
-          setTimeout(
-            function () {
-
-              window.location.href =
-                "dashboard.html";
-
-            },
-            700
-          );
+          window.location.href =
+            "dashboard.html";
 
 
         } catch (error) {
 
-          console.error(
-            "Unexpected login error:",
-            error
-          );
+          console.error(error);
 
-          showMessage(
-            "حدث خطأ غير متوقع. حاول مرة أخرى.",
-            "error"
-          );
+
+          let message =
+            "حدث خطأ أثناء تسجيل الدخول.";
+
+
+          switch (error.code) {
+
+            case "auth/invalid-credential":
+              message =
+                "البريد الإلكتروني أو كلمة المرور غير صحيحة.";
+              break;
+
+            case "auth/user-not-found":
+              message =
+                "لا يوجد حساب بهذا البريد الإلكتروني.";
+              break;
+
+            case "auth/wrong-password":
+              message =
+                "كلمة المرور غير صحيحة.";
+              break;
+
+            case "auth/invalid-email":
+              message =
+                "البريد الإلكتروني غير صحيح.";
+              break;
+
+            case "auth/too-many-requests":
+              message =
+                "تمت محاولات كثيرة. حاول مرة أخرى بعد قليل.";
+              break;
+
+            default:
+              message =
+                "تعذر تسجيل الدخول. حاول مرة أخرى.";
+          }
+
+
+          showError(message);
+
 
         } finally {
 
-          /*
-           * لا نعيد تفعيل الزر لو تم
-           * الانتقال إلى Dashboard.
-           */
+          button.disabled = false;
 
-          if (
-            loginButton.textContent !==
-            "تم الدخول"
-          ) {
-
-            loginButton.disabled =
-              false;
-
-            loginButton.textContent =
-              "تسجيل الدخول";
-
-          }
-
+          button.textContent =
+            "تسجيل الدخول";
         }
 
       }
     );
-
-
-    /* ==================================================
-       نسيت كلمة المرور
-       ================================================== */
-
-    forgotPassword.addEventListener(
-      "click",
-      async function (event) {
-
-        event.preventDefault();
-
-
-        const email =
-          emailInput.value.trim();
-
-
-        if (!email) {
-
-          showMessage(
-            "اكتب بريدك الإلكتروني أولًا، ثم اضغط نسيت كلمة المرور.",
-            "error"
-          );
-
-          emailInput.focus();
-
-          return;
-
-        }
-
-
-        try {
-
-          const {
-            error
-          } =
-            await supabaseClient.auth.resetPasswordForEmail(
-              email,
-              {
-                redirectTo:
-                  window.location.origin +
-                  "/reset-password.html"
-              }
-            );
-
-
-          if (error) {
-
-            console.error(
-              "Password reset error:",
-              error
-            );
-
-            showMessage(
-              "تعذر إرسال رابط استعادة كلمة المرور.",
-              "error"
-            );
-
-            return;
-
-          }
-
-
-          showMessage(
-            "تم إرسال رابط استعادة كلمة المرور إلى بريدك الإلكتروني إذا كان الحساب موجودًا.",
-            "success"
-          );
-
-
-        } catch (error) {
-
-          console.error(
-            "Unexpected reset error:",
-            error
-          );
-
-          showMessage(
-            "حدث خطأ أثناء محاولة استعادة كلمة المرور.",
-            "error"
-          );
-
-        }
-
-      }
-    );
-
-
-    /* ==================================================
-       الرسائل
-       ================================================== */
-
-    function showMessage(
-      text,
-      type
-    ) {
-
-      message.textContent =
-        text;
-
-      message.className =
-        "message " + type;
-
-    }
-
-
-    function clearMessage() {
-
-      message.textContent =
-        "";
-
-      message.className =
-        "message";
-
-    }
 
   </script>
 
