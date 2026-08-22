@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#070d13">
-  <title>لوحة الطالب | مهندس محمد صلاح</title>
+  <title>لوحة الطالب | منصة مهندس محمد صلاح</title>
 
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
@@ -47,7 +47,6 @@
     }
 
     /* SIDEBAR */
-
     .sidebar{
       position:fixed;
       right:0;
@@ -142,7 +141,6 @@
     }
 
     /* MAIN */
-
     .main{
       grid-column:1;
       margin-right:250px;
@@ -204,10 +202,9 @@
     }
 
     /* WELCOME */
-
     .welcome{
-      min-height:190px;
-      padding:28px 30px;
+      min-height:180px;
+      padding:25px 30px;
       border:1px solid var(--line);
       border-radius:16px;
       overflow:hidden;
@@ -221,8 +218,8 @@
       content:"⚛";
       position:absolute;
       left:35px;
-      top:20px;
-      font-size:110px;
+      top:15px;
+      font-size:100px;
       color:rgba(34,199,184,.045);
     }
 
@@ -237,280 +234,127 @@
     }
 
     .welcome h2{
-      font-size:28px;
-      margin:11px 0;
+      font-size:26px;
+      margin:10px 0;
     }
 
     .welcome p{
       color:var(--muted);
       font-size:11px;
-      line-height:1.9;
+      line-height:1.8;
       max-width:550px;
     }
 
-    /* STATS */
-
-    .stats{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:12px;
-      margin:18px 0 28px;
-    }
-
-    .stat{
-      padding:17px;
-      border:1px solid var(--line);
-      border-radius:12px;
-      background:var(--panel);
-    }
-
-    .stat-icon{
-      color:var(--cyan);
-      font-size:20px;
-      margin-bottom:12px;
-    }
-
-    .stat strong{
-      display:block;
-      font-size:21px;
-    }
-
-    .stat span{
-      color:var(--muted);
-      font-size:9px;
-      display:block;
-      margin-top:5px;
-    }
-
     /* SECTION */
-
     .section{
-      margin-top:25px;
+      margin-top:30px;
     }
 
     .section-head{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      margin-bottom:13px;
+      margin-bottom:15px;
     }
 
     .section-head h2{
-      font-size:17px;
+      font-size:16px;
+      color:var(--text);
+      border-right:3px solid var(--cyan);
+      padding-right:10px;
     }
 
-    .section-head a{
-      color:var(--cyan);
-      font-size:9px;
-    }
-
-    /* COURSES */
-
-    .courses{
+    /* CARDS GRID */
+    .grid-cards{
       display:grid;
       grid-template-columns:repeat(3,1fr);
-      gap:13px;
+      gap:15px;
     }
 
-    .course{
-      overflow:hidden;
+    .card-box{
+      padding:20px;
       border:1px solid var(--line);
       border-radius:12px;
       background:var(--panel);
       transition:.2s;
     }
 
-    .course:hover{
-      transform:translateY(-3px);
-      border-color:#2c6e6a;
+    .card-box:hover{
+      border-color:var(--cyan);
+      transform:translateY(-2px);
     }
 
-    .course-image{
-      height:125px;
-      display:grid;
-      place-items:center;
-      background:
-        linear-gradient(135deg,#122333,#0b151e);
+    .card-box h3{
+      font-size:13px;
+      margin-bottom:8px;
       color:var(--cyan);
-      font-size:38px;
     }
 
-    .course-body{
-      padding:13px;
-    }
-
-    .course-body h3{
-      font-size:12px;
-      margin-bottom:7px;
-    }
-
-    .course-body p{
+    .card-box p{
       color:var(--muted);
       font-size:9px;
       line-height:1.7;
-      margin-bottom:11px;
+      margin-bottom:15px;
     }
 
-    .progress{
-      height:5px;
-      background:#1b2731;
-      border-radius:10px;
-      overflow:hidden;
+    .card-btn{
+      display:inline-block;
+      padding:8px 14px;
+      border-radius:6px;
+      font-size:9px;
+      font-weight:bold;
+      color:#041014;
+      background:linear-gradient(135deg,var(--cyan),var(--blue));
     }
 
-    .progress span{
-      display:block;
-      height:100%;
-      background:linear-gradient(90deg,var(--cyan),var(--blue));
-      border-radius:10px;
-    }
-
-    .course-bottom{
-      display:flex;
-      justify-content:space-between;
-      margin-top:8px;
-      color:var(--muted);
-      font-size:8px;
-    }
-
-    .course-bottom b{
-      color:var(--cyan);
-    }
-
-    /* CONTINUE */
-
-    .continue{
+    /* LAWS SECTION LIST */
+    .laws-container{
       display:grid;
-      grid-template-columns:1fr 170px;
-      gap:18px;
+      grid-template-columns:repeat(2,1fr);
+      gap:15px;
+    }
+
+    .law-item{
       padding:18px;
       border:1px solid var(--line);
       border-radius:12px;
       background:var(--panel);
     }
 
-    .continue h3{
-      font-size:13px;
-      margin-bottom:7px;
+    .law-item h4{
+      font-size:12px;
+      margin-bottom:8px;
+      color:var(--yellow);
     }
 
-    .continue p{
+    .law-item ul{
+      list-style:none;
+      padding:0;
+    }
+
+    .law-item ul li{
       color:var(--muted);
       font-size:9px;
-      line-height:1.8;
+      padding:5px 0;
+      border-bottom:1px dashed var(--line);
     }
 
-    .continue-btn{
-      align-self:center;
-      padding:12px;
-      border-radius:8px;
-      text-align:center;
-      font-size:10px;
-      font-weight:bold;
-      color:#041014;
-      background:linear-gradient(135deg,var(--cyan),var(--blue));
+    .law-item ul li:last-child{
+      border-bottom:none;
     }
 
     /* MOBILE */
-
     @media(max-width:900px){
-
-      .layout{
-        display:block;
-      }
-
-      .sidebar{
-        position:static;
-        width:100%;
-        height:auto;
-        padding:12px;
-        border-left:0;
-        border-bottom:1px solid var(--line);
-      }
-
-      .brand{
-        padding-bottom:12px;
-      }
-
-      .menu{
-        display:flex;
-        overflow-x:auto;
-        gap:5px;
-        margin-top:10px;
-      }
-
-      .menu-title,
-      .logout{
-        display:none;
-      }
-
-      .menu a{
-        flex:0 0 auto;
-        margin:0;
-      }
-
-      .main{
-        margin-right:0;
-      }
-
-      .topbar{
-        padding:0 18px;
-      }
-
-      .content{
-        padding:20px 18px 35px;
-      }
-
-      .stats{
-        grid-template-columns:repeat(2,1fr);
-      }
-
-      .courses{
-        grid-template-columns:repeat(2,1fr);
-      }
-    }
-
-    @media(max-width:560px){
-
-      .topbar{
-        height:62px;
-      }
-
-      .page-title h1{
-        font-size:14px;
-      }
-
-      .student-info{
-        display:none;
-      }
-
-      .welcome{
-        padding:22px;
-      }
-
-      .welcome h2{
-        font-size:23px;
-      }
-
-      .stats{
-        gap:8px;
-      }
-
-      .stat{
-        padding:13px;
-      }
-
-      .stat strong{
-        font-size:18px;
-      }
-
-      .courses{
-        grid-template-columns:1fr;
-      }
-
-      .continue{
-        grid-template-columns:1fr;
-      }
+      .layout{display:block;}
+      .sidebar{position:static;width:100%;height:auto;padding:12px;border-left:0;border-bottom:1px solid var(--line);}
+      .brand{padding-bottom:12px;}
+      .menu{display:flex;overflow-x:auto;gap:5px;margin-top:10px;}
+      .menu-title,.logout{display:none;}
+      .menu a{flex:0 0 auto;margin:0;}
+      .main{margin-right:0;}
+      .topbar{padding:0 18px;}
+      .content{padding:20px 18px 35px;}
+      .grid-cards, .laws-container{grid-template-columns:1fr;}
     }
   </style>
 </head>
@@ -520,591 +364,237 @@
 <div class="layout">
 
   <!-- SIDEBAR -->
-
   <aside class="sidebar">
-
     <a class="brand" href="dashboard.html">
-
       <div class="brand-img">
         <img src="55.jpg" alt="مهندس محمد صلاح">
       </div>
-
       <div>
         <strong>منصة محمد صلاح</strong>
-        <span>فيزياء</span>
+        <span>فيزياء الثانوية العامة</span>
       </div>
-
     </a>
 
     <nav class="menu">
-
-      <div class="menu-title">
-        القائمة الرئيسية
-      </div>
-
-      <a class="active" href="dashboard.html">
-        <span class="icon">⌂</span>
-        الرئيسية
-      </a>
-
-      <a href="#courses">
-        <span class="icon">▣</span>
-        كورساتي
-      </a>
-
-      <a href="#exams">
-        <span class="icon">✓</span>
-        الامتحانات
-      </a>
-
-      <a href="#progress">
-        <span class="icon">◔</span>
-        تقدمي الدراسي
-      </a>
-
-      <a href="#certificates">
-        <span class="icon">★</span>
-        الشهادات
-      </a>
-
-      <a href="#support">
-        <span class="icon">?</span>
-        الدعم والمساعدة
-      </a>
-
+      <div class="menu-title">القائمة الرئيسية</div>
+      <a class="active" href="dashboard.html"><span class="icon">⌂</span>الرئيسية</a>
+      <a href="#basics"><span class="icon">📐</span>أساسيات الفيزياء</a>
+      <a href="#laws"><span class="icon">📚</span>قوانين المنهج</a>
+      <a href="#lectures"><span class="icon">▶</span>المحاضرات</a>
+      <a href="#exams"><span class="icon">✓</span>الامتحانات</a>
+      <a href="#support"><span class="icon">?</span>الدعم والمساعدة</a>
     </nav>
 
     <div class="logout">
-      <a href="index.html">
-        ↪ تسجيل الخروج
-      </a>
+      <a href="#" id="logoutBtn">↪ تسجيل الخروج</a>
     </div>
-
   </aside>
 
-
   <!-- MAIN -->
-
   <main class="main">
-
     <header class="topbar">
-
       <div class="page-title">
-
-        <h1>
-          لوحة الطالب
-        </h1>
-
-        <p>
-          تابع دراستك وتقدمك من مكان واحد
-        </p>
-
+        <h1>لوحة الطالب</h1>
+        <p>بوابة طالب الثانوية العامة لدروس ومراجعات الفيزياء</p>
       </div>
 
       <div class="student">
-
         <div class="student-info">
-
-          <strong id="studentName">
-            الطالب
-          </strong>
-
-          <span>
-            طالب على منصة محمد صلاح
-          </span>
-
+          <strong id="studentName">جاري التحميل...</strong>
+          <span id="studentGrade">ثالثة ثانوي</span>
         </div>
-
-        <div class="student-avatar">
-          م
-        </div>
-
+        <div class="student-avatar" id="avatarLetter">م</div>
       </div>
-
     </header>
-
 
     <div class="content">
 
       <!-- WELCOME -->
-
       <section class="welcome">
-
         <div class="welcome-content">
-
-          <small>
-            أهلاً بيك في منصتك التعليمية
-          </small>
-
-          <h2>
-            أهلاً يا <span id="welcomeName">طالب</span> 👋
-          </h2>
-
-          <p>
-            كمل رحلتك في تعلم الفيزياء،
-            تابع محاضراتك وحل الامتحانات
-            واعرف مستواك الدراسي أول بأول.
-          </p>
-
+          <small>أهلاً بك في منصة الفيزياء الاحترافية</small>
+          <h2>أهلاً يا <span id="welcomeName">بطل</span> 👋</h2>
+          <p>تم إعداد هذا القسم خصيصاً لتنظيم أساسيات المنهج، المحاضرات، وقوانين الفيزياء لتكون مرجعك السريع أثناء المذاكرة.</p>
         </div>
-
       </section>
 
-
-      <!-- STATS -->
-
-      <section class="stats">
-
-        <div class="stat">
-
-          <div class="stat-icon">
-            ▣
-          </div>
-
-          <strong>
-            3
-          </strong>
-
-          <span>
-            الكورسات المسجلة
-          </span>
-
-        </div>
-
-
-        <div class="stat">
-
-          <div class="stat-icon">
-            ▶
-          </div>
-
-          <strong>
-            28
-          </strong>
-
-          <span>
-            المحاضرات المكتملة
-          </span>
-
-        </div>
-
-
-        <div class="stat">
-
-          <div class="stat-icon">
-            ✓
-          </div>
-
-          <strong>
-            12
-          </strong>
-
-          <span>
-            الامتحانات المنتهية
-          </span>
-
-        </div>
-
-
-        <div class="stat">
-
-          <div class="stat-icon">
-            %
-          </div>
-
-          <strong>
-            72%
-          </strong>
-
-          <span>
-            متوسط التقدم
-          </span>
-
-        </div>
-
-      </section>
-
-
-      <!-- CONTINUE -->
-
-      <section class="section">
-
+      <!-- SECTION 1: أساسيات الفيزياء (الرياضيات والتحويلات) -->
+      <section class="section" id="basics">
         <div class="section-head">
-
-          <h2>
-            أكمل من حيث توقفت
-          </h2>
-
+          <h2>أساسيات الفيزياء والرياضيات الهامة</h2>
         </div>
 
-
-        <div class="continue">
-
-          <div>
-
-            <h3>
-              كورس الفيزياء — المراجعة الحالية
-            </h3>
-
-            <p>
-              آخر محاضرة شاهدتها:
-              قوانين الحركة وتطبيقاتها
-            </p>
-
-            <div
-              class="progress"
-              style="margin-top:12px;"
-            >
-              <span style="width:72%;"></span>
-            </div>
-
+        <div class="grid-cards">
+          <div class="card-box">
+            <h3>التحويلات الهامة</h3>
+            <p>دليل شامل للتحويل من (الميكرو، الميلي، النانو، الكيلو) وحدات القياس الأساسية في المسائل.</p>
+            <a class="card-btn" href="#">عرض الأساسيات</a>
           </div>
 
-          <a
-            class="continue-btn"
-            href="course.html"
-          >
-            متابعة المحاضرة
-          </a>
+          <div class="card-box">
+            <h3>العلاقات البيانية والرياضية</h3>
+            <p>كيفية إيجاد الميل (Slope) والمقطوع من الرسومات البيانية في الكهربية والمغناطيسية.</p>
+            <a class="card-btn" href="#">عرض الشرح</a>
+          </div>
 
+          <div class="card-box">
+            <h3>فك الرموز ووحدات القياس</h3>
+            <p>مكافئ وحدات القياس (مثل الفولت، الأوم، الأمبير، ويبر) وصيغ الأبعاد.</p>
+            <a class="card-btn" href="#">استعراض الوحدات</a>
+          </div>
         </div>
-
       </section>
 
-
-      <!-- COURSES -->
-
-      <section
-        class="section"
-        id="courses"
-      >
-
+      <!-- SECTION 2: تبويب قوانين المنهج (مقسم حسب الفصول والدروس) -->
+      <section class="section" id="laws">
         <div class="section-head">
-
-          <h2>
-            كورساتي
-          </h2>
-
-          <a href="#courses">
-            عرض الكل
-          </a>
-
+          <h2>قوانين منهج الفيزياء (ثالثة ثانوي)</h2>
         </div>
 
+        <div class="laws-container">
+          <div class="law-item">
+            <h4>⚡ الفصل الأول: التيار الكهربي وقانون أوم</h4>
+            <ul>
+              <li><strong>الدرس الأول:</strong> شدة التيار ($I = Q / t$) وفروق الجهد ($V = W / Q$).</li>
+              <li><strong>الدرس الثاني:</strong> المقاومة الكهربية وقانون أوم ($R = \rho_e \cdot l / A$).</li>
+              <li><strong>الدرس الثالث:</strong> توصيل المقاومات (على التوالي والتوازي).</li>
+              <li><strong>الدرس الرابع:</strong> قانوني كيرشوف (الحفاظ على الشحنة والطاقة).</li>
+            </ul>
+          </div>
 
-        <div class="courses">
-
-
-          <a
-            class="course"
-            href="course.html"
-          >
-
-            <div class="course-image">
-              ⚡
-            </div>
-
-            <div class="course-body">
-
-              <h3>
-                أساسيات الفيزياء
-              </h3>
-
-              <p>
-                ابدأ من الأساسيات وافهم القوانين
-                بطريقة سهلة ومنظمة.
-              </p>
-
-              <div class="progress">
-                <span style="width:72%;"></span>
-              </div>
-
-              <div class="course-bottom">
-                <span>72% مكتمل</span>
-                <b>متابعة</b>
-              </div>
-
-            </div>
-
-          </a>
-
-
-          <a
-            class="course"
-            href="course.html"
-          >
-
-            <div class="course-image">
-              ∑
-            </div>
-
-            <div class="course-body">
-
-              <h3>
-                حل مسائل الفيزياء
-              </h3>
-
-              <p>
-                تدريبات ومسائل متنوعة لرفع
-                مستواك في الحل.
-              </p>
-
-              <div class="progress">
-                <span style="width:45%;"></span>
-              </div>
-
-              <div class="course-bottom">
-                <span>45% مكتمل</span>
-                <b>متابعة</b>
-              </div>
-
-            </div>
-
-          </a>
-
-
-          <a
-            class="course"
-            href="course.html"
-          >
-
-            <div class="course-image">
-              ★
-            </div>
-
-            <div class="course-body">
-
-              <h3>
-                المراجعة النهائية
-              </h3>
-
-              <p>
-                مراجعة شاملة قبل الامتحانات
-                مع أهم الأفكار والأسئلة.
-              </p>
-
-              <div class="progress">
-                <span style="width:18%;"></span>
-              </div>
-
-              <div class="course-bottom">
-                <span>18% مكتمل</span>
-                <b>ابدأ</b>
-              </div>
-
-            </div>
-
-          </a>
-
-
+          <div class="law-item">
+            <h4>🧲 الفصل الثاني: التأثير المغناطيسي للتيار</h4>
+            <ul>
+              <li><strong>الدرس الأول:</strong> الفيض المغناطيسي ($\Phi_m = B \cdot A \cdot \sin\theta$) ومجال السلك.</li>
+              <li><strong>الدرس الثاني:</strong> الملف الدائري والملف اللولبي.</li>
+              <li><strong>الدرس الثالث:</strong> القوة المغناطيسية وعزم الازدواج.</li>
+              <li><strong>الدرس الرابع:</strong> أجهزة القياس (الجلفانومتر، الأميتر، الفولتميتر، الأوميتر).</li>
+            </ul>
+          </div>
         </div>
-
       </section>
 
-
-      <!-- EXAMS -->
-
-      <section
-        class="section"
-        id="exams"
-      >
-
+      <!-- SECTION 3: تبويب المحاضرات (الوهمية والمجهزة للمنهج) -->
+      <section class="section" id="lectures">
         <div class="section-head">
-
-          <h2>
-            آخر الامتحانات
-          </h2>
-
-          <a href="#exams">
-            عرض الامتحانات
-          </a>
-
+          <h2>محاضرات الشرح والفيديوهات</h2>
         </div>
 
-
-        <div class="continue">
-
-          <div>
-
-            <h3>
-              اختبار قوانين الحركة
-            </h3>
-
-            <p>
-              عدد الأسئلة: 25 سؤال
-              — مدة الاختبار: 30 دقيقة
-            </p>
-
+        <div class="grid-cards">
+          <div class="card-box">
+            <h3>محاضرات الفصل الأول (الكهربية)</h3>
+            <p>شرح تفصيلي لجميع دروس الفصل الأول وحل أفكار الكتب الخارجية.</p>
+            <span style="color:var(--muted); font-size:9px; display:block; margin-bottom:12px;">قريباً (جاري الرفع)</span>
+            <a class="card-btn" href="#" style="opacity:0.6; pointer-events:none;">دخول المحاضرات</a>
           </div>
 
-          <a
-            class="continue-btn"
-            href="exam.html"
-          >
-            دخول الاختبار
-          </a>
+          <div class="card-box">
+            <h3>محاضرات الفصل الثاني (المغناطيسية)</h3>
+            <p>سلسلة محاضرات مبسطة لاستيعاب استنتاج القوانين وتطبيقاتها.</p>
+            <span style="color:var(--muted); font-size:9px; display:block; margin-bottom:12px;">قريباً (جاري الرفع)</span>
+            <a class="card-btn" href="#" style="opacity:0.6; pointer-events:none;">دخول المحاضرات</a>
+          </div>
 
+          <div class="card-box">
+            <h3>محاضرات المراجعة وحل المسائل</h3>
+            <p>تدريبات مكثفة على الأفكار العليا وربط فصول المنهج ببعضها.</p>
+            <span style="color:var(--muted); font-size:9px; display:block; margin-bottom:12px;">قريباً (جاري الرفع)</span>
+            <a class="card-btn" href="#" style="opacity:0.6; pointer-events:none;">دخول المحاضرات</a>
+          </div>
         </div>
-
       </section>
 
-
-      <!-- PROGRESS -->
-
-      <section
-        class="section"
-        id="progress"
-      >
-
+      <!-- SECTION 4: تبويب الامتحانات والتدريبات -->
+      <section class="section" id="exams">
         <div class="section-head">
-
-          <h2>
-            تقدمي الدراسي
-          </h2>
-
+          <h2>الامتحانات والاختبارات الإلكترونية</h2>
         </div>
 
-
-        <div class="continue">
-
-          <div>
-
-            <h3>
-              مستواك الدراسي الحالي
-            </h3>
-
-            <p>
-              استمر على نفس المعدل، أنت بتتقدم بشكل ممتاز.
-            </p>
-
+        <div class="grid-cards">
+          <div class="card-box">
+            <h3>اختبار الفصل الأول (شامل)</h3>
+            <p>اختبار إلكتروني مقنن يقيس فهمك للتيار وقانوني كيرشوف (30 سؤال).</p>
+            <span style="color:var(--muted); font-size:9px; display:block; margin-bottom:12px;">يفتح بعد بدء المحاضرات</span>
+            <a class="card-btn" href="#" style="opacity:0.6; pointer-events:none;">ابدأ الاختبار</a>
           </div>
 
-          <div
-            style="
-              display:flex;
-              align-items:center;
-              justify-content:center;
-              font-size:24px;
-              color:#22c7b8;
-              font-weight:bold;
-            "
-          >
-            72%
+          <div class="card-box">
+            <h3>اختبار الفصل الثاني (مغناطيسية)</h3>
+            <p>تدرب على أفكار الأسلاك والملفات وأجهزة القياس (25 سؤال).</p>
+            <span style="color:var(--muted); font-size:9px; display:block; margin-bottom:12px;">يفتح بعد بدء المحاضرات</span>
+            <a class="card-btn" href="#" style="opacity:0.6; pointer-events:none;">ابدأ الاختبار</a>
           </div>
 
-        </div>
-
-      </section>
-
-
-      <!-- CERTIFICATES -->
-
-      <section
-        class="section"
-        id="certificates"
-      >
-
-        <div class="section-head">
-
-          <h2>
-            الشهادات
-          </h2>
-
-        </div>
-
-
-        <div class="continue">
-
-          <div>
-
-            <h3>
-              شهاداتك هتظهر هنا
-            </h3>
-
-            <p>
-              بعد إتمام الكورسات المطلوبة
-              والحصول على النسبة المحددة.
-            </p>
-
+          <div class="card-box">
+            <h3>امتحان تجريبي شامل</h3>
+            <p>محاكاة حقيقية لامتحان الفاينال لنهاية العام بنظام التقييم الحديث.</p>
+            <span style="color:var(--muted); font-size:9px; display:block; margin-bottom:12px;">قريباً</span>
+            <a class="card-btn" href="#" style="opacity:0.6; pointer-events:none;">ابدأ الاختبار</a>
           </div>
-
         </div>
-
-      </section>
-
-
-      <!-- SUPPORT -->
-
-      <section
-        class="section"
-        id="support"
-      >
-
-        <div class="section-head">
-
-          <h2>
-            الدعم والمساعدة
-          </h2>
-
-        </div>
-
-
-        <div class="continue">
-
-          <div>
-
-            <h3>
-              محتاج مساعدة؟
-            </h3>
-
-            <p>
-              هنضيف نظام الدعم والتواصل
-              مع إدارة المنصة في المرحلة القادمة.
-            </p>
-
-          </div>
-
-          <a
-            class="continue-btn"
-            href="#support"
-          >
-            الدعم
-          </a>
-
-        </div>
-
       </section>
 
     </div>
-
   </main>
-
 </div>
 
+<!-- Firebase Integration لجلب اسم الطالب الحقيقي -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+  import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyBqCxGshGhKzSCoueSV8bVFcKxQWsZiu6M",
+    authDomain: "mo-salah-physics.firebaseapp.com",
+    databaseURL: "https://mo-salah-physics-default-rtdb.firebaseio.com",
+    projectId: "mo-salah-physics",
+    storageBucket: "mo-salah-physics.firebasestorage.app",
+    messagingSenderId: "475289360145",
+    appId: "1:475289360145:web:94b4ec58765a230f09deb0",
+    measurementId: "G-JDEJE0CJBX"
+  };
 
-  /*
-    الاسم هنا تجريبي مؤقت.
-    بعد ربط قاعدة البيانات سيتم جلب
-    اسم الطالب الحقيقي تلقائياً.
-  */
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
 
-  const savedName =
-    localStorage.getItem("studentName");
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      try {
+        const docRef = doc(db, "students", user.uid);
+        const docSnap = await getDoc(docRef);
 
-  if (savedName) {
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          const fullName = data.fullName || "طالب مميز";
+          const grade = data.grade || "ثالثة ثانوي";
 
-    document.getElementById(
-      "studentName"
-    ).textContent = savedName;
+          document.getElementById("studentName").textContent = fullName;
+          document.getElementById("welcomeName").textContent = fullName.split(" ")[0];
+          document.getElementById("studentGrade").textContent = grade;
+          document.getElementById("avatarLetter").textContent = fullName.charAt(0);
+        } else {
+          document.getElementById("studentName").textContent = "طالب جديد";
+          document.getElementById("welcomeName").textContent = "بطل";
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    } else {
+      window.location.href = "login.html";
+    }
+  });
 
-    document.getElementById(
-      "welcomeName"
-    ).textContent = savedName;
-
-  }
-
+  document.getElementById("logoutBtn").addEventListener("click", async (e) => {
+    e.preventDefault();
+    try {
+      await signOut(auth);
+      window.location.href = "login.html";
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  });
 </script>
 
 </body>
