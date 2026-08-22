@@ -1,440 +1,313 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#070d13">
-  <title>لوحة الطالب | منصة مهندس محمد صلاح</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة الفيزياء - الرئيسية</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
 
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0}
+        :root {
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #212529;
+            --primary-color: #ff2a00; /* اللون الأحمر المميز من الصور */
+            --border-color: #e9ecef;
+        }
 
-    :root{
-      --bg:#070d13;
-      --panel:#0c151f;
-      --panel2:#101b26;
-      --line:#24313d;
-      --text:#f5f8fa;
-      --muted:#8c99a6;
-      --cyan:#22c7b8;
-      --blue:#159bd7;
-      --yellow:#f1c95b;
-      --green:#2ecc71;
-    }
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #f8f9fa;
+            --border-color: #2d2d2d;
+        }
 
-    body{
-      min-height:100vh;
-      background:
-        radial-gradient(circle at 80% 0%,rgba(21,155,215,.10),transparent 30%),
-        var(--bg);
-      color:var(--text);
-      font-family:Tahoma,Arial,sans-serif;
-    }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; transition: background 0.3s, color 0.3s; }
 
-    a{text-decoration:none;color:inherit;}
-    button{font:inherit;cursor:pointer;}
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+        }
 
-    .layout{
-      min-height:100vh;
-      display:grid;
-      grid-template-columns:250px 1fr;
-    }
+        /* الشريط العلوي */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-    /* SIDEBAR */
-    .sidebar{
-      position:fixed;
-      right:0;
-      top:0;
-      bottom:0;
-      width:250px;
-      padding:22px 15px;
-      background:#09121a;
-      border-left:1px solid var(--line);
-    }
+        .logo-area {
+            font-weight: bold;
+            font-size: 20px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      padding:0 10px 22px;
-      border-bottom:1px solid var(--line);
-    }
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-    .brand-img{
-      width:43px;
-      height:43px;
-      border-radius:11px;
-      overflow:hidden;
-    }
+        /* زر تبديل الثيم (شمس / قمر) */
+        .theme-toggle {
+            background: #ffeaeb;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+        }
+        [data-theme="dark"] .theme-toggle { background: #2c1a1a; color: #ff6b6b; }
 
-    .brand-img img{width:100%;height:100%;object-fit:cover;}
+        .icon-btn {
+            background: none;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: var(--text-color);
+        }
 
-    .brand strong{display:block;font-size:13px;}
-    .brand span{display:block;color:var(--muted);font-size:9px;margin-top:4px;}
+        /* المحتوى الرئيسي */
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
 
-    .menu{margin-top:20px;}
-    .menu-title{color:#566571;font-size:9px;padding:0 12px 9px;}
+        /* الإحصائيات العلوية */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
 
-    .menu a{
-      display:flex;
-      align-items:center;
-      gap:11px;
-      padding:12px;
-      margin-bottom:5px;
-      border-radius:9px;
-      color:#aeb9c1;
-      font-size:11px;
-    }
+        .stat-box {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(255, 42, 0, 0.2);
+        }
 
-    .menu a:hover,
-    .menu a.active{
-      color:var(--cyan);
-      background:rgba(34,199,184,.08);
-    }
+        .stat-box h3 { font-size: 24px; margin-bottom: 5px; }
+        .stat-box p { font-size: 13px; opacity: 0.9; }
 
-    .icon{width:23px;text-align:center;font-size:15px;}
+        /* بطاقة المحتوى (الكورس أو القسم) */
+        .content-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
 
-    .logout{
-      position:absolute;
-      left:15px;
-      right:15px;
-      bottom:20px;
-      border-top:1px solid var(--line);
-      padding-top:15px;
-    }
+        .card-img-container {
+            width: 100%;
+            height: 320px;
+            background: #222;
+            position: relative;
+        }
 
-    .logout a{
-      display:block;
-      padding:11px 12px;
-      color:#d98787;
-      font-size:10px;
-    }
+        .card-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-    /* MAIN */
-    .main{
-      grid-column:1;
-      margin-right:250px;
-      min-width:0;
-    }
+        .card-body {
+            padding: 25px;
+        }
 
-    .topbar{
-      height:70px;
-      padding:0 35px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      border-bottom:1px solid var(--line);
-      background:rgba(7,13,19,.75);
-    }
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
 
-    .page-title h1{font-size:17px;margin-bottom:5px;}
-    .page-title p{color:var(--muted);font-size:9px;}
+        .card-info {
+            font-size: 13px;
+            color: #718096;
+            margin-bottom: 20px;
+        }
 
-    .student{display:flex;align-items:center;gap:10px;}
-    .student-avatar{
-      width:39px;
-      height:39px;
-      display:grid;
-      place-items:center;
-      border-radius:50%;
-      background:linear-gradient(135deg,var(--cyan),var(--blue));
-      color:#061014;
-      font-size:13px;
-      font-weight:bold;
-    }
+        /* الأزرار الحمراء البارزة */
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
 
-    .student-info strong{display:block;font-size:10px;}
-    .student-info span{display:block;color:var(--muted);font-size:8px;margin-top:3px;}
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+            cursor: pointer;
+            border: 2px solid var(--primary-color);
+            transition: 0.2s;
+        }
 
-    .content{padding:28px 35px 45px;}
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-color);
+        }
 
-    /* WELCOME */
-    .welcome{
-      min-height:170px;
-      padding:25px 30px;
-      border:1px solid var(--line);
-      border-radius:16px;
-      position:relative;
-      background:
-        radial-gradient(circle at 10% 50%,rgba(34,199,184,.13),transparent 30%),
-        linear-gradient(135deg,#0e1b26,#09121a);
-      margin-bottom:25px;
-    }
+        .btn-outline:hover {
+            background: rgba(255, 42, 0, 0.05);
+        }
 
-    .welcome:after{
-      content:"⚛";
-      position:absolute;
-      left:35px;
-      top:15px;
-      font-size:100px;
-      color:rgba(34,199,184,.045);
-    }
+        .btn-solid {
+            background: var(--primary-color);
+            color: white;
+        }
 
-    .welcome-content{position:relative;z-index:2;}
-    .welcome small{color:var(--cyan);font-size:10px;}
-    .welcome h2{font-size:26px;margin:10px 0;}
-    .welcome p{color:var(--muted);font-size:11px;line-height:1.8;max-width:550px;}
+        .btn-solid:hover {
+            opacity: 0.9;
+        }
 
-    /* SECTION */
-    .section{margin-top:30px;}
-    .section-head{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      margin-bottom:15px;
-    }
+        /* الفوتر السفلي */
+        footer {
+            background: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 40px 20px;
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
 
-    .section-head h2{
-      font-size:16px;
-      color:var(--text);
-      border-right:3px solid var(--cyan);
-      padding-right:10px;
-    }
+        .footer-col h4 { margin-bottom: 15px; color: var(--primary-color); font-size: 15px; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 8px; font-size: 13px; cursor: pointer; color: var(--text-color); }
+        .footer-col ul li:hover { color: var(--primary-color); }
 
-    /* LEVEL CALCULATOR CARD */
-    .level-card{
-      padding:22px;
-      border:1px solid var(--line);
-      border-radius:12px;
-      background:var(--panel);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
-    }
-
-    .level-info h3{font-size:14px;color:var(--cyan);margin-bottom:6px;}
-    .level-info p{color:var(--muted);font-size:9.5px;line-height:1.6;}
-
-    .level-badge{
-      padding:15px 25px;
-      border-radius:10px;
-      background:var(--panel2);
-      border:1px solid var(--line);
-      text-align:center;
-      min-width:150px;
-    }
-
-    .level-badge span{display:block;color:var(--muted);font-size:8.5px;margin-bottom:4px;}
-    .level-badge strong{display:block;font-size:16px;color:var(--green);}
-
-    /* GRID FOR SEPARATE FILES */
-    .grid-links{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:15px;
-    }
-
-    .link-box{
-      padding:22px;
-      border:1px solid var(--line);
-      border-radius:12px;
-      background:var(--panel);
-      transition:.2s;
-    }
-
-    .link-box:hover{
-      border-color:var(--cyan);
-      transform:translateY(-2px);
-    }
-
-    .link-box h3{font-size:13px;margin-bottom:8px;color:var(--cyan);}
-    .link-box p{color:var(--muted);font-size:9px;line-height:1.7;margin-bottom:15px;}
-
-    .card-btn{
-      display:inline-block;
-      padding:8px 14px;
-      border-radius:6px;
-      font-size:9px;
-      font-weight:bold;
-      color:#041014;
-      background:linear-gradient(135deg,var(--cyan),var(--blue));
-    }
-
-    @media(max-width:900px){
-      .layout{display:block;}
-      .sidebar{position:static;width:100%;height:auto;padding:12px;border-left:0;border-bottom:1px solid var(--line);}
-      .main{margin-right:0;}
-      .content{padding:20px 18px 35px;}
-      .grid-links{grid-template-columns:1fr;}
-      .level-card{flex-direction:column;align-items:flex-start;}
-    }
-  </style>
+        @media (max-width: 768px) {
+            .stats-row { grid-template-columns: 1fr; }
+            .card-img-container { height: 200px; }
+        }
+    </style>
 </head>
+<body data-theme="dark">
 
-<body>
-
-<div class="layout">
-
-  <!-- القائمة الجانبية (Sidebar) وكل زر يوجه لملف منفصل -->
-  <aside class="sidebar">
-    <a class="brand" href="dashboard.html">
-      <div class="brand-img">
-        <img src="55.jpg" alt="مهندس محمد صلاح">
-      </div>
-      <div>
-        <strong>منصة محمد صلاح</strong>
-        <span>فيزياء الثانوية العامة</span>
-      </div>
-    </a>
-
-    <nav class="menu">
-      <div class="menu-title">القائمة الرئيسية</div>
-      <a class="active" href="dashboard.html"><span class="icon">⌂</span>الرئيسية</a>
-      <a href="basics.html"><span class="icon">📐</span>أساسيات الفيزياء (صور)</a>
-      <a href="laws.html"><span class="icon">📚</span>قوانين المنهج (صور)</a>
-      <a href="lectures.html"><span class="icon">▶</span>المحاضرات والفيديوهات</a>
-      <a href="exams.html"><span class="icon">✓</span>الامتحانات وتقييم المستوى</a>
-      <a href="support.html"><span class="icon">?</span>الدعم والمساعدة</a>
-    </nav>
-
-    <div class="logout">
-      <a href="#" id="logoutBtn">↪ تسجيل الخروج</a>
-    </div>
-  </aside>
-
-  <!-- المحتوى الرئيسي -->
-  <main class="main">
-    <header class="topbar">
-      <div class="page-title">
-        <h1>لوحة تحكم الطالب</h1>
-        <p>اختر القسم المطلوب للمتابعة</p>
-      </div>
-
-      <div class="student">
-        <div class="student-info">
-          <strong id="studentName">جاري التحميل...</strong>
-          <span id="studentGrade">ثالثة ثانوي</span>
+    <!-- الشريط العلوي -->
+    <header class="navbar">
+        <div class="logo-area">
+            <span>⚡ PHYSICS LEGEND</span>
         </div>
-        <div class="student-avatar" id="avatarLetter">م</div>
-      </div>
+        <div class="nav-icons">
+            <!-- زر تبديل الثيم -->
+            <button class="theme-toggle" id="themeToggleBtn">
+                <span>🌞/🌙</span>
+            </button>
+            <button class="icon-btn">🔔</button>
+            <button class="icon-btn">👤</button>
+        </div>
     </header>
 
-    <div class="content">
+    <!-- المحتوى -->
+    <div class="container">
 
-      <!-- ترحيب -->
-      <section class="welcome">
-        <div class="welcome-content">
-          <small>مرحباً بك في بوابتك التعليمية</small>
-          <h2>أهلاً يا <span id="welcomeName">بطل</span> 👋</h2>
-          <p>تم فصل أقسام المنصة لملفات مستقلة لتسهيل تصفح صور الأساسيات، القوانين، المحاضرات، ومتابعة تقييم مستواك في الامتحانات.</p>
-        </div>
-      </section>
-
-      <!-- دائرة حساب مستوى الطالب (تظهر تقييمه بناءً على الامتحانات) -->
-      <section class="section">
-        <div class="section-head">
-          <h2>مؤشر تقييم مستواك العام</h2>
-        </div>
-        <div class="level-card">
-          <div class="level-info">
-            <h3>تحليل أداء الامتحانات</h3>
-            <p>يعتمد هذا المؤشر على درجاتك في الامتحانات السابقة لتحديد مستواك (ممتاز، جيد جداً، بحاجة للتدريب).</p>
-          </div>
-          <div class="level-badge">
-            <span>التقدير العام</span>
-            <strong id="studentLevelText">لم تقدم امتحانات بعد</strong>
-          </div>
-        </div>
-      </section>
-
-      <!-- الأزرار المؤدية للملفات المنفصلة -->
-      <section class="section">
-        <div class="section-head">
-          <h2>أقسام المنصة (ملفات مستقلة)</h2>
+        <!-- إحصائيات سريعة (مطابقة للصور) -->
+        <div class="stats-row">
+            <div class="stat-box">
+                <h3>0</h3>
+                <p>كورسات مكتملة</p>
+            </div>
+            <div class="stat-box">
+                <h3>1</h3>
+                <p>كورساتك الحالية</p>
+            </div>
+            <div class="stat-box">
+                <h3>0</h3>
+                <p>الفيديوهات المحفوظة</p>
+            </div>
         </div>
 
-        <div class="grid-links">
-          <div class="link-box">
-            <h3>أساسيات الفيزياء</h3>
-            <p>تصفح صور أساسيات الفيزياء والرياضيات من 1 إلى 10 بكل سهولة.</p>
-            <a class="card-btn" href="basics.html">فتح الأساسيات</a>
-          </div>
-
-          <div class="link-box">
-            <h3>قوانين فصول المنهج</h3>
-            <p>ملفات صور منظمة لكل قوانين فصول الفيزياء لثالثة ثانوي.</p>
-            <a class="card-btn" href="laws.html">فتح القوانين</a>
-          </div>
-
-          <div class="link-box">
-            <h3>المحاضرات والدروس</h3>
-            <p>متابعة فيديوهات الشرح وحل المسائل لكل فصل على حدة.</p>
-            <a class="card-btn" href="lectures.html">فتح المحاضرات</a>
-          </div>
+        <!-- بطاقة كورس / قسم أولى (مكان الصور بتاعتك) -->
+        <div class="content-card">
+            <div class="card-img-container">
+                <!-- هنا تحط رابط صورة البوستر الخاصة بك -->
+                <img src="your-physics-banner1.jpg" alt="صورة القسم أو الكورس" onerror="this.src='https://via.placeholder.com/800x400/1a1a1a/ff2a00?text=ضع+صورة+القسم+هنا'">
+            </div>
+            <div class="card-body">
+                <div class="card-title">كورس أساسيات الفيزياء والتحويلات - عام 💪❤️</div>
+                <div class="card-info">📅 بداية نزول المحتوى: قريب جداً</div>
+                <div class="btn-group">
+                    <a href="basics.html" class="btn btn-outline">الدخول للقسم</a>
+                    <a href="lectures.html" class="btn btn-solid">استعراض المحتوى !</a>
+                </div>
+            </div>
         </div>
-      </section>
+
+        <!-- بطاقة كورس / قسم ثانية -->
+        <div class="content-card">
+            <div class="card-img-container">
+                <img src="your-physics-banner2.jpg" alt="صورة الباب الأول" onerror="this.src='https://via.placeholder.com/800x400/1a1a1a/ff2a00?text=صورة+قوانين+الفصل+الأول'">
+            </div>
+            <div class="card-body">
+                <div class="card-title">مجلد قوانين الباب الأول (ميكانيكا/كهربية) 📚</div>
+                <div class="card-info">📅 متاح الآن للمذاكرة المباشرة</div>
+                <div class="btn-group">
+                    <a href="laws.html" class="btn btn-outline">فتح المجلد</a>
+                    <a href="exams.html" class="btn btn-solid">ابدأ امتحان الباب !</a>
+                </div>
+            </div>
+        </div>
 
     </div>
-  </main>
-</div>
 
-<!-- Firebase لاستخراج اسم الطالب -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-  import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+    <!-- الفوتر (Footer) -->
+    <footer>
+        <div class="footer-col">
+            <h4>الصفحات</h4>
+            <ul>
+                <li>الرئيسية</li>
+                <li>المساعدة والدعم</li>
+                <li>تواصل مع المعلم</li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>السوشيال ميديا</h4>
+            <ul>
+                <li>فيسبوك</li>
+                <li>تليجرام (قناة الفيزياء)</li>
+                <li>يوتيوب</li>
+            </ul>
+        </div>
+    </footer>
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyBqCxGshGhKzSCoueSV8bVFcKxQWsZiu6M",
-    authDomain: "mo-salah-physics.firebaseapp.com",
-    databaseURL: "https://mo-salah-physics-default-rtdb.firebaseio.com",
-    projectId: "mo-salah-physics",
-    storageBucket: "mo-salah-physics.firebasestorage.app",
-    messagingSenderId: "475289360145",
-    appId: "1:475289360145:web:94b4ec58765a230f09deb0",
-    measurementId: "G-JDEJE0CJBX"
-  };
+    <!-- سكريبت تبديل الوضع الليلي والنهاري -->
+    <script>
+        const toggleBtn = document.getElementById('themeToggleBtn');
+        const body = document.body;
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db = getFirestore(app);
-
-  onAuthStateChanged(auth, async (user) => {
-    if (user) {
-      try {
-        const docRef = doc(db, "students", user.uid);
-        const docSnap = await getDoc(docRef);
-
-        if (docSnap.exists()) {
-          const data = docSnap.data();
-          const fullName = data.fullName || "طالب مميز";
-          const grade = data.grade || "ثالثة ثانوي";
-
-          document.getElementById("studentName").textContent = fullName;
-          document.getElementById("welcomeName").textContent = fullName.split(" ")[0];
-          document.getElementById("studentGrade").textContent = grade;
-          document.getElementById("avatarLetter").textContent = fullName.charAt(0);
-          
-          // محاكاة حساب المستوى بناءً على بيانات الطالب في قاعدة البيانات (لو وجدت)
-          if(data.examScore !== undefined) {
-            if(data.examScore >= 85) {
-              document.getElementById("studentLevelText").textContent = "ممتاز 🌟";
-            } else if(data.examScore >= 65) {
-              document.getElementById("studentLevelText").textContent = "جيد جداً 👍";
+        toggleBtn.addEventListener('click', () => {
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.setAttribute('data-theme', 'light');
             } else {
-              document.getElementById("studentLevelText").textContent = "يحتاج للتحسين 📈";
+                body.setAttribute('data-theme', 'dark');
             }
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    } else {
-      window.location.href = "login.html";
-    }
-  });
-
-  document.getElementById("logoutBtn").addEventListener("click", async (e) => {
-    e.preventDefault();
-    try {
-      await signOut(auth);
-      window.location.href = "login.html";
-    } catch (error) {
-      console.error("Error signing out:", error);
-    }
-  });
-</script>
+        });
+    </script>
 
 </body>
 </html>
