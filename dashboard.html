@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة التحكم الشاملة | منصة الفيزياء</title>
+    <title>منصة الفيزياء الأسطورية | لوحة التحكم</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
 
         :root {
-            --bg-color: #f4f6f9;
+            --bg-color: #f8f9fa;
             --card-bg: #ffffff;
             --text-color: #212529;
             --muted-color: #6c757d;
             --primary-color: #ff2a00;
-            --border-color: #dee2e6;
+            --border-color: #e9ecef;
         }
 
         [data-theme="dark"] {
@@ -33,7 +33,7 @@
             min-height: 100vh;
         }
 
-        /* الشريط العلوي */
+        /* الشريط العلوي (اسم المنصة وصورة الماستر وزرار الثيم) */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -46,29 +46,39 @@
             z-index: 1000;
         }
 
-        .logo-area {
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .master-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+        }
+
+        .platform-name {
             font-weight: bold;
-            font-size: 20px;
+            font-size: 18px;
             color: var(--primary-color);
-            cursor: pointer;
         }
 
         .nav-icons {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .nav-btn, .theme-toggle {
             background: var(--bg-color);
             border: 1px solid var(--border-color);
             color: var(--text-color);
-            padding: 8px 14px;
+            padding: 7px 14px;
             border-radius: 20px;
             cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
             font-size: 13px;
             font-weight: 600;
         }
@@ -77,77 +87,102 @@
             color: var(--primary-color);
         }
 
-        /* المحتوى */
+        /* المحتوى الرئيسي */
         .container {
-            max-width: 900px;
+            max-width: 850px;
             margin: 30px auto;
             padding: 0 20px;
         }
 
-        /* نظام التبويبات (إخفاء وإظهار الأقسام داخل نفس الملف) */
-        .page-section {
-            display: none;
-        }
-        .page-section.active {
-            display: block;
-        }
+        .page-section { display: none; }
+        .page-section.active { display: block; }
 
-        /* الإحصائيات */
-        .stats-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
+        /* المربعين أو الدائرتين اللي تحت بعض للصور */
+        .image-circles-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
             margin-bottom: 30px;
         }
 
-        .stat-box {
-            background: var(--primary-color);
-            color: #fff;
-            padding: 20px;
-            border-radius: 16px;
+        .image-circle-box {
             text-align: center;
-            box-shadow: 0 4px 15px rgba(255, 42, 0, 0.2);
-        }
-        .stat-box h3 { font-size: 24px; margin-bottom: 5px; }
-        .stat-box p { font-size: 13px; opacity: 0.9; }
-
-        /* الأقسام السريعة */
-        .grid-sections {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
         }
 
-        .section-card {
+        .custom-circle {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 3px dashed var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin: 0 auto 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .custom-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .custom-circle span {
+            font-size: 12px;
+            color: var(--muted-color);
+        }
+
+        /* كارد الدرس والامتحان */
+        .lesson-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            padding: 25px;
-            border-radius: 16px;
+            border-radius: 20px;
+            padding: 30px;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            margin-bottom: 30px;
         }
 
-        .section-card h3 { font-size: 18px; margin-bottom: 10px; color: var(--primary-color); }
-        .section-card p { font-size: 13px; color: var(--muted-color); margin-bottom: 20px; }
+        .lesson-card h2 {
+            font-size: 20px;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        .lesson-card p {
+            font-size: 14px;
+            color: var(--muted-color);
+            margin-bottom: 25px;
+        }
+
+        .lesson-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
 
         .btn {
-            display: inline-block;
-            width: 100%;
-            padding: 10px;
-            background: var(--primary-color);
-            color: white;
-            border-radius: 10px;
-            text-decoration: none;
+            padding: 12px;
+            border-radius: 12px;
             font-weight: bold;
             font-size: 14px;
-            border: none;
-            cursor: pointer;
             text-align: center;
+            cursor: pointer;
+            border: 2px solid var(--primary-color);
+            text-decoration: none;
+            display: inline-block;
         }
-        .btn:hover { opacity: 0.9; }
 
-        /* استايل صفحات الإشعارات والبروفايل والامتحانات الداخلية */
+        .btn-outline { background: transparent; color: var(--primary-color); }
+        .btn-outline:hover { background: rgba(255, 42, 0, 0.05); }
+
+        .btn-solid { background: var(--primary-color); color: white; }
+        .btn-solid:hover { opacity: 0.9; }
+
+        /* البروفايل الذي يسحب البيانات الحقيقية */
         .inner-box {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -155,8 +190,18 @@
             border-radius: 20px;
             margin-bottom: 20px;
         }
-        .inner-box h2 { color: var(--primary-color); margin-bottom: 20px; font-size: 20px; }
         
+        .profile-avatar {
+            width: 85px; height: 85px; background: var(--primary-color); color: #fff;
+            border-radius: 50%; display: grid; place-items: center; font-size: 30px;
+            font-weight: bold; margin: 0 auto 15px;
+        }
+        
+        .info-group { text-align: right; margin-bottom: 15px; background: var(--bg-color); padding: 12px 18px; border-radius: 10px; border: 1px solid var(--border-color); }
+        .info-group label { font-size: 11px; color: var(--muted-color); display: block; }
+        .info-group span { font-size: 15px; font-weight: bold; }
+
+        /* الإشعارات */
         .notification-item {
             padding: 15px 0;
             border-bottom: 1px solid var(--border-color);
@@ -165,15 +210,6 @@
             align-items: center;
         }
         .notification-item:last-child { border-bottom: none; }
-
-        .profile-avatar {
-            width: 80px; height: 80px; background: var(--primary-color); color: #fff;
-            border-radius: 50%; display: grid; place-items: center; font-size: 28px;
-            font-weight: bold; margin: 0 auto 20px;
-        }
-        .info-group { text-align: right; margin-bottom: 15px; background: var(--bg-color); padding: 12px 18px; border-radius: 10px; border: 1px solid var(--border-color); }
-        .info-group label { font-size: 11px; color: var(--muted-color); display: block; }
-        .info-group span { font-size: 15px; font-weight: bold; }
 
         footer {
             background: var(--card-bg);
@@ -188,12 +224,16 @@
 </head>
 <body data-theme="light"> <!-- افتراضي نهاري -->
 
-    <!-- الشريط العلوي للتنقل الفوري داخل نفس الملف -->
+    <!-- الشريط العلوي: اسم المنصة وجنبها صورة الماستر -->
     <header class="navbar">
-        <div class="logo-area" onclick="switchSection('home')">⚡ PHYSICS LEGEND</div>
+        <div class="brand-container">
+            <!-- صورة الماستر بجانب اسم المنصة -->
+            <img src="master-photo.jpg" alt="صورة الماستر" class="master-avatar" onerror="this.src='https://via.placeholder.com/150/ff2a00/fff?text=مستر'">
+            <div class="platform-name">منصة الفيزياء الأسطورية</div>
+        </div>
+        
         <div class="nav-icons">
             <button class="nav-btn active" id="btn-home" onclick="switchSection('home')">الرئيسية</button>
-            <button class="nav-btn" id="btn-exams" onclick="switchSection('exams')">الامتحانات</button>
             <button class="nav-btn" id="btn-notifications" onclick="switchSection('notifications')">الإشعارات</button>
             <button class="nav-btn" id="btn-profile" onclick="switchSection('profile')">البروفايل</button>
             <button class="theme-toggle" id="themeToggleBtn">☀️ النهاري</button>
@@ -202,114 +242,66 @@
 
     <div class="container">
 
-        <!-- 1. قسم الرئيسية (Home) -->
+        <!-- 1. الرئيسية -->
         <div id="section-home" class="page-section active">
-            <div class="stats-row">
-                <div class="stat-box">
-                    <h3>0</h3>
-                    <p>كورسات مكتملة</p>
-                </div>
-                <div class="stat-box">
-                    <h3>1</h3>
-                    <p>كورساتك الحالية</p>
-                </div>
-                <div class="stat-box">
-                    <h3>0</h3>
-                    <p>فيديوهات محفوظة</p>
-                </div>
-            </div>
-
-            <div class="grid-sections">
-                <div class="section-card">
-                    <h3>📐 أساسيات الفيزياء</h3>
-                    <p>مجلدات الصور الخاصة بالتحويلات والقواعد.</p>
-                    <button class="btn" onclick="switchSection('basics')">دخول الأساسيات</button>
-                </div>
-                <div class="section-card">
-                    <h3>📚 قوانين المنهج</h3>
-                    <p>استعراض صور القوانين للفصول الدراسية.</p>
-                    <button class="btn" onclick="switchSection('laws')">عرض القوانين</button>
-                </div>
-                <div class="section-card">
-                    <h3>✓ الامتحانات الشاملة</h3>
-                    <p>اختبر مستواك فوراً وتابع درجاتك التدريبية.</p>
-                    <button class="btn" onclick="switchSection('exams')">ابدأ الامتحانات</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- 2. قسم الامتحانات (Exams) -->
-        <div id="section-exams" class="page-section">
-            <div class="inner-box">
-                <h2>✓ قسم الامتحانات والتقييم</h2>
-                <p style="color: var(--muted-color); margin-bottom: 20px;">اختر الامتحان لبدء الاختبار الفوري وحساب مستواك:</p>
-                <div style="background: var(--bg-color); padding: 15px; border-radius: 12px; border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                    <div>
-                        <strong>امتحان الباب الأول (الكهربية)</strong>
-                        <p style="font-size: 12px; color: var(--muted-color);">متاح لمدة 48 ساعة</p>
+            
+            <!-- مساحة الدائرتين لوضع الصور -->
+            <div class="image-circles-container">
+                <div class="image-circle-box">
+                    <div class="custom-circle" onclick="alert('اضغط لاختيار أو استبدال صورة الدائرة الأولى')">
+                        <img src="image1.jpg" alt="صورة 1" onerror="this.style.display='none'">
+                        <span style="position: absolute;">صورة 1</span>
                     </div>
-                    <button class="btn" style="width: auto; padding: 8px 20px;">ابدأ الاختبار</button>
+                </div>
+                <div class="image-circle-box">
+                    <div class="custom-circle" onclick="alert('اضغط لاختيار أو استبدال صورة الدائرة الثانية')">
+                        <img src="image2.jpg" alt="صورة 2" onerror="this.style.display='none'">
+                        <span style="position: absolute;">صورة 2</span>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- 3. قسم أساسيات الفيزياء (Basics) -->
-        <div id="section-basics" class="page-section">
-            <div class="inner-box">
-                <h2>📐 أساسيات الفيزياء (صور من 1 لـ 10)</h2>
-                <p style="color: var(--muted-color); margin-bottom: 20px;">مساحة مخصصة لعرض صور الأساسيات الخاصة بك:</p>
-                <div style="text-align: center; padding: 40px; background: var(--bg-color); border: 2px dashed var(--border-color); border-radius: 12px;">
-                    <p style="color: var(--muted-color);">ضع صور الأساسيات هنا وسيتم عرضها بشكل متناسق</p>
+            <!-- تفاصيل امتحان الدرس الأول فيزياء ثالثة ثانوي والشرح والقوانين -->
+            <div class="lesson-card">
+                <h2>امتحان على الدرس الأول - فيزياء (ثالثة ثانوي)</h2>
+                <p>اسم الدرس: التيار الكهربي وقانون أوم (الدرس الأول)</p>
+                
+                <div class="lesson-actions">
+                    <a href="#" class="btn btn-outline" onclick="alert('جاري فتح شرح الدرس الأول...')">شرح الدرس الأول</a>
+                    <a href="#" class="btn btn-solid" onclick="alert('جاري فتح قوانين الدرس الأول...')">قوانين الدرس الأول</a>
                 </div>
             </div>
+
         </div>
 
-        <!-- 4. قسم القوانين (Laws) -->
-        <div id="section-laws" class="page-section">
-            <div class="inner-box">
-                <h2>📚 مجلد قوانين المنهج</h2>
-                <p style="color: var(--muted-color); margin-bottom: 20px;">قوانين كل فصل دراسي منسقة بالصور:</p>
-                <div style="text-align: center; padding: 40px; background: var(--bg-color); border: 2px dashed var(--border-color); border-radius: 12px;">
-                    <p style="color: var(--muted-color);">ضع صور القوانين الخاصة بالفصول هنا</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 5. قسم الإشعارات (Notifications) -->
+        <!-- 2. الإشعارات (ملف لوحده داخل الصفحة) -->
         <div id="section-notifications" class="page-section">
             <div class="inner-box">
                 <h2>🔔 مركز الإشعارات</h2>
                 <div class="notification-item">
                     <div>
-                        <strong>تم إضافة امتحان جديد</strong>
-                        <p style="font-size: 12px; color: var(--muted-color); margin-top: 4px;">تم فتح امتحان الباب الأول للفيزياء.</p>
+                        <strong>تم إضافة امتحان الدرس الأول</strong>
+                        <p style="font-size: 12px; color: var(--muted-color); margin-top: 4px;">يمكنك البدء في حل امتحان الفيزياء الآن.</p>
                     </div>
-                    <span style="font-size: 11px; color: var(--muted-color);">منذ ساعتين</span>
-                </div>
-                <div class="notification-item">
-                    <div>
-                        <strong>موعد المحاضرة القادمة</strong>
-                        <p style="font-size: 12px; color: var(--muted-color); margin-top: 4px;">انتظروا محاضرة حل المسائل الصعبة غداً.</p>
-                    </div>
-                    <span style="font-size: 11px; color: var(--muted-color);">أمس</span>
+                    <span style="font-size: 11px; color: var(--muted-color);">منذ ساعة</span>
                 </div>
             </div>
         </div>
 
-        <!-- 6. قسم البروفايل (Profile) -->
+        <!-- 3. البروفايل (يسحب بيانات الحساب الحقيقية عند التسجيل أو تسجيل الدخول) -->
         <div id="section-profile" class="page-section">
             <div class="inner-box" style="text-align: center;">
-                <div class="profile-avatar">ط</div>
-                <h2 id="profileName">اسم الطالب</h2>
-                <p style="color: var(--muted-color); font-size: 13px; margin-bottom: 25px;">طالب فيزياء الثانوية العامة</p>
+                <div class="profile-avatar" id="userAvatarIcon">ط</div>
+                <h2 id="profileName">جاري تحميل اسم الطالب...</h2>
+                <p style="color: var(--muted-color); font-size: 13px; margin-bottom: 25px;">طالب ثالثة ثانوي - فيزياء</p>
 
                 <div class="info-group">
-                    <label>البريد الإلكتروني / الحساب:</label>
-                    <span id="profileEmail">student@physics.com</span>
+                    <label>البريد الإلكتروني المسجل:</label>
+                    <span id="profileEmail">---</span>
                 </div>
                 <div class="info-group">
-                    <label>الصف الدراسي:</label>
-                    <span>الثالث الثانوي</span>
+                    <label>حالة الحساب:</label>
+                    <span id="profileStatus" style="color: #28a745;">مسجل بنجاح</span>
                 </div>
             </div>
         </div>
@@ -317,32 +309,54 @@
     </div>
 
     <footer>
-        جميع الحقوق محفوظة © 2026 | منصة الفيزياء الأسطورية (ملف واحد متكامل Dashboard.html)
+        جميع الحقوق محفوظة © 2026 | منصة الفيزياء الأسطورية
     </footer>
 
-    <!-- سكربت التحكم في التنقل وتبديل الثيم -->
-    <script>
-        // دالة تبديل الأقسام داخل نفس الملف
-        function switchSection(sectionId) {
-            // إخفاء كل الأقسام
-            document.querySelectorAll('.page-section').forEach(sec => {
-                sec.classList.remove('active');
-            });
-            // إزالة التفعيل عن أزرار القائمة
-            document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            // إظهار القسم المطلوب
-            document.getElementById('section-' + sectionId).classList.add('active');
-            
-            // تفعيل الزر الخاص به لو وُجد في النافبار
-            const activeBtn = document.getElementById('btn-' + sectionId);
-            if(activeBtn) {
-                activeBtn.classList.add('active');
+    <!-- سكريبت البرمجة (ربط البروفايل بـ Firebase وسحب البيانات الحقيقية + الثيم + التنقل) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+        
+        // إعدادات Firebase الخاصة بك
+        const firebaseConfig = {
+            apiKey: "AIzaSyBqCxGshGhKzSCoueSV8bVFcKxQWsZiu6M",
+            authDomain: "mo-salah-physics.firebaseapp.com",
+            projectId: "mo-salah-physics",
+            storageBucket: "mo-salah-physics.firebasestorage.app",
+            messagingSenderId: "475289360145",
+            appId: "1:475289360145:web:94b4ec58765a230f09deb0"
+        };
+        
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // سحب البيانات الحقيقية للطالب عند تسجيل الدخول أو إنشاء الحساب
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                document.getElementById("profileName").textContent = user.displayName || "طالب مميز";
+                document.getElementById("profileEmail").textContent = user.email;
+                document.getElementById("userAvatarIcon").textContent = (user.displayName || "ط").charAt(0);
+            } else {
+                document.getElementById("profileName").textContent = "زائر (غير مسجل الدخول)";
+                document.getElementById("profileEmail").textContent = "برجاء تسجيل الدخول أو إنشاء حساب";
+                document.getElementById("profileStatus").textContent = "غير مسجل";
+                document.getElementById("profileStatus").style.color = "#dc3545";
             }
+        });
+    </script>
+
+    <script>
+        // دالة التنقل بين الأقسام
+        function switchSection(sectionId) {
+            document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById('section-' + sectionId).classList.add('active');
+            const activeBtn = document.getElementById('btn-' + sectionId);
+            if(activeBtn) activeBtn.classList.add('active');
         }
 
-        // دالة تبديل الثيم (نهاري / ليلي)
+        // دالة تبديل الثيم (نهاري افتراضي / ليلي)
         const toggleBtn = document.getElementById('themeToggleBtn');
         const body = document.body;
 
