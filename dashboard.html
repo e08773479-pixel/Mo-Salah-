@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#070d13">
-  <title>لوحة الطالب | منصة مهندس محمد صلاح</title>
+  <title>لوحة الطالب الشاملة | منصة مهندس محمد صلاح للفيزياء</title>
 
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
@@ -30,20 +30,13 @@
       font-family:Tahoma,Arial,sans-serif;
     }
 
-    a{
-      text-decoration:none;
-      color:inherit;
-    }
-
-    button{
-      font:inherit;
-      cursor:pointer;
-    }
+    a{text-decoration:none;color:inherit;}
+    button{font:inherit;cursor:pointer;}
 
     .layout{
       min-height:100vh;
       display:grid;
-      grid-template-columns:250px 1fr;
+      grid-template-columns:260px 1fr;
     }
 
     /* SIDEBAR */
@@ -52,10 +45,11 @@
       right:0;
       top:0;
       bottom:0;
-      width:250px;
+      width:260px;
       padding:22px 15px;
       background:#09121a;
       border-left:1px solid var(--line);
+      overflow-y:auto;
     }
 
     .brand{
@@ -79,27 +73,11 @@
       object-fit:cover;
     }
 
-    .brand strong{
-      display:block;
-      font-size:13px;
-    }
+    .brand strong{display:block;font-size:13px;}
+    .brand span{display:block;color:var(--muted);font-size:9px;margin-top:4px;}
 
-    .brand span{
-      display:block;
-      color:var(--muted);
-      font-size:9px;
-      margin-top:4px;
-    }
-
-    .menu{
-      margin-top:20px;
-    }
-
-    .menu-title{
-      color:#566571;
-      font-size:9px;
-      padding:0 12px 9px;
-    }
+    .menu{margin-top:20px;}
+    .menu-title{color:#566571;font-size:9px;padding:0 12px 9px;}
 
     .menu a{
       display:flex;
@@ -118,17 +96,10 @@
       background:rgba(34,199,184,.08);
     }
 
-    .icon{
-      width:23px;
-      text-align:center;
-      font-size:15px;
-    }
+    .icon{width:23px;text-align:center;font-size:15px;}
 
     .logout{
-      position:absolute;
-      left:15px;
-      right:15px;
-      bottom:20px;
+      margin-top:30px;
       border-top:1px solid var(--line);
       padding-top:15px;
     }
@@ -143,7 +114,7 @@
     /* MAIN */
     .main{
       grid-column:1;
-      margin-right:250px;
+      margin-right:260px;
       min-width:0;
     }
 
@@ -157,22 +128,10 @@
       background:rgba(7,13,19,.75);
     }
 
-    .page-title h1{
-      font-size:17px;
-      margin-bottom:5px;
-    }
+    .page-title h1{font-size:17px;margin-bottom:5px;}
+    .page-title p{color:var(--muted);font-size:9px;}
 
-    .page-title p{
-      color:var(--muted);
-      font-size:9px;
-    }
-
-    .student{
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-
+    .student{display:flex;align-items:center;gap:10px;}
     .student-avatar{
       width:39px;
       height:39px;
@@ -185,33 +144,22 @@
       font-weight:bold;
     }
 
-    .student-info strong{
-      display:block;
-      font-size:10px;
-    }
+    .student-info strong{display:block;font-size:10px;}
+    .student-info span{display:block;color:var(--muted);font-size:8px;margin-top:3px;}
 
-    .student-info span{
-      display:block;
-      color:var(--muted);
-      font-size:8px;
-      margin-top:3px;
-    }
-
-    .content{
-      padding:28px 35px 45px;
-    }
+    .content{padding:28px 35px 45px;}
 
     /* WELCOME */
     .welcome{
-      min-height:180px;
+      min-height:170px;
       padding:25px 30px;
       border:1px solid var(--line);
       border-radius:16px;
-      overflow:hidden;
       position:relative;
       background:
         radial-gradient(circle at 10% 50%,rgba(34,199,184,.13),transparent 30%),
         linear-gradient(135deg,#0e1b26,#09121a);
+      margin-bottom:25px;
     }
 
     .welcome:after{
@@ -223,33 +171,13 @@
       color:rgba(34,199,184,.045);
     }
 
-    .welcome-content{
-      position:relative;
-      z-index:2;
-    }
-
-    .welcome small{
-      color:var(--cyan);
-      font-size:10px;
-    }
-
-    .welcome h2{
-      font-size:26px;
-      margin:10px 0;
-    }
-
-    .welcome p{
-      color:var(--muted);
-      font-size:11px;
-      line-height:1.8;
-      max-width:550px;
-    }
+    .welcome-content{position:relative;z-index:2;}
+    .welcome small{color:var(--cyan);font-size:10px;}
+    .welcome h2{font-size:26px;margin:10px 0;}
+    .welcome p{color:var(--muted);font-size:11px;line-height:1.8;max-width:550px;}
 
     /* SECTION */
-    .section{
-      margin-top:30px;
-    }
-
+    .section{margin-top:35px;}
     .section-head{
       display:flex;
       align-items:center;
@@ -264,7 +192,7 @@
       padding-right:10px;
     }
 
-    /* CARDS GRID */
+    /* GRID BOXES */
     .grid-cards{
       display:grid;
       grid-template-columns:repeat(3,1fr);
@@ -284,77 +212,80 @@
       transform:translateY(-2px);
     }
 
-    .card-box h3{
-      font-size:13px;
-      margin-bottom:8px;
-      color:var(--cyan);
-    }
+    .card-box h3{font-size:13px;margin-bottom:8px;color:var(--cyan);}
+    .card-box p{color:var(--muted);font-size:9px;line-height:1.7;margin-bottom:15px;}
 
-    .card-box p{
-      color:var(--muted);
-      font-size:9px;
-      line-height:1.7;
-      margin-bottom:15px;
-    }
-
-    .card-btn{
-      display:inline-block;
-      padding:8px 14px;
-      border-radius:6px;
-      font-size:9px;
-      font-weight:bold;
-      color:#041014;
-      background:linear-gradient(135deg,var(--cyan),var(--blue));
-    }
-
-    /* LAWS SECTION LIST */
-    .laws-container{
+    /* LAWS CONTAINER (Detailed physics list) */
+    .laws-grid{
       display:grid;
       grid-template-columns:repeat(2,1fr);
       gap:15px;
     }
 
-    .law-item{
+    .law-card{
+      padding:20px;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:var(--panel);
+    }
+
+    .law-card h3{
+      font-size:13px;
+      color:var(--yellow);
+      margin-bottom:12px;
+      border-bottom:1px solid var(--line);
+      padding-bottom:8px;
+    }
+
+    .law-list{
+      list-style:none;
+    }
+
+    .law-list li{
+      color:var(--muted);
+      font-size:9.5px;
+      padding:7px 0;
+      border-bottom:1px dashed var(--line);
+      line-height:1.6;
+    }
+
+    .law-list li:last-child{border-bottom:none;}
+    .law-list strong{color:var(--text);}
+
+    /* BASICS TABLE / LIST */
+    .basics-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:15px;
+    }
+
+    .basic-box{
       padding:18px;
       border:1px solid var(--line);
       border-radius:12px;
       background:var(--panel);
     }
 
-    .law-item h4{
+    .basic-box h4{
       font-size:12px;
-      margin-bottom:8px;
-      color:var(--yellow);
+      color:var(--blue);
+      margin-bottom:10px;
     }
 
-    .law-item ul{
-      list-style:none;
-      padding:0;
-    }
-
-    .law-item ul li{
+    .basic-box ul{list-style:none;}
+    .basic-box ul li{
       color:var(--muted);
       font-size:9px;
-      padding:5px 0;
-      border-bottom:1px dashed var(--line);
+      padding:4px 0;
     }
 
-    .law-item ul li:last-child{
-      border-bottom:none;
-    }
-
-    /* MOBILE */
+    /* RESPONSIVE */
     @media(max-width:900px){
       .layout{display:block;}
       .sidebar{position:static;width:100%;height:auto;padding:12px;border-left:0;border-bottom:1px solid var(--line);}
-      .brand{padding-bottom:12px;}
-      .menu{display:flex;overflow-x:auto;gap:5px;margin-top:10px;}
-      .menu-title,.logout{display:none;}
-      .menu a{flex:0 0 auto;margin:0;}
       .main{margin-right:0;}
-      .topbar{padding:0 18px;}
       .content{padding:20px 18px 35px;}
-      .grid-cards, .laws-container{grid-template-columns:1fr;}
+      .grid-cards, .laws-grid, .basics-grid{grid-template-columns:1fr;}
     }
   </style>
 </head>
@@ -378,8 +309,8 @@
     <nav class="menu">
       <div class="menu-title">القائمة الرئيسية</div>
       <a class="active" href="dashboard.html"><span class="icon">⌂</span>الرئيسية</a>
-      <a href="#basics"><span class="icon">📐</span>أساسيات الفيزياء</a>
-      <a href="#laws"><span class="icon">📚</span>قوانين المنهج</a>
+      <a href="#basics"><span class="icon">📐</span>الأساسيات والتحويلات</a>
+      <a href="#laws"><span class="icon">📚</span>شامل قوانين المنهج</a>
       <a href="#lectures"><span class="icon">▶</span>المحاضرات</a>
       <a href="#exams"><span class="icon">✓</span>الامتحانات</a>
       <a href="#support"><span class="icon">?</span>الدعم والمساعدة</a>
@@ -390,12 +321,12 @@
     </div>
   </aside>
 
-  <!-- MAIN -->
+  <!-- MAIN CONTENT -->
   <main class="main">
     <header class="topbar">
       <div class="page-title">
-        <h1>لوحة الطالب</h1>
-        <p>بوابة طالب الثانوية العامة لدروس ومراجعات الفيزياء</p>
+        <h1>لوحة الطالب الشاملة</h1>
+        <p>المرجع الكامل لأساسيات وقوانين ومنهج الفيزياء للثانوية العامة</p>
       </div>
 
       <div class="student">
@@ -412,99 +343,146 @@
       <!-- WELCOME -->
       <section class="welcome">
         <div class="welcome-content">
-          <small>أهلاً بك في منصة الفيزياء الاحترافية</small>
+          <small>مرحباً بك في المنصة الأقوى لشرح الفيزياء</small>
           <h2>أهلاً يا <span id="welcomeName">بطل</span> 👋</h2>
-          <p>تم إعداد هذا القسم خصيصاً لتنظيم أساسيات المنهج، المحاضرات، وقوانين الفيزياء لتكون مرجعك السريع أثناء المذاكرة.</p>
+          <p>هذه الصفحة مصممة لتضم كافة أساسيات الفيزياء، التحويلات الرياضية الهامة، وجداول القوانين الشاملة لجميع فصول المنهج لتكون دليلك الدائم.</p>
         </div>
       </section>
 
-      <!-- SECTION 1: أساسيات الفيزياء (الرياضيات والتحويلات) -->
+      <!-- 1. تبويب الأساسيات والتحويلات بالكامل -->
       <section class="section" id="basics">
         <div class="section-head">
-          <h2>أساسيات الفيزياء والرياضيات الهامة</h2>
+          <h2>أساسيات الفيزياء والتحويلات الهامة (المرجع الرياضي)</h2>
         </div>
 
-        <div class="grid-cards">
-          <div class="card-box">
-            <h3>التحويلات الهامة</h3>
-            <p>دليل شامل للتحويل من (الميكرو، الميلي، النانو، الكيلو) وحدات القياس الأساسية في المسائل.</p>
-            <a class="card-btn" href="#">عرض الأساسيات</a>
+        <div class="basics-grid">
+          <div class="basic-box">
+            <h4>🔄 التحويلات البادئة الشهيرة</h4>
+            <ul>
+              <li><strong>ميكرو ($\mu$):</strong> $\times 10^{-6}$</li>
+              <li><strong>ميلي (m):</strong> $\times 10^{-3}$</li>
+              <li><strong>كيلو (k):</strong> $\times 10^{3}$</li>
+              <li><strong>نيتو / نانو (n):</strong> $\times 10^{-9}$</li>
+              <li><strong>بيكو (p):</strong> $\times 10^{-12}$</li>
+              <li><strong>انجستروم ($\AA$):</strong> $\times 10^{-10}\text{ m}$</li>
+            </ul>
           </div>
 
-          <div class="card-box">
-            <h3>العلاقات البيانية والرياضية</h3>
-            <p>كيفية إيجاد الميل (Slope) والمقطوع من الرسومات البيانية في الكهربية والمغناطيسية.</p>
-            <a class="card-btn" href="#">عرض الشرح</a>
+          <div class="basic-box">
+            <h4>📐 تحويلات المساحة والحجوم</h4>
+            <ul>
+              <li><strong>السنتيمتر المربع ($cm^2$):</strong> $\times 10^{-4}\text{ m}^2$</li>
+              <li><strong>الملمتر المربع ($mm^2$):</strong> $\times 10^{-6}\text{ m}^2$</li>
+              <li><strong>السنتيمتر المكعب ($cm^3$):</strong> $\times 10^{-6}\text{ m}^3$</li>
+              <li><strong>اللتر (L):</strong> $\times 10^{-3}\text{ m}^3$</li>
+            </ul>
           </div>
 
-          <div class="card-box">
-            <h3>فك الرموز ووحدات القياس</h3>
-            <p>مكافئ وحدات القياس (مثل الفولت، الأوم، الأمبير، ويبر) وصيغ الأبعاد.</p>
-            <a class="card-btn" href="#">استعراض الوحدات</a>
+          <div class="basic-box">
+            <h4>📊 أساسيات الرسومات البيانية</h4>
+            <ul>
+              <li><strong>الميل ($Slope$):</strong> $\Delta y / \Delta x$ أو $\tan(\theta)$</li>
+              <li><strong>الجزء المقطوع:</strong> القيمة عندما $x = 0$</li>
+              <li><strong>العلاقة الطردية:</strong> خط مستقيم يمر بنقطة الأصل</li>
+              <li><strong>العلاقة العكسية:</strong> منحنى تناقصي أو طردي مع المقلوب ($1/x$)</li>
+            </ul>
           </div>
         </div>
       </section>
 
-      <!-- SECTION 2: تبويب قوانين المنهج (مقسم حسب الفصول والدروس) -->
+      <!-- 2. تبويب قوانين المنهج الشاملة (لكل الفصول) -->
       <section class="section" id="laws">
         <div class="section-head">
-          <h2>قوانين منهج الفيزياء (ثالثة ثانوي)</h2>
+          <h2>قوانين منهج الفيزياء بالكامل (ثالثة ثانوي)</h2>
         </div>
 
-        <div class="laws-container">
-          <div class="law-item">
-            <h4>⚡ الفصل الأول: التيار الكهربي وقانون أوم</h4>
-            <ul>
-              <li><strong>الدرس الأول:</strong> شدة التيار ($I = Q / t$) وفروق الجهد ($V = W / Q$).</li>
-              <li><strong>الدرس الثاني:</strong> المقاومة الكهربية وقانون أوم ($R = \rho_e \cdot l / A$).</li>
-              <li><strong>الدرس الثالث:</strong> توصيل المقاومات (على التوالي والتوازي).</li>
-              <li><strong>الدرس الرابع:</strong> قانوني كيرشوف (الحفاظ على الشحنة والطاقة).</li>
+        <div class="laws-grid">
+          <!-- الفصل الأول -->
+          <div class="law-card">
+            <h3>⚡ الفصل الأول: التيار الكهربي وقانون أوم</h3>
+            <ul class="law-list">
+              <li><strong>شدة التيار:</strong> $I = \frac{Q}{t} = \frac{n \cdot e}{t}$</li>
+              <li><strong>فرق الجهد:</strong> $V = \frac{W}{Q} = \frac{W}{I \cdot t}$</li>
+              <li><strong>المقـاومة:</strong> $R = \rho_e \cdot \frac{l}{A}$ (وتوصيلية كهربية $\sigma = \frac{1}{\rho_e}$)</li>
+              <li><strong>قانون أوم للدائرة المغلقة:</strong> $V_B = I(R + r)$ أو $V = V_B - Ir$</li>
+              <li><strong>القدرة الكهربية:</strong> $P_w = V \cdot I = I^2 \cdot R = \frac{V^2}{R}$</li>
+              <li><strong>قانون كيرشوف الأول (KCL):</strong> $\sum I_{in} = \sum I_{out}$ (حفظ الشحنة)</li>
+              <li><strong>قانون كيرشوف الثاني (KVL):</strong> $\sum V_B = \sum (I \cdot R)$ (حفظ الطاقة)</li>
             </ul>
           </div>
 
-          <div class="law-item">
-            <h4>🧲 الفصل الثاني: التأثير المغناطيسي للتيار</h4>
-            <ul>
-              <li><strong>الدرس الأول:</strong> الفيض المغناطيسي ($\Phi_m = B \cdot A \cdot \sin\theta$) ومجال السلك.</li>
-              <li><strong>الدرس الثاني:</strong> الملف الدائري والملف اللولبي.</li>
-              <li><strong>الدرس الثالث:</strong> القوة المغناطيسية وعزم الازدواج.</li>
-              <li><strong>الدرس الرابع:</strong> أجهزة القياس (الجلفانومتر، الأميتر، الفولتميتر، الأوميتر).</li>
+          <!-- الفصل الثاني -->
+          <div class="law-card">
+            <h3>🧲 الفصل الثاني: التأثير المغناطيسي للتيار</h3>
+            <ul class="law-list">
+              <li><strong>الفيض المغناطيسي:</strong> $\Phi_m = B \cdot A \cdot \sin(\theta)$</li>
+              <li><strong>فيض السلك المستقيم:</strong> $B = \frac{\mu \cdot I}{2\pi \cdot d}$</li>
+              <li><strong>فيض الملف الدائري:</strong> $B = \frac{\mu \cdot I \cdot N}{2 \cdot r}$</li>
+              <li><strong>فيض الملف اللولبي:</strong> $B = \frac{\mu \cdot I \cdot N}{l}$</li>
+              <li><strong>القوة المغناطيسية على سلك:</strong> $F = B \cdot I \cdot l \cdot \sin(\theta)$</li>
+              <li><strong>عزم الازدواج:</strong> $\tau = N \cdot I \cdot A \cdot B \cdot \sin(\theta)$</li>
+              <li><strong>أجهزة القياس (الأميتر):</strong> $I_g \cdot G = (I - I_g) \cdot R_s$</li>
+              <li><strong>أجهزة القياس (الفولتميتر):</strong> $V = I_g (R_g + R_m)$</li>
+            </ul>
+          </div>
+
+          <!-- الفصل الثالث -->
+          <div class="law-card">
+            <h3>🌀 الفصل الثالث: الحث الكهرومغناطيسي</h3>
+            <ul class="law-list">
+              <li><strong>قانون فاراداي:</strong> $emfs = -N \cdot \frac{\Delta \Phi_m}{\Delta t} = -N \cdot \frac{A \cdot \Delta B}{\sin(\theta)}{\Delta t}$</li>
+              <li><strong>حركة سلك:</strong> $emf = B \cdot l \cdot v \cdot \sin(\theta)$</li>
+              <li><strong>الدينامو (المولد):</strong> $emf = N \cdot A \cdot B \cdot \omega \cdot \sin(\omega t)$</li>
+              <li><strong>القيمة الفعالة ($eff$):</strong> $emf_{eff} = 0.707 \cdot emf_{max}$</li>
+              <li><strong>المحول الكهربي:</strong> $\frac{V_p}{V_s} = \frac{N_p}{N_s} = \frac{I_s}{I_p}$ (الكفاءة $\eta = \frac{P_{out}}{P_{in}} \times 100$)</li>
+            </ul>
+          </div>
+
+          <!-- الفصل الرابع -->
+          <div class="law-card">
+            <h3>🔌 الفصل الرابع: دوائر التيار المتردد</h3>
+            <ul class="law-list">
+              <li><strong>المفاعلة الحثية ($X_L$):</strong> $X_L = 2\pi \cdot f \cdot L$</li>
+              <li><strong>المفاعلة السعوية ($X_C$):</strong> $X_C = \frac{1}{2\pi \cdot f \cdot C}$</li>
+              <li><strong>المعيقة الكلية (الممانعة $Z$):</strong> $Z = \sqrt{R^2 + (X_L - X_C)^2}$</li>
+              <li><strong>القدرة المستهلكة:</strong> تُستهلك في المقاومة فقط ($P_w = I^2 \cdot R$)</li>
+              <li><strong>حالة الرنين ($$resonance$$):</strong> $X_L = X_C \implies Z = R \implies f = \frac{1}{2\pi\sqrt{L \cdot C}}$</li>
             </ul>
           </div>
         </div>
       </section>
 
-      <!-- SECTION 3: تبويب المحاضرات (الوهمية والمجهزة للمنهج) -->
+      <!-- 3. تبويب المحاضرات -->
       <section class="section" id="lectures">
         <div class="section-head">
-          <h2>محاضرات الشرح والفيديوهات</h2>
+          <h2>المحاضرات والفيديوهات التعليمية</h2>
         </div>
 
         <div class="grid-cards">
           <div class="card-box">
-            <h3>محاضرات الفصل الأول (الكهربية)</h3>
-            <p>شرح تفصيلي لجميع دروس الفصل الأول وحل أفكار الكتب الخارجية.</p>
-            <span style="color:var(--muted); font-size:9px; display:block; margin-bottom:12px;">قريباً (جاري الرفع)</span>
-            <a class="card-btn" href="#" style="opacity:0.6; pointer-events:none;">دخول المحاضرات</a>
+            <h3>شرح الفصل الأول (الكهربية)</h3>
+            <p>سلسلة الشرح المتكاملة للتيار والمقاومات وكيرشوف مع حل أسئلة الكتاب المدرسي.</p>
+            <span style="color:var(--muted); font-size:9px; display:block; margin-bottom:12px;">متاح قريباً للعرض</span>
+            <a class="card-btn" href="#" style="background:var(--line); color:var(--muted); pointer-events:none;">دخول المحاضرة</a>
           </div>
 
           <div class="card-box">
-            <h3>محاضرات الفصل الثاني (المغناطيسية)</h3>
-            <p>سلسلة محاضرات مبسطة لاستيعاب استنتاج القوانين وتطبيقاتها.</p>
-            <span style="color:var(--muted); font-size:9px; display:block; margin-bottom:12px;">قريباً (جاري الرفع)</span>
-            <a class="card-btn" href="#" style="opacity:0.6; pointer-events:none;">دخول المحاضرات</a>
+            <h3>شرح الفصل الثاني (المغناطيسية)</h3>
+            <p>محاضرات توضيحية لاتجاهات المجالات، استنتاج القوانين، وأجهزة القياس.</p>
+            <span style="color:var(--muted); font-size:9px; display:block; margin-bottom:12px;">متاح قريباً للعرض</span>
+            <a class="card-btn" href="#" style="background:var(--line); color:var(--muted); pointer-events:none;">دخول المحاضرة</a>
           </div>
 
           <div class="card-box">
-            <h3>محاضرات المراجعة وحل المسائل</h3>
-            <p>تدريبات مكثفة على الأفكار العليا وربط فصول المنهج ببعضها.</p>
-            <span style="color:var(--muted); font-size:9px; display:block; margin-bottom:12px;">قريباً (جاري الرفع)</span>
-            <a class="card-btn" href="#" style="opacity:0.6; pointer-events:none;">دخول المحاضرات</a>
+            <h3>محاضرات حل المسائل والأفكار العالية</h3>
+            <p>تدريبات مكثفة على الأفكار الامتحانية العليا وكيفية تبسيط الدوائر المعقدة.</p>
+            <span style="color:var(--muted); font-size:9px; display:block; margin-bottom:12px;">متاح قريباً للعرض</span>
+            <a class="card-btn" href="#" style="background:var(--line); color:var(--muted); pointer-events:none;">دخول المحاضرة</a>
           </div>
         </div>
       </section>
 
-      <!-- SECTION 4: تبويب الامتحانات والتدريبات -->
+      <!-- 4. تبويب الامتحانات -->
       <section class="section" id="exams">
         <div class="section-head">
           <h2>الامتحانات والاختبارات الإلكترونية</h2>
@@ -512,24 +490,24 @@
 
         <div class="grid-cards">
           <div class="card-box">
-            <h3>اختبار الفصل الأول (شامل)</h3>
-            <p>اختبار إلكتروني مقنن يقيس فهمك للتيار وقانوني كيرشوف (30 سؤال).</p>
+            <h3>اختبار الفصل الأول الشامل</h3>
+            <p>اختبار إلكتروني بنظام الاختيار من متعدد (30 سؤال) يقيس مستواك بدقة.</p>
             <span style="color:var(--muted); font-size:9px; display:block; margin-bottom:12px;">يفتح بعد بدء المحاضرات</span>
-            <a class="card-btn" href="#" style="opacity:0.6; pointer-events:none;">ابدأ الاختبار</a>
+            <a class="card-btn" href="#" style="background:var(--line); color:var(--muted); pointer-events:none;">بدء الاختبار</a>
           </div>
 
           <div class="card-box">
-            <h3>اختبار الفصل الثاني (مغناطيسية)</h3>
-            <p>تدرب على أفكار الأسلاك والملفات وأجهزة القياس (25 سؤال).</p>
+            <h3>اختبار الفصل الثاني</h3>
+            <p>اختبار تدريبي على أفكار السلك والملفات وأجهزة القياس المختلفة.</p>
             <span style="color:var(--muted); font-size:9px; display:block; margin-bottom:12px;">يفتح بعد بدء المحاضرات</span>
-            <a class="card-btn" href="#" style="opacity:0.6; pointer-events:none;">ابدأ الاختبار</a>
+            <a class="card-btn" href="#" style="background:var(--line); color:var(--muted); pointer-events:none;">بدء الاختبار</a>
           </div>
 
           <div class="card-box">
-            <h3>امتحان تجريبي شامل</h3>
-            <p>محاكاة حقيقية لامتحان الفاينال لنهاية العام بنظام التقييم الحديث.</p>
-            <span style="color:var(--muted); font-size:9px; display:block; margin-bottom:12px;">قريباً</span>
-            <a class="card-btn" href="#" style="opacity:0.6; pointer-events:none;">ابدأ الاختبار</a>
+            <h3>امتحان تجريبي شامل للجمهورية</h3>
+            <p>محاكاة حقيقية لنظام امتحانات الثانوية العامة الحديثة.</p>
+            <span style="color:var(--muted); font-size:9px; display:block; margin-bottom:12px;">قريباً بنهاية المنهج</span>
+            <a class="card-btn" href="#" style="background:var(--line); color:var(--muted); pointer-events:none;">بدء الاختبار</a>
           </div>
         </div>
       </section>
@@ -538,7 +516,7 @@
   </main>
 </div>
 
-<!-- Firebase Integration لجلب اسم الطالب الحقيقي -->
+<!-- Firebase Script الربط الحقيقي لجلب اسم الطالب -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
   import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
