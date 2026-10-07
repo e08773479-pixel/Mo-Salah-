@@ -1,744 +1,3663 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#070d13">
-  <title>منصة مهندس محمد صلاح | الفيزياء</title>
-
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    :root{
-      --bg:#070d13;
-      --panel:#0b131c;
-      --panel2:#101a24;
-      --line:#202c38;
-      --text:#f7fafc;
-      --muted:#8c99a6;
-      --cyan:#22c7b8;
-      --cyan2:#12a99f;
-      --blue:#159bd7;
-    }
-    html{scroll-behavior:smooth}
-    body{
-      min-height:100vh;
-      background:
-        radial-gradient(circle at 80% 10%,rgba(18,155,215,.08),transparent 30%),
-        radial-gradient(circle at 20% 35%,rgba(34,199,184,.05),transparent 28%),
-        var(--bg);
-      color:var(--text);
-      font-family:Tahoma,Arial,sans-serif;
-      overflow-x:hidden;
-    }
-    a{text-decoration:none;color:inherit}
-    button,input{font:inherit}
-
-    .shell{
-      width:min(1440px,calc(100% - 28px));
-      margin:12px auto;
-      border:1px solid #26323d;
-      border-radius:24px;
-      overflow:hidden;
-      background:linear-gradient(180deg,#081018,#070d13);
-      box-shadow:0 25px 80px rgba(0,0,0,.42);
-    }
-
-    header{
-      height:68px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
-      padding:0 28px;
-      border-bottom:1px solid var(--line);
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      order:1;
-    }
-
-    .brand-mark{
-      width:42px;
-      height:42px;
-      border-radius:11px;
-      display:grid;
-      place-items:center;
-      background:linear-gradient(145deg,#25d1c0,#138dbf);
-      color:#061017;
-      font-size:23px;
-      font-weight:900;
-      overflow:hidden;
-    }
-
-    .brand-mark img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-
-    .brand-text strong{
-      display:block;
-      font-size:15px;
-    }
-
-    .brand-text span{
-      display:block;
-      color:var(--muted);
-      font-size:10px;
-      margin-top:4px;
-    }
-
-    .nav{
-      display:flex;
-      align-items:center;
-      gap:28px;
-      color:#c3cbd2;
-      font-size:12px;
-      order:2;
-    }
-
-    .nav a{
-      padding:25px 0 22px;
-      border-bottom:2px solid transparent;
-    }
-
-    .nav a.active,
-    .nav a:hover{
-      color:var(--cyan);
-      border-bottom-color:var(--cyan);
-    }
-
-    .actions{
-      display:flex;
-      align-items:center;
-      gap:20px;
-      order:3;
-      font-size:12px;
-    }
-
-    .login{
-      color:#e7edf1;
-    }
-
-    .register{
-      padding:10px 20px;
-      border-radius:8px;
-      color:#061014;
-      font-weight:700;
-      background:linear-gradient(135deg,#29c9bb,#159bc7);
-    }
-
-    .hero{
-      min-height:510px;
-      display:grid;
-      grid-template-columns:1.05fr .95fr;
-      align-items:center;
-      padding:30px 58px 20px;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .hero:after{
-      content:"";
-      position:absolute;
-      width:520px;
-      height:520px;
-      left:-180px;
-      top:-160px;
-      background:radial-gradient(
-        circle,
-        rgba(24,151,207,.12),
-        transparent 65%
-      );
-      pointer-events:none;
-    }
-
-    .hero-copy{
-      position:relative;
-      z-index:2;
-      padding-right:15px;
-    }
-
-    .hero h1{
-      font-size:52px;
-      line-height:1.2;
-      letter-spacing:-1px;
-      margin-bottom:18px;
-      max-width:620px;
-    }
-
-    .hero h1 span{
-      color:var(--cyan);
-    }
-
-    .hero p{
-      color:#9aa6b2;
-      font-size:15px;
-      line-height:2;
-      max-width:520px;
-      margin-bottom:26px;
-    }
-
-    .hero-buttons{
-      display:flex;
-      gap:14px;
-    }
-
-    .btn{
-      min-width:145px;
-      padding:13px 22px;
-      border-radius:7px;
-      text-align:center;
-      font-size:12px;
-      font-weight:700;
-      border:1px solid var(--cyan);
-    }
-
-    .btn-primary{
-      background:linear-gradient(135deg,#22c7b8,#159bd7);
-      color:#041014;
-    }
-
-    .btn-outline{
-      color:#d9e2e8;
-      background:#09121b;
-    }
-
-    .hero-person{
-      align-self:stretch;
-      min-height:470px;
-      position:relative;
-      display:flex;
-      align-items:flex-end;
-      justify-content:center;
-    }
-
-    .hero-person:before{
-      content:"";
-      position:absolute;
-      width:430px;
-      height:430px;
-      bottom:-120px;
-      right:5px;
-      border-radius:50%;
-      background:radial-gradient(
-        circle,
-        rgba(15,142,194,.2),
-        transparent 67%
-      );
-    }
-
-    .person-frame{
-      position:relative;
-      z-index:2;
-      width:100%;
-      height:100%;
-      display:flex;
-      align-items:flex-end;
-      justify-content:center;
-    }
-
-    /* تعديل الصورة لتملأ المساحة بالكامل وبشكل جميل */
-    .person-frame img{
-      width:100%;
-      height:100%;
-      object-fit: cover;
-      object-position: center top;
-      filter:drop-shadow(0 30px 35px rgba(0,0,0,.45));
-    }
-
-    .benefits{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:12px;
-      padding:0 58px 28px;
-    }
-
-    .benefit{
-      min-height:75px;
-      display:flex;
-      align-items:center;
-      gap:12px;
-      padding:12px 15px;
-      border:1px solid var(--line);
-      border-radius:12px;
-      background:rgba(14,23,32,.7);
-    }
-
-    .benefit-icon{
-      width:42px;
-      height:42px;
-      flex:0 0 42px;
-      display:grid;
-      place-items:center;
-      border-radius:12px;
-      background:rgba(34,199,184,.1);
-      color:var(--cyan);
-      font-size:19px;
-    }
-
-    .benefit strong{
-      display:block;
-      font-size:12px;
-      margin-bottom:5px;
-    }
-
-    .benefit span{
-      display:block;
-      color:var(--muted);
-      font-size:9px;
-      line-height:1.7;
-    }
-
-    .courses-section{
-      padding:0 58px 42px;
-    }
-
-    .section-head{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      margin-bottom:14px;
-    }
-
-    .section-head h2{
-      font-size:20px;
-    }
-
-    .section-head a{
-      color:var(--cyan);
-      font-size:10px;
-    }
-
-    .courses{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:12px;
-    }
-
-    .course{
-      background:#0c151f;
-      border:1px solid var(--line);
-      border-radius:10px;
-      overflow:hidden;
-      transition:.2s;
-    }
-
-    .course:hover{
-      transform:translateY(-3px);
-      border-color:#2b746f;
-    }
-
-    .course-img{
-      height:118px;
-      background:linear-gradient(135deg,#132536,#0c151e);
-      display:grid;
-      place-items:center;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .course-placeholder{
-      font-size:32px;
-      color:var(--cyan);
-    }
-
-    .course-body{
-      padding:11px;
-    }
-
-    .course h3{
-      font-size:12px;
-      line-height:1.6;
-      margin-bottom:8px;
-    }
-
-    .course-meta{
-      display:flex;
-      justify-content:space-between;
-      color:#84909c;
-      font-size:9px;
-    }
-
-    .course-meta b{
-      color:#f1c95b;
-    }
-
-    @media(max-width:900px){
-
-      .shell{
-        width:100%;
-        margin:0;
-        border-radius:0;
-        border-left:0;
-        border-right:0;
-      }
-
-      header{
-        height:auto;
-        min-height:66px;
-        padding:10px 14px;
-      }
-
-      .nav{
-        display:none;
-      }
-
-      .actions{
-        gap:12px;
-      }
-
-      .register{
-        padding:9px 13px;
-      }
-
-      .hero{
-        min-height:calc(100svh - 66px);
-        grid-template-columns:1fr;
-        padding:35px 24px 25px;
-        text-align:right;
-      }
-
-      .hero-copy{
-        padding:0;
-        order:1;
-      }
-
-      .hero-person{
-        order:0;
-        min-height:300px;
-        max-height:42svh;
-      }
-
-      .person-frame{
-        width:100%;
-      }
-
-      .hero h1{
-        font-size:39px;
-      }
-
-      .hero p{
-        font-size:13px;
-      }
-
-      .hero-buttons{
-        justify-content:flex-start;
-      }
-
-      .benefits{
-        grid-template-columns:repeat(2,1fr);
-        padding:0 20px 25px;
-      }
-
-      .courses-section{
-        padding:0 20px 35px;
-      }
-
-      .courses{
-        grid-template-columns:repeat(2,1fr);
-      }
-    }
-
-    @media(max-width:520px){
-
-      .brand-text strong{
-        font-size:13px;
-      }
-
-      .brand-text span{
-        font-size:9px;
-      }
-
-      .brand-mark{
-        width:39px;
-        height:39px;
-      }
-
-      .login{
-        font-size:10px;
-      }
-
-      .register{
-        font-size:10px;
-        padding:8px 11px;
-      }
-
-      .hero{
-        padding-top:22px;
-      }
-
-      .hero-person{
-        min-height:270px;
-      }
-
-      .hero h1{
-        font-size:35px;
-      }
-
-      .hero p{
-        font-size:12px;
-        line-height:1.9;
-      }
-
-      .hero-buttons{
-        gap:8px;
-      }
-
-      .btn{
-        min-width:0;
-        flex:1;
-        padding:12px 10px;
-        font-size:11px;
-      }
-
-      .benefits{
-        grid-template-columns:1fr 1fr;
-        gap:8px;
-      }
-
-      .benefit{
-        min-height:70px;
-        padding:9px;
-      }
-
-      .benefit-icon{
-        width:35px;
-        height:35px;
-        flex-basis:35px;
-      }
-
-      .benefit strong{
-        font-size:10px;
-      }
-
-      .benefit span{
-        font-size:8px;
-      }
-
-      .courses{
-        grid-template-columns:1fr 1fr;
-      }
-
-      .course-img{
-        height:105px;
-      }
-
-      .course h3{
-        font-size:10px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#06100e">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>NOVA — نوفا</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--bg:#040908;
+--bg2:#07120f;
+--panel:#0a1714;
+--panel2:#0d1d19;
+--panel3:#11251f;
+--line:rgba(255,255,255,.075);
+--line2:rgba(255,255,255,.12);
+--text:#f3f8f7;
+--muted:#81918e;
+--muted2:#a9b8b5;
+--primary:#27d6b7;
+--primary2:#13aa91;
+--danger:#ff5268;
+--warning:#e9bd61;
+--shadow:0 25px 80px rgba(0,0,0,.4);
+--radius:22px;
+--radius2:15px;
+}
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+html,
+body{
+width:100%;
+height:100%;
+overflow:hidden;
+background:var(--bg);
+color:var(--text);
+font-family:"IBM Plex Sans Arabic","Cairo",sans-serif;
+-webkit-tap-highlight-color:transparent;
+}
+
+button,
+input,
+textarea{
+font:inherit;
+}
+
+button{
+cursor:pointer;
+}
+
+input,
+textarea{
+outline:none;
+}
+
+.hidden{
+display:none!important;
+}
+
+.screen{
+position:fixed;
+inset:0;
+display:none;
+overflow:hidden;
+}
+
+.screen.active{
+display:flex;
+}
+
+
+/* =========================================================
+   SPLASH
+========================================================= */
+
+#splash{
+align-items:center;
+justify-content:center;
+background:
+radial-gradient(circle at 50% 42%,rgba(39,214,183,.13),transparent 24%),
+radial-gradient(circle at 100% 0,rgba(19,170,145,.13),transparent 32%),
+linear-gradient(145deg,#020605,#06110e 55%,#020605);
+}
+
+.splash-bg{
+position:absolute;
+inset:0;
+overflow:hidden;
+}
+
+.splash-orb{
+position:absolute;
+width:330px;
+height:330px;
+border-radius:50%;
+filter:blur(90px);
+opacity:.16;
+background:#22d6b9;
+animation:orb 5s ease-in-out infinite;
+}
+
+.splash-orb.a{
+top:-130px;
+right:-100px;
+}
+
+.splash-orb.b{
+bottom:-170px;
+left:-130px;
+animation-delay:-2s;
+}
+
+.splash-grid{
+position:absolute;
+inset:0;
+opacity:.035;
+background-image:
+linear-gradient(rgba(255,255,255,.3) 1px,transparent 1px),
+linear-gradient(90deg,rgba(255,255,255,.3) 1px,transparent 1px);
+background-size:50px 50px;
+}
+
+.splash-content{
+position:relative;
+z-index:2;
+width:min(430px,90%);
+text-align:center;
+}
+
+.logo-wrap{
+width:110px;
+height:110px;
+margin:auto;
+display:grid;
+place-items:center;
+position:relative;
+}
+
+.logo-wrap:before{
+content:"";
+position:absolute;
+inset:0;
+border:1px solid rgba(39,214,183,.2);
+border-radius:32px;
+transform:rotate(45deg);
+animation:rotate 7s linear infinite;
+}
+
+.logo{
+width:78px;
+height:78px;
+display:grid;
+place-items:center;
+position:relative;
+border-radius:27px 27px 27px 9px;
+background:linear-gradient(145deg,#5ff1dc,#14ae96);
+color:#03100e;
+font-size:34px;
+font-weight:900;
+box-shadow:0 0 45px rgba(39,214,183,.25);
+}
+
+.logo:after{
+content:"";
+position:absolute;
+right:7px;
+bottom:-9px;
+width:21px;
+height:21px;
+background:#14ae96;
+clip-path:polygon(0 0,100% 0,100% 100%);
+}
+
+.splash-title{
+margin-top:25px;
+font-family:"Cairo",sans-serif;
+font-size:42px;
+font-weight:800;
+letter-spacing:9px;
+}
+
+.splash-ar{
+font-size:14px;
+color:var(--muted);
+margin-top:-4px;
+}
+
+.splash-welcome{
+margin-top:52px;
+font-size:23px;
+font-weight:700;
+}
+
+.splash-sub{
+margin-top:8px;
+font-size:14px;
+color:var(--muted);
+}
+
+.splash-progress{
+width:min(370px,85%);
+height:4px;
+margin:70px auto 0;
+background:rgba(255,255,255,.07);
+border-radius:100px;
+overflow:hidden;
+}
+
+.splash-progress i{
+display:block;
+height:100%;
+width:0;
+background:linear-gradient(90deg,#13aa91,#61efdc);
+box-shadow:0 0 16px rgba(39,214,183,.5);
+animation:splashProgress 5s linear forwards;
+}
+
+.splash-status{
+margin-top:14px;
+font-size:12px;
+color:#71817e;
+}
+
+
+/* =========================================================
+   AUTH
+========================================================= */
+
+#auth{
+align-items:center;
+justify-content:center;
+background:
+radial-gradient(circle at 80% 0,rgba(39,214,183,.11),transparent 30%),
+radial-gradient(circle at 0 100%,rgba(22,93,82,.16),transparent 35%),
+var(--bg);
+overflow:auto;
+}
+
+.auth-shell{
+width:min(1120px,94vw);
+min-height:min(700px,90vh);
+display:grid;
+grid-template-columns:1.05fr .95fr;
+background:rgba(10,23,20,.84);
+border:1px solid var(--line);
+border-radius:32px;
+box-shadow:var(--shadow);
+overflow:hidden;
+backdrop-filter:blur(25px);
+}
+
+.auth-brand{
+position:relative;
+display:flex;
+flex-direction:column;
+justify-content:center;
+padding:65px;
+background:
+radial-gradient(circle at 20% 30%,rgba(39,214,183,.12),transparent 35%),
+linear-gradient(145deg,#081713,#050b09);
+}
+
+.auth-brand .big-logo{
+width:90px;
+height:90px;
+border-radius:30px 30px 30px 10px;
+display:grid;
+place-items:center;
+background:linear-gradient(145deg,#5ff1dc,#16b29a);
+color:#03100e;
+font-size:39px;
+font-weight:900;
+box-shadow:0 0 50px rgba(39,214,183,.18);
+}
+
+.auth-brand h1{
+font-family:"Cairo";
+font-size:48px;
+margin-top:28px;
+letter-spacing:7px;
+}
+
+.auth-brand h2{
+font-size:24px;
+margin-top:3px;
+}
+
+.auth-brand p{
+max-width:430px;
+margin-top:20px;
+line-height:2;
+color:var(--muted2);
+}
+
+.auth-features{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+margin-top:35px;
+}
+
+.auth-feature{
+padding:15px;
+border:1px solid var(--line);
+background:rgba(255,255,255,.025);
+border-radius:15px;
+color:#c6d4d1;
+font-size:13px;
+}
+
+.auth-feature b{
+display:block;
+color:var(--primary);
+font-size:17px;
+margin-bottom:3px;
+}
+
+.auth-panel{
+padding:55px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:rgba(4,9,8,.35);
+}
+
+.auth-card{
+width:min(420px,100%);
+}
+
+.auth-card h3{
+font-size:29px;
+font-weight:800;
+}
+
+.auth-card .hint{
+color:var(--muted);
+font-size:13px;
+margin-top:7px;
+line-height:1.8;
+}
+
+.auth-tabs{
+display:flex;
+padding:5px;
+background:#07110f;
+border:1px solid var(--line);
+border-radius:14px;
+margin:28px 0 24px;
+}
+
+.auth-tab{
+flex:1;
+padding:11px;
+border:0;
+border-radius:10px;
+background:transparent;
+color:var(--muted);
+}
+
+.auth-tab.active{
+background:#11251f;
+color:white;
+}
+
+.form{
+display:grid;
+gap:14px;
+}
+
+.field{
+position:relative;
+}
+
+.field label{
+display:block;
+font-size:12px;
+color:#91a09d;
+margin-bottom:7px;
+}
+
+.field input{
+width:100%;
+height:52px;
+padding:0 16px;
+border:1px solid var(--line);
+border-radius:14px;
+background:#08120f;
+color:white;
+transition:.2s;
+}
+
+.field input:focus{
+border-color:rgba(39,214,183,.5);
+box-shadow:0 0 0 4px rgba(39,214,183,.06);
+}
+
+.password-field input{
+padding-left:50px;
+}
+
+.password-toggle{
+position:absolute;
+left:8px;
+bottom:8px;
+width:36px;
+height:36px;
+border:0;
+background:transparent;
+color:var(--muted);
+}
+
+.primary{
+width:100%;
+height:52px;
+border:0;
+border-radius:14px;
+background:linear-gradient(135deg,#25d7b8,#13aa91);
+color:#02100d;
+font-weight:800;
+box-shadow:0 10px 30px rgba(19,170,145,.15);
+}
+
+.secondary{
+width:100%;
+height:48px;
+border:1px solid var(--line);
+border-radius:14px;
+background:#0b1714;
+color:#dce8e5;
+}
+
+.auth-links{
+display:flex;
+justify-content:space-between;
+gap:12px;
+margin-top:14px;
+}
+
+.text-button{
+background:transparent;
+border:0;
+color:var(--primary);
+font-size:12px;
+}
+
+.demo-note{
+margin-top:22px;
+padding:13px;
+border-radius:14px;
+border:1px solid rgba(39,214,183,.12);
+background:rgba(39,214,183,.045);
+color:#93aaa5;
+font-size:11px;
+line-height:1.8;
+}
+
+.auth-error{
+min-height:20px;
+color:#ff7d8c;
+font-size:12px;
+}
+
+
+/* =========================================================
+   MAIN APP
+========================================================= */
+
+#app{
+background:#040908;
+}
+
+.app{
+width:100%;
+height:100%;
+display:grid;
+grid-template-columns:82px 360px 1fr;
+}
+
+.side-nav{
+height:100%;
+display:flex;
+flex-direction:column;
+align-items:center;
+padding:17px 10px;
+border-left:1px solid var(--line);
+background:#06100e;
+}
+
+.side-logo{
+width:48px;
+height:48px;
+border-radius:17px 17px 17px 6px;
+display:grid;
+place-items:center;
+background:linear-gradient(145deg,#5ff1dc,#14ae96);
+color:#03100e;
+font-size:20px;
+font-weight:900;
+margin-bottom:30px;
+}
+
+.nav-list{
+display:flex;
+flex-direction:column;
+gap:8px;
+width:100%;
+}
+
+.nav-item{
+width:100%;
+height:58px;
+border:0;
+background:transparent;
+color:#70817d;
+border-radius:17px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:3px;
+font-size:10px;
+}
+
+.nav-item span:first-child{
+font-size:21px;
+}
+
+.nav-item.active{
+background:rgba(39,214,183,.1);
+color:#51e6ce;
+}
+
+.nav-bottom{
+margin-top:auto;
+display:flex;
+flex-direction:column;
+gap:8px;
+width:100%;
+}
+
+
+/* =========================================================
+   LIST
+========================================================= */
+
+.chat-list-panel{
+height:100%;
+display:flex;
+flex-direction:column;
+min-width:0;
+border-left:1px solid var(--line);
+background:#08130f;
+}
+
+.list-head{
+height:78px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 20px;
+border-bottom:1px solid var(--line);
+}
+
+.list-head h2{
+font-size:22px;
+}
+
+.list-head small{
+display:block;
+font-size:11px;
+color:var(--muted);
+margin-top:1px;
+}
+
+.head-actions{
+display:flex;
+gap:5px;
+}
+
+.icon-btn{
+width:40px;
+height:40px;
+border:0;
+border-radius:13px;
+background:transparent;
+color:#9aacA7;
+font-size:20px;
+}
+
+.icon-btn:hover{
+background:rgba(255,255,255,.05);
+color:white;
+}
+
+.search{
+margin:13px 14px 9px;
+height:44px;
+display:flex;
+align-items:center;
+gap:8px;
+padding:0 13px;
+background:#0d1c18;
+border:1px solid var(--line);
+border-radius:13px;
+}
+
+.search span{
+color:#687a75;
+font-size:18px;
+}
+
+.search input{
+width:100%;
+border:0;
+background:transparent;
+color:white;
+font-size:13px;
+}
+
+.filters{
+display:flex;
+gap:7px;
+padding:0 14px 12px;
+overflow-x:auto;
+scrollbar-width:none;
+}
+
+.filters::-webkit-scrollbar{
+display:none;
+}
+
+.filter{
+flex:none;
+padding:8px 13px;
+border-radius:100px;
+border:1px solid var(--line);
+background:#0a1714;
+color:#859590;
+font-size:11px;
+}
+
+.filter.active{
+background:rgba(39,214,183,.11);
+border-color:rgba(39,214,183,.18);
+color:#56dfca;
+}
+
+.chat-list{
+flex:1;
+overflow:auto;
+}
+
+.empty{
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:30px;
+}
+
+.empty-card{
+max-width:270px;
+}
+
+.empty-icon{
+width:66px;
+height:66px;
+border-radius:22px;
+margin:0 auto 17px;
+display:grid;
+place-items:center;
+background:#0e211c;
+color:#43d9c0;
+font-size:27px;
+}
+
+.empty h3{
+font-size:17px;
+}
+
+.empty p{
+margin-top:8px;
+color:var(--muted);
+font-size:12px;
+line-height:1.9;
+}
+
+.new-chat{
+position:absolute;
+left:25px;
+bottom:28px;
+width:56px;
+height:56px;
+border:0;
+border-radius:18px;
+background:linear-gradient(145deg,#35dfc2,#13aa91);
+color:#03100e;
+font-size:29px;
+font-weight:500;
+box-shadow:0 12px 35px rgba(19,170,145,.25);
+}
+
+
+/* =========================================================
+   CONVERSATION
+========================================================= */
+
+.conversation{
+height:100%;
+min-width:0;
+position:relative;
+background:
+radial-gradient(circle at 30% 20%,rgba(39,214,183,.035),transparent 25%),
+#07100e;
+display:flex;
+flex-direction:column;
+}
+
+.welcome{
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:40px;
+}
+
+.welcome-inner{
+max-width:510px;
+}
+
+.welcome-logo{
+width:110px;
+height:110px;
+margin:auto;
+display:grid;
+place-items:center;
+border-radius:38px 38px 38px 13px;
+background:linear-gradient(145deg,#5ff1dc,#14ae96);
+color:#03100e;
+font-size:48px;
+font-weight:900;
+box-shadow:0 0 80px rgba(39,214,183,.12);
+}
+
+.welcome h1{
+font-size:29px;
+margin-top:25px;
+}
+
+.welcome p{
+margin-top:8px;
+color:var(--muted);
+font-size:13px;
+line-height:2;
+}
+
+.encrypted{
+display:inline-flex;
+gap:7px;
+align-items:center;
+margin-top:25px;
+padding:9px 13px;
+border-radius:100px;
+background:rgba(39,214,183,.055);
+border:1px solid rgba(39,214,183,.09);
+font-size:11px;
+color:#6caaa0;
+}
+
+.chat-screen{
+height:100%;
+display:flex;
+flex-direction:column;
+}
+
+.chat-head{
+height:72px;
+display:flex;
+align-items:center;
+gap:10px;
+padding:0 16px;
+border-bottom:1px solid var(--line);
+background:rgba(7,16,14,.94);
+backdrop-filter:blur(18px);
+}
+
+.back{
+display:none;
+}
+
+.avatar{
+width:44px;
+height:44px;
+flex:none;
+display:grid;
+place-items:center;
+border-radius:15px;
+background:linear-gradient(145deg,#183c35,#0e2520);
+border:1px solid rgba(39,214,183,.1);
+color:#63e4d0;
+font-weight:800;
+}
+
+.chat-user{
+min-width:0;
+flex:1;
+}
+
+.chat-user strong{
+display:block;
+font-size:14px;
+}
+
+.chat-user small{
+display:block;
+margin-top:2px;
+font-size:10px;
+color:var(--muted);
+}
+
+.chat-actions{
+display:flex;
+gap:2px;
+}
+
+.messages{
+flex:1;
+overflow:auto;
+padding:24px 5%;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.no-messages{
+text-align:center;
+color:var(--muted);
+}
+
+.no-messages .big{
+width:65px;
+height:65px;
+margin:auto;
+border-radius:21px;
+display:grid;
+place-items:center;
+background:#0c1c18;
+color:#3bd7be;
+font-size:24px;
+}
+
+.no-messages strong{
+display:block;
+margin-top:13px;
+color:#bac8c5;
+font-size:13px;
+}
+
+.no-messages span{
+display:block;
+margin-top:5px;
+font-size:11px;
+}
+
+.composer{
+min-height:68px;
+display:flex;
+align-items:flex-end;
+gap:8px;
+padding:10px 15px;
+border-top:1px solid var(--line);
+background:#07110f;
+}
+
+.composer-btn{
+width:42px;
+height:42px;
+border:0;
+border-radius:13px;
+background:#0d1d19;
+color:#9eb0ac;
+font-size:20px;
+flex:none;
+}
+
+.message-input{
+min-height:44px;
+max-height:130px;
+flex:1;
+resize:none;
+padding:12px 14px;
+border:1px solid var(--line);
+border-radius:15px;
+background:#0c1b17;
+color:white;
+font-size:13px;
+line-height:1.6;
+}
+
+.send{
+width:44px;
+height:44px;
+border:0;
+border-radius:14px;
+background:linear-gradient(145deg,#35dfc2,#13aa91);
+color:#03100e;
+font-size:18px;
+font-weight:800;
+}
+
+
+/* =========================================================
+   MOBILE NAV
+========================================================= */
+
+.mobile-nav{
+display:none;
+}
+
+
+/* =========================================================
+   SHEETS / MODALS
+========================================================= */
+
+.overlay{
+position:fixed;
+inset:0;
+z-index:90;
+background:rgba(0,0,0,.62);
+backdrop-filter:blur(5px);
+}
+
+.sheet{
+position:fixed;
+z-index:100;
+left:50%;
+bottom:0;
+width:min(620px,100%);
+transform:translateX(-50%);
+background:#0a1714;
+border:1px solid var(--line);
+border-bottom:0;
+border-radius:25px 25px 0 0;
+padding:12px 18px 24px;
+box-shadow:0 -25px 80px rgba(0,0,0,.4);
+animation:sheet .25s ease;
+}
+
+.sheet-handle{
+width:45px;
+height:4px;
+border-radius:100px;
+background:#30403c;
+margin:0 auto 16px;
+}
+
+.sheet-head{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:15px;
+}
+
+.sheet-head strong{
+font-size:16px;
+}
+
+.sheet-head button{
+width:35px;
+height:35px;
+border:0;
+border-radius:10px;
+background:#11231e;
+color:#9caca8;
+}
+
+.attachments{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+}
+
+.attachment{
+min-height:100px;
+border:1px solid var(--line);
+background:#0d1d19;
+border-radius:17px;
+color:#bac7c4;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:8px;
+font-size:11px;
+}
+
+.attachment i{
+font-style:normal;
+font-size:25px;
+color:#46d9c1;
+}
+
+.modal-wrap{
+position:fixed;
+inset:0;
+z-index:150;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+background:rgba(0,0,0,.67);
+backdrop-filter:blur(8px);
+}
+
+.modal{
+width:min(480px,100%);
+max-height:90vh;
+overflow:auto;
+background:#0a1714;
+border:1px solid var(--line2);
+border-radius:25px;
+box-shadow:var(--shadow);
+padding:25px;
+animation:modal .2s ease;
+}
+
+.modal-head{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:20px;
+}
+
+.modal-head h3{
+font-size:20px;
+}
+
+.close{
+width:37px;
+height:37px;
+border:0;
+border-radius:11px;
+background:#11231e;
+color:#aab9b5;
+font-size:19px;
+}
+
+
+/* =========================================================
+   APP PAGES
+========================================================= */
+
+.page{
+height:100%;
+display:none;
+flex-direction:column;
+overflow:auto;
+}
+
+.page.active{
+display:flex;
+}
+
+.page-head{
+min-height:78px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 25px;
+border-bottom:1px solid var(--line);
+}
+
+.page-head h2{
+font-size:21px;
+}
+
+.page-head small{
+display:block;
+color:var(--muted);
+font-size:11px;
+margin-top:2px;
+}
+
+.page-body{
+padding:25px;
+overflow:auto;
+}
+
+.section-card{
+background:#0a1714;
+border:1px solid var(--line);
+border-radius:20px;
+padding:18px;
+margin-bottom:14px;
+}
+
+.section-title{
+font-size:12px;
+color:#70827d;
+margin:5px 5px 10px;
+}
+
+.setting-row{
+min-height:60px;
+display:flex;
+align-items:center;
+gap:13px;
+padding:11px 4px;
+border-bottom:1px solid var(--line);
+}
+
+.setting-row:last-child{
+border-bottom:0;
+}
+
+.setting-icon{
+width:38px;
+height:38px;
+border-radius:12px;
+display:grid;
+place-items:center;
+background:#10231e;
+color:#4edcc4;
+flex:none;
+}
+
+.setting-text{
+flex:1;
+min-width:0;
+}
+
+.setting-text strong{
+display:block;
+font-size:13px;
+}
+
+.setting-text small{
+display:block;
+color:var(--muted);
+font-size:10px;
+margin-top:2px;
+}
+
+.setting-arrow{
+color:#50615d;
+}
+
+.profile-card{
+text-align:center;
+padding:35px;
+}
+
+.profile-avatar{
+width:95px;
+height:95px;
+margin:auto;
+border-radius:30px;
+display:grid;
+place-items:center;
+background:linear-gradient(145deg,#1c4d43,#0c241f);
+color:#61e5d0;
+font-size:34px;
+font-weight:800;
+}
+
+.profile-card h3{
+font-size:22px;
+margin-top:15px;
+}
+
+.profile-card p{
+font-size:12px;
+color:var(--muted);
+margin-top:4px;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+position:fixed;
+z-index:500;
+right:50%;
+top:25px;
+transform:translate(50%,-20px);
+padding:12px 18px;
+border:1px solid var(--line);
+border-radius:14px;
+background:#10201c;
+box-shadow:var(--shadow);
+color:#dce9e6;
+font-size:12px;
+opacity:0;
+pointer-events:none;
+transition:.25s;
+}
+
+.toast.show{
+opacity:1;
+transform:translate(50%,0);
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes splashProgress{
+to{width:100%}
+}
+
+@keyframes orb{
+0%,100%{transform:scale(1)}
+50%{transform:scale(1.2)}
+}
+
+@keyframes rotate{
+to{transform:rotate(405deg)}
+}
+
+@keyframes sheet{
+from{transform:translate(-50%,100%)}
+to{transform:translate(-50%,0)}
+}
+
+@keyframes modal{
+from{opacity:0;transform:scale(.96)}
+to{opacity:1;transform:scale(1)}
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:900px){
+
+.auth-shell{
+grid-template-columns:1fr;
+min-height:auto;
+}
+
+.auth-brand{
+display:none;
+}
+
+.auth-panel{
+min-height:100vh;
+padding:30px 20px;
+}
+
+.app{
+grid-template-columns:1fr;
+}
+
+.side-nav{
+display:none;
+}
+
+.chat-list-panel{
+width:100%;
+border:0;
+}
+
+.conversation{
+display:none;
+}
+
+.mobile-nav{
+position:fixed;
+z-index:50;
+display:flex;
+bottom:0;
+right:0;
+left:0;
+height:68px;
+padding:5px 8px env(safe-area-inset-bottom);
+background:rgba(6,16,14,.97);
+border-top:1px solid var(--line);
+backdrop-filter:blur(18px);
+}
+
+.mobile-nav button{
+flex:1;
+border:0;
+background:transparent;
+color:#71817d;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:2px;
+font-size:19px;
+}
+
+.mobile-nav button small{
+font-size:9px;
+}
+
+.mobile-nav button.active{
+color:#4edcc4;
+}
+
+.chat-list-panel{
+padding-bottom:68px;
+}
+
+.new-chat{
+bottom:84px;
+}
+
+.chat-screen{
+position:absolute;
+inset:0;
+z-index:30;
+background:#07100e;
+}
+
+.back{
+display:block;
+width:38px;
+height:38px;
+border:0;
+background:transparent;
+color:#b8c6c3;
+font-size:29px;
+}
+
+.auth-brand{
+padding:35px;
+}
+
+.auth-features{
+grid-template-columns:1fr;
+}
+
+}
+
+@media(max-width:520px){
+
+.splash-title{
+font-size:34px;
+}
+
+.splash-welcome{
+font-size:20px;
+}
+
+.auth-panel{
+padding:25px 17px;
+}
+
+.auth-card h3{
+font-size:25px;
+}
+
+.list-head{
+height:70px;
+padding:0 15px;
+}
+
+.list-head h2{
+font-size:20px;
+}
+
+.chat-head{
+height:64px;
+padding:0 8px;
+}
+
+.chat-actions .icon-btn:nth-child(2){
+display:none;
+}
+
+.messages{
+padding:20px;
+}
+
+.composer{
+padding:8px;
+min-height:64px;
+}
+
+.attachments{
+grid-template-columns:repeat(2,1fr);
+}
+
+.sheet{
+padding-bottom:calc(18px + env(safe-area-inset-bottom));
+}
+
+.page-body{
+padding:15px;
+}
+
+}
+
+
+/* =========================================================
+   SAFE AREA
+========================================================= */
+
+@supports(padding:max(0px)){
+body{
+padding-top:env(safe-area-inset-top);
+}
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible{
+outline:2px solid rgba(39,214,183,.55);
+outline-offset:2px;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="shell">
+<!-- =========================================================
+     SPLASH
+========================================================= -->
 
-    <header>
+<section id="splash" class="screen active">
 
-      <a class="brand" href="index.html">
+<div class="splash-bg">
+<div class="splash-orb a"></div>
+<div class="splash-orb b"></div>
+<div class="splash-grid"></div>
+</div>
 
-        <div class="brand-mark">
-          <img src="55.jpg" alt="مهندس محمد صلاح">
-        </div>
+<div class="splash-content">
 
-        <div class="brand-text">
-          <strong>منصة محمد صلاح</strong>
-          <span>فيزياء</span>
-        </div>
+<div class="logo-wrap">
+<div class="logo">N</div>
+</div>
 
-      </a>
+<div class="splash-title">NOVA</div>
+<div class="splash-ar">نوفا</div>
 
-      <nav class="nav">
-        <a class="active" href="index.html">الرئيسية</a>
-        <a href="#courses">الكورسات</a>
-        <a href="#teachers">المدرسين</a>
-        <a href="#exams">الامتحانات</a>
-        <a href="#articles">المقالات</a>
-      </nav>
+<div class="splash-welcome">مرحبًا بك في NOVA</div>
+<div class="splash-sub">تواصل · تحدث · شارك</div>
 
-      <div class="actions">
-        <a class="login" href="login.html">تسجيل الدخول</a>
-        <a class="register" href="register.html">إنشاء حساب</a>
-      </div>
+<div class="splash-progress">
+<i></i>
+</div>
 
-    </header>
+<div id="splashStatus" class="splash-status">
+جاري تجهيز نوفا...
+</div>
 
-    <main>
+</div>
 
-      <section class="hero">
+</section>
 
-        <div class="hero-copy">
 
-          <h1>
-            تعلم بذكاء،
-            <br>
-            <span>واستثمر</span> في مستقبلك
-          </h1>
+<!-- =========================================================
+     AUTH
+========================================================= -->
 
-          <p>
-            منصة تعليمية متكاملة تساعدك على تعلم الفيزياء
-            وفهمها بطريقة واضحة، مع متابعة مستواك
-            والاختبارات والكورسات في مكان واحد.
-          </p>
+<section id="auth" class="screen">
 
-          <div class="hero-buttons">
-            <a class="btn btn-primary" href="login.html">
-              ابدأ التعلم الآن
-            </a>
+<div class="auth-shell">
 
-            <a class="btn btn-outline" href="#courses">
-              استكشف الكورسات
-            </a>
-          </div>
+<div class="auth-brand">
 
-        </div>
+<div class="big-logo">N</div>
 
-        <div class="hero-person">
+<h1>NOVA</h1>
 
-          <div class="person-frame">
-            <img src="55.jpg" alt="مهندس محمد صلاح">
-          </div>
+<h2>نوفا</h2>
 
-        </div>
+<p>
+منصة تواصل حديثة تجمع المحادثات،
+المكالمات، الحالات، المجتمعات، وجهات
+الاتصال في تجربة واحدة.
+</p>
 
-      </section>
+<div class="auth-features">
 
-      <section class="benefits" id="teachers">
+<div class="auth-feature">
+<b>المحادثات</b>
+رسائل ومحادثات في مكان واحد.
+</div>
 
-        <div class="benefit">
-          <div class="benefit-icon">⚛</div>
-          <div>
-            <strong>مدرس فيزياء خبير</strong>
-            <span>شرح منظم ومتابعة مستمرة للمستوى الدراسي.</span>
-          </div>
-        </div>
+<div class="auth-feature">
+<b>المكالمات</b>
+صوت وفيديو جاهزان للربط الحقيقي.
+</div>
 
-        <div class="benefit">
-          <div class="benefit-icon">◷</div>
-          <div>
-            <strong>تعلم في أي وقت</strong>
-            <span>المحتوى متاح لك وتقدر ترجع له وقت ما تحتاج.</span>
-          </div>
-        </div>
+<div class="auth-feature">
+<b>المجتمعات</b>
+نظم مجموعاتك ومساحاتك.
+</div>
 
-        <div class="benefit">
-          <div class="benefit-icon">▣</div>
-          <div>
-            <strong>محتوى بجودة عالية</strong>
-            <span>محاضرات منظمة وأسئلة وتدريبات متنوعة.</span>
-          </div>
-        </div>
+<div class="auth-feature">
+<b>الخصوصية</b>
+إعدادات أمن وخصوصية قابلة للتوسع.
+</div>
 
-        <div class="benefit">
-          <div class="benefit-icon">♧</div>
-          <div>
-            <strong>شهادات معتمدة</strong>
-            <span>تابع إنجازك واستكمل الكورسات المطلوبة.</span>
-          </div>
-        </div>
+</div>
 
-      </section>
+</div>
 
-      <section class="courses-section" id="courses">
 
-        <div class="section-head">
-          <h2>أقوى الكورسات</h2>
-          <a href="login.html">عرض كل الكورسات</a>
-        </div>
+<div class="auth-panel">
 
-        <div class="courses">
+<div class="auth-card">
 
-          <a class="course" href="login.html">
-            <div class="course-img">
-              <div class="course-placeholder">⚡</div>
-            </div>
+<h3 id="authTitle">تسجيل الدخول</h3>
 
-            <div class="course-body">
-              <h3>أساسيات الفيزياء</h3>
+<p id="authHint" class="hint">
+ادخل إلى حسابك في NOVA.
+</p>
 
-              <div class="course-meta">
-                <span>25 محاضرة</span>
-                <b>★ 4.9</b>
-              </div>
-            </div>
-          </a>
 
-          <a class="course" href="login.html">
-            <div class="course-img">
-              <div class="course-placeholder">∑</div>
-            </div>
+<div class="auth-tabs">
 
-            <div class="course-body">
-              <h3>حل مسائل الفيزياء</h3>
+<button
+class="auth-tab active"
+data-auth-tab="login"
+>
+تسجيل الدخول
+</button>
 
-              <div class="course-meta">
-                <span>30 محاضرة</span>
-                <b>★ 5.0</b>
-              </div>
-            </div>
-          </a>
+<button
+class="auth-tab"
+data-auth-tab="register"
+>
+إنشاء حساب
+</button>
 
-          <a class="course" href="login.html">
-            <div class="course-img">
-              <div class="course-placeholder">◉</div>
-            </div>
+</div>
 
-            <div class="course-body">
-              <h3>المراجعة النهائية</h3>
 
-              <div class="course-meta">
-                <span>20 محاضرة</span>
-                <b>★ 4.9</b>
-              </div>
-            </div>
-          </a>
+<form id="loginForm" class="form">
 
-          <a class="course" href="login.html">
-            <div class="course-img">
-              <div class="course-placeholder">✦</div>
-            </div>
+<div class="field">
+<label>البريد الإلكتروني أو رقم الهاتف</label>
+<input
+id="loginIdentity"
+required
+autocomplete="username"
+placeholder="اكتب البريد أو رقم الهاتف"
+>
+</div>
 
-            <div class="course-body">
-              <h3>بنك الأسئلة والامتحانات</h3>
+<div class="field password-field">
 
-              <div class="course-meta">
-                <span>100+ سؤال</span>
-                <b>★ 5.0</b>
-              </div>
-            </div>
-          </a>
+<label>كلمة المرور</label>
 
-        </div>
+<input
+id="loginPassword"
+type="password"
+required
+autocomplete="current-password"
+placeholder="كلمة المرور"
+>
 
-      </section>
+<button
+type="button"
+class="password-toggle"
+data-password="loginPassword"
+>
+◉
+</button>
 
-      <section class="courses-section" id="exams">
+</div>
 
-        <div class="section-head">
-          <h2>الاختبارات</h2>
-          <a href="login.html">ابدأ الاختبار</a>
-        </div>
+<div id="loginError" class="auth-error"></div>
 
-      </section>
+<button
+type="submit"
+class="primary"
+>
+دخول إلى NOVA
+</button>
 
-      <section class="courses-section" id="articles">
+<div class="auth-links">
 
-        <div class="section-head">
-          <h2>المقالات</h2>
-          <a href="login.html">عرض المقالات</a>
-        </div>
+<button
+type="button"
+class="text-button"
+id="forgotButton"
+>
+نسيت كلمة المرور؟
+</button>
 
-      </section>
+<button
+type="button"
+class="text-button"
+id="demoButton"
+>
+دخول تجريبي
+</button>
 
-    </main>
+</div>
 
-  </div>
+</form>
+
+
+<form id="registerForm" class="form hidden">
+
+<div class="field">
+<label>الاسم</label>
+<input
+id="registerName"
+autocomplete="name"
+placeholder="اسمك"
+>
+</div>
+
+<div class="field">
+<label>البريد الإلكتروني أو الهاتف</label>
+<input
+id="registerIdentity"
+autocomplete="username"
+placeholder="بيانات الحساب"
+>
+</div>
+
+<div class="field password-field">
+
+<label>كلمة المرور</label>
+
+<input
+id="registerPassword"
+type="password"
+autocomplete="new-password"
+placeholder="أنشئ كلمة مرور"
+>
+
+<button
+type="button"
+class="password-toggle"
+data-password="registerPassword"
+>
+◉
+</button>
+
+</div>
+
+<div id="registerError" class="auth-error"></div>
+
+<button
+type="submit"
+class="primary"
+>
+إنشاء الحساب
+</button>
+
+</form>
+
+
+<div class="demo-note">
+
+<strong>وضع التجربة الحالي</strong>
+
+<br>
+
+الواجهة تعمل الآن بدون قاعدة بيانات.
+يمكنك الدخول ببيانات تجريبية لمشاهدة
+التطبيق والتنقل بين واجهاته.
+
+<br>
+
+عند تشغيل الـBackend وقاعدة البيانات
+سيتم إيقاف هذا الوضع ويتحول الدخول
+إلى حسابات حقيقية.
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     APP
+========================================================= -->
+
+<section id="app" class="screen">
+
+<div class="app">
+
+
+<!-- =======================================================
+     SIDE NAV
+======================================================= -->
+
+<aside class="side-nav">
+
+<button
+class="side-logo"
+data-page="chats"
+>
+N
+</button>
+
+
+<nav class="nav-list">
+
+<button
+class="nav-item active"
+data-page="chats"
+>
+<span>⌂</span>
+<small>المحادثات</small>
+</button>
+
+<button
+class="nav-item"
+data-page="status"
+>
+<span>◉</span>
+<small>الحالة</small>
+</button>
+
+<button
+class="nav-item"
+data-page="calls"
+>
+<span>◌</span>
+<small>المكالمات</small>
+</button>
+
+<button
+class="nav-item"
+data-page="communities"
+>
+<span>◎</span>
+<small>المجتمعات</small>
+</button>
+
+<button
+class="nav-item"
+data-page="contacts"
+>
+<span>♙</span>
+<small>جهات الاتصال</small>
+</button>
+
+</nav>
+
+
+<div class="nav-bottom">
+
+<button
+class="nav-item"
+id="profileButton"
+>
+<span>●</span>
+<small>حسابي</small>
+</button>
+
+<button
+class="nav-item"
+data-page="settings"
+>
+<span>⚙</span>
+<small>الإعدادات</small>
+</button>
+
+</div>
+
+</aside>
+
+
+<!-- =======================================================
+     CHAT LIST
+======================================================= -->
+
+<aside class="chat-list-panel">
+
+<div class="list-head">
+
+<div>
+<h2 id="listTitle">المحادثات</h2>
+<small id="listSubtitle">
+رسائلك ومحادثاتك
+</small>
+</div>
+
+<div class="head-actions">
+
+<button
+class="icon-btn"
+id="globalSearchButton"
+>
+⌕
+</button>
+
+<button
+class="icon-btn"
+id="menuButton"
+>
+⋮
+</button>
+
+</div>
+
+</div>
+
+
+<div class="search">
+
+<span>⌕</span>
+
+<input
+id="chatSearch"
+type="search"
+placeholder="البحث في NOVA"
+>
+
+</div>
+
+
+<div class="filters" id="chatFilters">
+
+<button
+class="filter active"
+data-filter="all"
+>
+الكل
+</button>
+
+<button
+class="filter"
+data-filter="unread"
+>
+غير مقروءة
+</button>
+
+<button
+class="filter"
+data-filter="favorites"
+>
+المفضلة
+</button>
+
+<button
+class="filter"
+data-filter="groups"
+>
+المجموعات
+</button>
+
+</div>
+
+
+<div id="chatList" class="chat-list">
+
+<div class="empty">
+
+<div class="empty-card">
+
+<div class="empty-icon">
+✦
+</div>
+
+<h3>لا توجد محادثات</h3>
+
+<p>
+لا توجد محادثات حقيقية محملة حاليًا.
+بعد ربط الحساب وقاعدة البيانات ستظهر
+محادثاتك هنا تلقائيًا.
+</p>
+
+<button
+class="primary"
+id="newChatButton"
+style="margin-top:17px"
+>
+محادثة جديدة
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<button
+class="new-chat"
+id="newChatFab"
+>
++
+</button>
+
+</aside>
+
+
+<!-- =======================================================
+     CONTENT
+======================================================= -->
+
+<main class="conversation">
+
+
+<!-- WELCOME -->
+
+<div id="welcomePage" class="welcome">
+
+<div class="welcome-inner">
+
+<div class="welcome-logo">
+N
+</div>
+
+<h1>مرحبًا بك في NOVA</h1>
+
+<p>
+اختر محادثة من القائمة للبدء،
+أو استخدم القائمة السفلية للتنقل بين
+المحادثات والحالات والمكالمات والمجتمعات.
+</p>
+
+<div class="encrypted">
+◆
+واجهة NOVA جاهزة للربط بالخادم
+</div>
+
+</div>
+
+</div>
+
+
+<!-- CHAT -->
+
+<div id="chatScreen" class="chat-screen hidden">
+
+<header class="chat-head">
+
+<button
+class="back"
+id="backFromChat"
+>
+‹
+</button>
+
+<div class="avatar">
+N
+</div>
+
+<div class="chat-user">
+
+<strong id="chatName">
+محادثة NOVA
+</strong>
+
+<small id="chatStatus">
+محادثة جديدة
+</small>
+
+</div>
+
+<div class="chat-actions">
+
+<button class="icon-btn">
+☎
+</button>
+
+<button class="icon-btn">
+▣
+</button>
+
+<button class="icon-btn" id="chatMore">
+⋮
+</button>
+
+</div>
+
+</header>
+
+
+<div class="messages">
+
+<div class="no-messages">
+
+<div class="big">◇</div>
+
+<strong>
+لا توجد رسائل بعد
+</strong>
+
+<span>
+يمكن إرسال الرسائل بعد اتصال المحادثة بالخدمة.
+</span>
+
+</div>
+
+</div>
+
+
+<div class="composer">
+
+<button
+class="composer-btn"
+id="emojiButton"
+>
+☺
+</button>
+
+<button
+class="composer-btn"
+id="attachmentButton"
+>
++
+</button>
+
+<textarea
+id="messageInput"
+class="message-input"
+rows="1"
+placeholder="اكتب رسالة..."
+></textarea>
+
+<button
+class="send"
+id="sendButton"
+>
+➤
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ===================================================
+     STATUS PAGE
+=================================================== -->
+
+<section
+id="statusPage"
+class="page"
+>
+
+<div class="page-head">
+
+<div>
+<h2>الحالة</h2>
+<small>شارك وشاهد التحديثات</small>
+</div>
+
+<button class="icon-btn">
+＋
+</button>
+
+</div>
+
+<div class="page-body">
+
+<div class="section-card">
+
+<div class="setting-row">
+
+<div class="setting-icon">
++
+</div>
+
+<div class="setting-text">
+
+<strong>حالتي</strong>
+
+<small>
+أضف حالة جديدة
+</small>
+
+</div>
+
+<div class="setting-arrow">
+›
+</div>
+
+</div>
+
+</div>
+
+
+<div class="section-title">
+التحديثات الأخيرة
+</div>
+
+<div class="section-card">
+
+<div class="empty" style="height:260px">
+
+<div class="empty-card">
+
+<div class="empty-icon">
+◉
+</div>
+
+<h3>لا توجد حالات</h3>
+
+<p>
+ستظهر الحالات الحقيقية هنا بعد
+ربط الحساب.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ===================================================
+     CALLS PAGE
+=================================================== -->
+
+<section
+id="callsPage"
+class="page"
+>
+
+<div class="page-head">
+
+<div>
+<h2>المكالمات</h2>
+<small>صوت وفيديو</small>
+</div>
+
+<button class="icon-btn">
+☎
+</button>
+
+</div>
+
+<div class="page-body">
+
+<div class="section-card">
+
+<div class="empty" style="height:300px">
+
+<div class="empty-card">
+
+<div class="empty-icon">
+◌
+</div>
+
+<h3>لا توجد مكالمات</h3>
+
+<p>
+سجل المكالمات الحقيقي سيظهر هنا
+بعد ربط خدمة الاتصال.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ===================================================
+     COMMUNITIES
+=================================================== -->
+
+<section
+id="communitiesPage"
+class="page"
+>
+
+<div class="page-head">
+
+<div>
+<h2>المجتمعات</h2>
+<small>مساحاتك ومجموعاتك</small>
+</div>
+
+<button class="icon-btn">
+＋
+</button>
+
+</div>
+
+<div class="page-body">
+
+<div class="section-card">
+
+<div class="empty" style="height:300px">
+
+<div class="empty-card">
+
+<div class="empty-icon">
+◎
+</div>
+
+<h3>لا توجد مجتمعات</h3>
+
+<p>
+عند إنشاء أو الانضمام إلى مجتمع
+حقيقي سيظهر هنا.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ===================================================
+     CONTACTS
+=================================================== -->
+
+<section
+id="contactsPage"
+class="page"
+>
+
+<div class="page-head">
+
+<div>
+<h2>جهات الاتصال</h2>
+<small>الأشخاص المتصلون بك</small>
+</div>
+
+<button class="icon-btn">
+⌕
+</button>
+
+</div>
+
+<div class="page-body">
+
+<div class="section-card">
+
+<div class="empty" style="height:300px">
+
+<div class="empty-card">
+
+<div class="empty-icon">
+♙
+</div>
+
+<h3>لا توجد جهات اتصال</h3>
+
+<p>
+سيتم تحميل جهات الاتصال من الحساب
+بعد ربط الخدمة وقاعدة البيانات.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ===================================================
+     SETTINGS
+=================================================== -->
+
+<section
+id="settingsPage"
+class="page"
+>
+
+<div class="page-head">
+
+<div>
+<h2>الإعدادات</h2>
+<small>إدارة NOVA وحسابك</small>
+</div>
+
+</div>
+
+<div class="page-body">
+
+
+<div class="section-card">
+
+<div class="setting-row" id="settingsProfile">
+
+<div class="setting-icon">
+●
+</div>
+
+<div class="setting-text">
+
+<strong id="settingsName">
+حساب NOVA
+</strong>
+
+<small id="settingsIdentity">
+لم يتم ربط حساب حقيقي
+</small>
+
+</div>
+
+<div class="setting-arrow">
+›
+</div>
+
+</div>
+
+</div>
+
+
+<div class="section-title">
+الحساب والخصوصية
+</div>
+
+<div class="section-card">
+
+<div class="setting-row">
+<div class="setting-icon">♙</div>
+<div class="setting-text">
+<strong>الحساب</strong>
+<small>المعلومات والأمان</small>
+</div>
+<div class="setting-arrow">›</div>
+</div>
+
+<div class="setting-row">
+<div class="setting-icon">◇</div>
+<div class="setting-text">
+<strong>الخصوصية</strong>
+<small>آخر ظهور، الصورة، الحالة، الحظر</small>
+</div>
+<div class="setting-arrow">›</div>
+</div>
+
+<div class="setting-row">
+<div class="setting-icon">◆</div>
+<div class="setting-text">
+<strong>الأمان</strong>
+<small>الحماية والتحقق بخطوتين</small>
+</div>
+<div class="setting-arrow">›</div>
+</div>
+
+</div>
+
+
+<div class="section-title">
+المحادثات والإشعارات
+</div>
+
+<div class="section-card">
+
+<div class="setting-row">
+<div class="setting-icon">☷</div>
+<div class="setting-text">
+<strong>المحادثات</strong>
+<small>الخلفية وحجم الخط والإعدادات</small>
+</div>
+<div class="setting-arrow">›</div>
+</div>
+
+<div class="setting-row">
+<div class="setting-icon">◉</div>
+<div class="setting-text">
+<strong>الإشعارات</strong>
+<small>الرسائل والمكالمات والمجموعات</small>
+</div>
+<div class="setting-arrow">›</div>
+</div>
+
+<div class="setting-row">
+<div class="setting-icon">▣</div>
+<div class="setting-text">
+<strong>التخزين والبيانات</strong>
+<small>إدارة الوسائط والاستخدام</small>
+</div>
+<div class="setting-arrow">›</div>
+</div>
+
+</div>
+
+
+<div class="section-title">
+الدعم
+</div>
+
+<div class="section-card">
+
+<div class="setting-row">
+<div class="setting-icon">?</div>
+<div class="setting-text">
+<strong>المساعدة</strong>
+<small>الأسئلة الشائعة والتواصل</small>
+</div>
+<div class="setting-arrow">›</div>
+</div>
+
+<div class="setting-row">
+<div class="setting-icon">N</div>
+<div class="setting-text">
+<strong>حول NOVA</strong>
+<small>الإصدار والمعلومات القانونية</small>
+</div>
+<div class="setting-arrow">›</div>
+</div>
+
+</div>
+
+
+<button
+id="logoutButton"
+class="secondary"
+style="color:#ff7181;margin-top:5px"
+>
+تسجيل الخروج
+</button>
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+
+<!-- =========================================================
+     MOBILE NAV
+========================================================= -->
+
+<nav class="mobile-nav">
+
+<button class="active" data-page="chats">
+<span>⌂</span>
+<small>المحادثات</small>
+</button>
+
+<button data-page="status">
+<span>◉</span>
+<small>الحالة</small>
+</button>
+
+<button data-page="calls">
+<span>◌</span>
+<small>المكالمات</small>
+</button>
+
+<button data-page="communities">
+<span>◎</span>
+<small>المجتمعات</small>
+</button>
+
+<button data-page="settings">
+<span>⚙</span>
+<small>الإعدادات</small>
+</button>
+
+</nav>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     OVERLAY
+========================================================= -->
+
+<div
+id="overlay"
+class="overlay hidden"
+></div>
+
+
+<!-- =========================================================
+     ATTACHMENT SHEET
+========================================================= -->
+
+<section
+id="attachmentSheet"
+class="sheet hidden"
+>
+
+<div class="sheet-handle"></div>
+
+<div class="sheet-head">
+
+<strong>إرسال مرفق</strong>
+
+<button data-close="attachment">
+×
+</button>
+
+</div>
+
+<div class="attachments">
+
+<button class="attachment">
+<i>▣</i>
+الكاميرا
+</button>
+
+<button class="attachment">
+<i>▤</i>
+الصور والفيديو
+</button>
+
+<button class="attachment">
+<i>▱</i>
+مستند
+</button>
+
+<button class="attachment">
+<i>♙</i>
+جهة اتصال
+</button>
+
+<button class="attachment">
+<i>⌖</i>
+الموقع
+</button>
+
+<button class="attachment">
+<i>☷</i>
+استطلاع
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =========================================================
+     MENU MODAL
+========================================================= -->
+
+<div
+id="menuModal"
+class="modal-wrap hidden"
+>
+
+<div class="modal">
+
+<div class="modal-head">
+
+<h3>قائمة NOVA</h3>
+
+<button
+class="close"
+data-close="menu"
+>
+×
+</button>
+
+</div>
+
+<div class="section-card">
+
+<div class="setting-row" id="menuNewChat">
+<div class="setting-icon">＋</div>
+<div class="setting-text">
+<strong>محادثة جديدة</strong>
+<small>ابدأ محادثة</small>
+</div>
+<div class="setting-arrow">›</div>
+</div>
+
+<div class="setting-row" data-page-menu="contacts">
+<div class="setting-icon">♙</div>
+<div class="setting-text">
+<strong>جهات الاتصال</strong>
+<small>عرض الأشخاص</small>
+</div>
+<div class="setting-arrow">›</div>
+</div>
+
+<div class="setting-row" data-page-menu="settings">
+<div class="setting-icon">⚙</div>
+<div class="setting-text">
+<strong>الإعدادات</strong>
+<small>إدارة NOVA</small>
+</div>
+<div class="setting-arrow">›</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+     PROFILE MODAL
+========================================================= -->
+
+<div
+id="profileModal"
+class="modal-wrap hidden"
+>
+
+<div class="modal">
+
+<div class="modal-head">
+
+<h3>الملف الشخصي</h3>
+
+<button
+class="close"
+data-close="profile"
+>
+×
+</button>
+
+</div>
+
+<div class="profile-card">
+
+<div class="profile-avatar">
+N
+</div>
+
+<h3 id="profileName">
+NOVA
+</h3>
+
+<p id="profileIdentity">
+وضع التجربة
+</p>
+
+</div>
+
+<div class="section-card">
+
+<div class="setting-row">
+<div class="setting-icon">✎</div>
+<div class="setting-text">
+<strong>الاسم</strong>
+<small>تعديل الاسم</small>
+</div>
+<div class="setting-arrow">›</div>
+</div>
+
+<div class="setting-row">
+<div class="setting-icon">@</div>
+<div class="setting-text">
+<strong>اسم المستخدم</strong>
+<small>username</small>
+</div>
+<div class="setting-arrow">›</div>
+</div>
+
+<div class="setting-row">
+<div class="setting-icon">▤</div>
+<div class="setting-text">
+<strong>نبذة عني</strong>
+<small>أضف وصفًا لحسابك</small>
+</div>
+<div class="setting-arrow">›</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<div id="toast" class="toast"></div>
+
+
+<script>
+"use strict";
+
+/*
+==============================================================
+NOVA SINGLE-FILE CORE
+==============================================================
+
+هذا الملف يعمل مستقلًا.
+
+DEMO_MODE = true
+يسمح بالدخول بدون Backend.
+
+عند إضافة قاعدة البيانات:
+NOVA_CONFIG.DEMO_MODE = false
+
+وعندها يجب أن تمر عملية الدخول عبر API الحقيقي.
+==============================================================
+*/
+
+const NOVA_CONFIG = {
+    APP_NAME: "NOVA",
+    APP_NAME_AR: "نوفا",
+    VERSION: "1.0.0",
+    DEMO_MODE: true,
+    SPLASH_TIME: 5000,
+    STORAGE_SESSION: "nova_demo_session",
+    STORAGE_PROFILE: "nova_demo_profile"
+};
+
+
+const state = {
+    currentPage: "chats",
+    authMode: "login",
+    currentChat: null,
+    demoUser: null,
+    search: "",
+    filter: "all"
+};
+
+
+const $ = selector => document.querySelector(selector);
+const $$ = selector => [...document.querySelectorAll(selector)];
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function show(element){
+    if(element) element.classList.remove("hidden");
+}
+
+function hide(element){
+    if(element) element.classList.add("hidden");
+}
+
+function toast(message){
+    const el = $("#toast");
+    if(!el) return;
+
+    el.textContent = message;
+    el.classList.add("show");
+
+    clearTimeout(window.__novaToast);
+
+    window.__novaToast = setTimeout(()=>{
+        el.classList.remove("show");
+    },2600);
+}
+
+
+function saveSession(user){
+    localStorage.setItem(
+        NOVA_CONFIG.STORAGE_SESSION,
+        "1"
+    );
+
+    localStorage.setItem(
+        NOVA_CONFIG.STORAGE_PROFILE,
+        JSON.stringify(user)
+    );
+}
+
+
+function getSession(){
+
+    if(
+        localStorage.getItem(
+            NOVA_CONFIG.STORAGE_SESSION
+        ) !== "1"
+    ){
+        return null;
+    }
+
+    try{
+        return JSON.parse(
+            localStorage.getItem(
+                NOVA_CONFIG.STORAGE_PROFILE
+            )
+        );
+    }catch{
+        return null;
+    }
+}
+
+
+function clearSession(){
+
+    localStorage.removeItem(
+        NOVA_CONFIG.STORAGE_SESSION
+    );
+
+    localStorage.removeItem(
+        NOVA_CONFIG.STORAGE_PROFILE
+    );
+}
+
+
+/* =========================================================
+   SPLASH
+========================================================= */
+
+function startSplash(){
+
+    const splash = $("#splash");
+    const auth = $("#auth");
+    const app = $("#app");
+    const status = $("#splashStatus");
+
+    if(!splash) return;
+
+    const messages = [
+        "جاري تجهيز نوفا...",
+        "جاري تحميل الواجهة...",
+        "جاري تجهيز الخدمات...",
+        "جاري تجهيز مساحة التواصل...",
+        "أهلاً بك في NOVA"
+    ];
+
+    let index = 0;
+
+    const interval = setInterval(()=>{
+
+        index++;
+
+        if(
+            index < messages.length &&
+            status
+        ){
+            status.textContent = messages[index];
+        }
+
+    },1000);
+
+
+    setTimeout(()=>{
+
+        clearInterval(interval);
+
+        splash.classList.remove("active");
+
+        /*
+         * لو فيه جلسة Demo محفوظة:
+         * نرجع مباشرة للتطبيق.
+         *
+         * لو مفيش:
+         * نعرض تسجيل الدخول.
+         */
+
+        const session = getSession();
+
+        if(session){
+
+            state.demoUser = session;
+
+            auth.classList.remove("active");
+            app.classList.add("active");
+
+            updateProfileUI();
+
+        }else{
+
+            app.classList.remove("active");
+            auth.classList.add("active");
+
+        }
+
+    },NOVA_CONFIG.SPLASH_TIME);
+}
+
+
+/* =========================================================
+   AUTH TABS
+========================================================= */
+
+function setAuthMode(mode){
+
+    state.authMode = mode;
+
+    $$(".auth-tab").forEach(tab=>{
+        tab.classList.toggle(
+            "active",
+            tab.dataset.authTab === mode
+        );
+    });
+
+    $("#loginForm").classList.toggle(
+        "hidden",
+        mode !== "login"
+    );
+
+    $("#registerForm").classList.toggle(
+        "hidden",
+        mode !== "register"
+    );
+
+    if(mode === "login"){
+
+        $("#authTitle").textContent =
+            "تسجيل الدخول";
+
+        $("#authHint").textContent =
+            "ادخل إلى حسابك في NOVA.";
+
+    }else{
+
+        $("#authTitle").textContent =
+            "إنشاء حساب";
+
+        $("#authHint").textContent =
+            "أنشئ حسابك للبدء في استخدام NOVA.";
+
+    }
+
+}
+
+
+/* =========================================================
+   DEMO LOGIN
+========================================================= */
+
+function enterDemo(){
+
+    const identity =
+        $("#loginIdentity").value.trim();
+
+    const name =
+        identity || "مستخدم NOVA";
+
+    const user = {
+        id: "demo-user",
+        name: name,
+        identity: identity || "وضع التجربة",
+        mode: "demo"
+    };
+
+    state.demoUser = user;
+
+    saveSession(user);
+
+    enterApp();
+
+    toast("تم الدخول إلى NOVA بوضع التجربة");
+}
+
+
+function enterApp(){
+
+    $("#auth").classList.remove("active");
+    $("#app").classList.add("active");
+
+    updateProfileUI();
+
+    setPage("chats");
+}
+
+
+function logout(){
+
+    clearSession();
+
+    state.demoUser = null;
+
+    $("#app").classList.remove("active");
+    $("#auth").classList.add("active");
+
+    setAuthMode("login");
+
+    $("#loginIdentity").value = "";
+    $("#loginPassword").value = "";
+
+    toast("تم تسجيل الخروج");
+}
+
+
+/* =========================================================
+   AUTH SUBMIT
+========================================================= */
+
+$("#loginForm").addEventListener(
+    "submit",
+    event=>{
+
+        event.preventDefault();
+
+        if(!NOVA_CONFIG.DEMO_MODE){
+
+            $("#loginError").textContent =
+                "تسجيل الدخول الحقيقي يحتاج API وقاعدة البيانات.";
+
+            return;
+        }
+
+        enterDemo();
+
+    }
+);
+
+
+$("#registerForm").addEventListener(
+    "submit",
+    event=>{
+
+        event.preventDefault();
+
+        if(!NOVA_CONFIG.DEMO_MODE){
+
+            $("#registerError").textContent =
+                "إنشاء الحساب الحقيقي يحتاج Backend وقاعدة البيانات.";
+
+            return;
+        }
+
+        const name =
+            $("#registerName").value.trim();
+
+        const identity =
+            $("#registerIdentity").value.trim();
+
+        if(!name || !identity){
+
+            $("#registerError").textContent =
+                "اكتب الاسم وبيانات الحساب.";
+
+            return;
+        }
+
+        const user = {
+            id:"demo-user",
+            name:name,
+            identity:identity,
+            mode:"demo"
+        };
+
+        state.demoUser = user;
+
+        saveSession(user);
+
+        enterApp();
+
+        toast("تم إنشاء جلسة تجربة");
+
+    }
+);
+
+
+$("#demoButton").addEventListener(
+    "click",
+    ()=>{
+        enterDemo();
+    }
+);
+
+
+$("#forgotButton").addEventListener(
+    "click",
+    ()=>{
+        toast(
+            "استعادة كلمة المرور ستتصل بخدمة الحساب بعد إضافة Backend."
+        );
+    }
+);
+
+
+$$(".auth-tab").forEach(tab=>{
+
+    tab.addEventListener(
+        "click",
+        ()=>{
+            setAuthMode(
+                tab.dataset.authTab
+            );
+        }
+    );
+
+});
+
+
+$$(".password-toggle").forEach(button=>{
+
+    button.addEventListener(
+        "click",
+        ()=>{
+
+            const input =
+                document.getElementById(
+                    button.dataset.password
+                );
+
+            if(!input) return;
+
+            input.type =
+                input.type === "password"
+                ? "text"
+                : "password";
+
+        }
+    );
+
+});
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+const pageMap = {
+    chats: null,
+    status: "#statusPage",
+    calls: "#callsPage",
+    communities: "#communitiesPage",
+    contacts: "#contactsPage",
+    settings: "#settingsPage"
+};
+
+
+function setPage(page){
+
+    state.currentPage = page;
+
+    /*
+     * المحادثات لها layout مختلف.
+     */
+
+    const isChats =
+        page === "chats";
+
+    $("#chat-list-panel");
+
+    $$(".page").forEach(item=>{
+        item.classList.remove("active");
+    });
+
+    if(pageMap[page]){
+        $(pageMap[page]).classList.add("active");
+    }
+
+    $("#welcomePage").classList.toggle(
+        "hidden",
+        !isChats || state.currentChat
+    );
+
+    $("#chatScreen").classList.toggle(
+        "hidden",
+        !isChats || !state.currentChat
+    );
+
+
+    $$(".nav-item").forEach(item=>{
+
+        item.classList.toggle(
+            "active",
+            item.dataset.page === page
+        );
+
+    });
+
+
+    $$(".mobile-nav button").forEach(item=>{
+
+        item.classList.toggle(
+            "active",
+            item.dataset.page === page
+        );
+
+    });
+
+
+    const titles = {
+        chats:["المحادثات","رسائلك ومحادثاتك"],
+        status:["الحالة","شارك وشاهد التحديثات"],
+        calls:["المكالمات","صوت وفيديو"],
+        communities:["المجتمعات","مساحاتك ومجموعاتك"],
+        contacts:["جهات الاتصال","الأشخاص المتصلون بك"],
+        settings:["الإعدادات","إدارة NOVA وحسابك"]
+    };
+
+    if(titles[page]){
+
+        $("#listTitle").textContent =
+            titles[page][0];
+
+        $("#listSubtitle").textContent =
+            titles[page][1];
+
+    }
+
+
+    if(page !== "chats"){
+        state.currentChat = null;
+    }
+}
+
+
+$$("[data-page]").forEach(button=>{
+
+    button.addEventListener(
+        "click",
+        ()=>{
+            setPage(
+                button.dataset.page
+            );
+        }
+    );
+
+});
+
+
+$$("[data-page-menu]").forEach(button=>{
+
+    button.addEventListener(
+        "click",
+        ()=>{
+
+            closeMenu();
+
+            setPage(
+                button.dataset.pageMenu
+            );
+
+        }
+    );
+
+});
+
+
+/* =========================================================
+   CHAT
+========================================================= */
+
+function openChat(){
+
+    state.currentChat = {
+        id:"new-chat",
+        name:"محادثة جديدة"
+    };
+
+    setPage("chats");
+
+    $("#welcomePage").classList.add("hidden");
+    $("#chatScreen").classList.remove("hidden");
+
+    $("#chatName").textContent =
+        "محادثة جديدة";
+
+    $("#chatStatus").textContent =
+        "جاهزة للربط";
+
+}
+
+
+$("#newChatButton").addEventListener(
+    "click",
+    openChat
+);
+
+$("#newChatFab").addEventListener(
+    "click",
+    openChat
+);
+
+
+$("#backFromChat").addEventListener(
+    "click",
+    ()=>{
+
+        state.currentChat = null;
+
+        $("#chatScreen").classList.add("hidden");
+        $("#welcomePage").classList.remove("hidden");
+
+    }
+);
+
+
+/* =========================================================
+   MESSAGE INPUT
+========================================================= */
+
+const messageInput =
+    $("#messageInput");
+
+
+messageInput.addEventListener(
+    "input",
+    ()=>{
+
+        messageInput.style.height = "auto";
+
+        messageInput.style.height =
+            Math.min(
+                messageInput.scrollHeight,
+                130
+            ) + "px";
+
+    }
+);
+
+
+$("#sendButton").addEventListener(
+    "click",
+    ()=>{
+
+        const text =
+            messageInput.value.trim();
+
+        if(!text){
+
+            toast(
+                "اكتب رسالة أولاً."
+            );
+
+            return;
+        }
+
+        /*
+         * لا نخترع رسالة ونضعها في النظام
+         * كأنها رسالة حقيقية.
+         *
+         * فقط نوضح أن الإرسال يحتاج API.
+         */
+
+        toast(
+            "واجهة الإرسال جاهزة — سيتم الحفظ عند ربط الخادم."
+        );
+
+        messageInput.value = "";
+        messageInput.style.height = "44px";
+
+    }
+);
+
+
+messageInput.addEventListener(
+    "keydown",
+    event=>{
+
+        if(
+            event.key === "Enter" &&
+            !event.shiftKey
+        ){
+
+            event.preventDefault();
+
+            $("#sendButton").click();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   ATTACHMENTS
+========================================================= */
+
+$("#attachmentButton").addEventListener(
+    "click",
+    ()=>{
+
+        show($("#attachmentSheet"));
+        show($("#overlay"));
+
+    }
+);
+
+
+$$("[data-close='attachment']").forEach(button=>{
+
+    button.addEventListener(
+        "click",
+        closeAttachment
+    );
+
+});
+
+
+function closeAttachment(){
+
+    hide($("#attachmentSheet"));
+    hide($("#overlay"));
+
+}
+
+
+/* =========================================================
+   MENU
+========================================================= */
+
+$("#menuButton").addEventListener(
+    "click",
+    ()=>{
+
+        show($("#menuModal"));
+        show($("#overlay"));
+
+    }
+);
+
+
+function closeMenu(){
+
+    hide($("#menuModal"));
+    hide($("#overlay"));
+
+}
+
+
+$$("[data-close='menu']").forEach(button=>{
+
+    button.addEventListener(
+        "click",
+        closeMenu
+    );
+
+});
+
+
+$("#menuNewChat").addEventListener(
+    "click",
+    ()=>{
+
+        closeMenu();
+        openChat();
+
+    }
+);
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+$("#profileButton").addEventListener(
+    "click",
+    ()=>{
+
+        updateProfileUI();
+
+        show($("#profileModal"));
+        show($("#overlay"));
+
+    }
+);
+
+
+$("#settingsProfile").addEventListener(
+    "click",
+    ()=>{
+
+        updateProfileUI();
+
+        show($("#profileModal"));
+        show($("#overlay"));
+
+    }
+);
+
+
+function updateProfileUI(){
+
+    const user =
+        state.demoUser ||
+        {
+            name:"NOVA",
+            identity:"وضع التجربة"
+        };
+
+    $("#profileName").textContent =
+        user.name;
+
+    $("#profileIdentity").textContent =
+        user.identity;
+
+    $("#settingsName").textContent =
+        user.name;
+
+    $("#settingsIdentity").textContent =
+        user.identity;
+
+}
+
+
+$$("[data-close='profile']").forEach(button=>{
+
+    button.addEventListener(
+        "click",
+        ()=>{
+
+            hide($("#profileModal"));
+            hide($("#overlay"));
+
+        }
+    );
+
+});
+
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+
+$("#overlay").addEventListener(
+    "click",
+    ()=>{
+
+        closeAttachment();
+        closeMenu();
+
+        hide($("#profileModal"));
+
+    }
+);
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+$("#logoutButton").addEventListener(
+    "click",
+    logout
+);
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+$("#chatSearch").addEventListener(
+    "input",
+    event=>{
+
+        state.search =
+            event.target.value.trim();
+
+        /*
+         * لا يوجد بيانات حقيقية حتى الآن.
+         * عندما تصل البيانات من API سيتم فلترتها هنا.
+         */
+
+    }
+);
+
+
+$("#globalSearchButton").addEventListener(
+    "click",
+    ()=>{
+
+        $("#chatSearch").focus();
+
+    }
+);
+
+
+/* =========================================================
+   FILTERS
+========================================================= */
+
+$$(".filter").forEach(button=>{
+
+    button.addEventListener(
+        "click",
+        ()=>{
+
+            state.filter =
+                button.dataset.filter;
+
+            $$(".filter").forEach(item=>{
+                item.classList.remove("active");
+            });
+
+            button.classList.add("active");
+
+        }
+    );
+
+});
+
+
+/* =========================================================
+   EMOJI
+========================================================= */
+
+$("#emojiButton").addEventListener(
+    "click",
+    ()=>{
+
+        toast(
+            "لوحة الرموز جاهزة للربط في المرحلة التالية."
+        );
+
+    }
+);
+
+
+/* =========================================================
+   PROFILE OPEN
+========================================================= */
+
+$("#profileButton").addEventListener(
+    "click",
+    updateProfileUI
+);
+
+
+/* =========================================================
+   INIT
+========================================================= */
+
+function init(){
+
+    /*
+     * نضمن عدم وجود صفحة غريبة عند البداية.
+     */
+
+    setPage("chats");
+
+    startSplash();
+
+}
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    init
+);
+
+</script>
 
 </body>
-</html>
+  </html>
